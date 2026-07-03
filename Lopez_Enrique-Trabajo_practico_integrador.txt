@@ -1,0 +1,1505 @@
+﻿Instituto Técnico de Educación y Capacitación N°1 “Yacyretá”
+Técnico Superior en Programación y Análisis de Sistemas
+Análisis de Sistemas
+
+Trabajo Práctico Integrador
+Análisis y Diseño de un Sistema de Gestión Operativa para Taller de Motocicletas
+
+
+Autor: Lopez, Enrique Alejandro
+Docente: Piriz, Ricardo
+Posadas, Misiones - Mayo de 2026
+TABLA DE CONTENIDOS
+
+1. Introducción
+	1.1 Descripción del Escenario
+	1.2 Objetivos Generales del Análisis
+
+2. Planificación
+	2.1 Planificación de Entrevistas
+	2.2 Planificación de Actividades
+	2.3 Diagrama de Gantt
+	2.4 Diagrama de PERT
+
+3. Estudio de Factibilidad
+	3.1 Factibilidad Técnica
+		3.1.1 Infraestructura actual del taller
+		3.1.2 Stack tecnológico propuesto
+		3.1.3 Requisitos de conectividad
+		3.1.4 Competencias técnicas del equipo de desarrollo
+	3.2 Factibilidad Económica
+		3.2.1 Estimación de Costos de Desarrollo
+		3.2.2 Análisis costo-beneficio
+	3.3 Factibilidad Operativa
+	3.4 Descripción de las Alternativas Analizadas
+
+4. Relevamiento
+	4.1 Recolección de la Información de la Organización
+		4.1.1 Entrevistas semiestructuradas
+		4.1.2 Observación directa
+		4.1.3 Revisión de documentos existentes
+4.2 Recopilación de Documentos
+4.3 Informe de Relevamiento
+	4.3.1 Proceso de recepción y atención al cliente
+	4.3.2 Proceso de gestión de repuestos
+	4.3.3 Proceso de cobro y registro financiero
+	4.3.4 Flujo operativo consolidado del sistema actual
+4.4 Conclusiones del Relevamiento
+4.5 Determinación de Problemas, Necesidades y Requerimientos
+	4.5.1 Problemas Identificados
+	4.5.2 Necesidades del Usuario
+	4.5.3 Requerimientos preliminares del Sistema
+
+5. Análisis
+	5.1 Análisis y Especificación de Requisitos Conforme IEEE 830
+	5.2 Descripción del Escenario
+	5.3 Objetivos del Sistema
+	5.4 Requisitos Funcionales
+		5.4.1 Módulo 1 - Órdenes de Trabajo y Clientes
+		5.4.2 Módulo 2 - Stock de Repuestos
+		5.4.3 Módulo 3 - Cobros y Reportes
+	5.5 Requisitos No Funcionales
+	5.6 Modelado de Análisis
+		5.6.1 Diagrama de Casos de Uso
+		5.6.2 Casos de Uso Extendidos
+		5.6.3 Modelo de Dominio
+			5.6.3.1 Declaración de Propósitos
+			5.6.3.2 Diagrama de Contexto (DFD Nivel 0)
+			5.6.3.3 Lista de Acontecimientos
+			5.6.3.4 Diagrama General del Sistema (DFD Nivel 1)
+		5.6.4 Descripción de Atributos de Conceptos
+		5.6.5 Diagramas de Secuencia del Sistema
+		5.6.6 Contratos
+		5.6.7 Diagrama de Transición de Estados
+		5.6.8 Diccionario de Datos
+
+6. Diseño
+	6.1 Casos de Uso Reales
+	6.2 Diagrama de Secuencia de Diseño
+	6.3 Diagrama de Clases
+	6.4 Diseño de Entrada
+	6.5 Diseño de Salidas
+
+7. Prueba y Depuración
+	7.1 Plan de Pruebas
+	7.2 Casos de Pruebas
+		7.2.1 Módulo 1- Órdenes de Trabajo y Clientes
+		7.2.2 Módulo 2 - Stock y Repuestos
+		7.2.3 Módulo 3 - Cobros y Reportes
+	7.3 Pruebas de Sistema
+	7.4 Pruebas de Aceptación
+
+8. Implantación
+	8.1 Implementación
+		8.1.1 Estrategia General de Implantación
+		8.1.2 Secuencia de Despliegue Incremental
+		8.1.3 Migración de Datos
+		8.1.4 Configuración de Infraestructura
+	8.2 Capacitación 
+		8.2.1 Perfil del Usuario a Capacitar
+		8.2.2 Plan de Sesiones de Capacitación
+		8.2.3 Materiales de Soporte para Capacitación
+		8.2.4 Criterio de Aprobación global de la Capacitación
+	8.3 Manual de Usuario
+		8.3.1 Acceso al Sistema
+		8.3.2 Registrar Trabajo Nuevo
+		8.3.3 Actualizar el Estado de un Trabajo
+		8.3.4 Registrar Repuestos Usados en un Trabajo
+		8.3.5 Registrar el Cobro de un Trabajo
+		8.3.6 Consultar el Resumen del Mes
+		8.3.7 Preguntas Frecuentes (FAQ)
+	8.4 Otros Manuales
+		8.4.1 Arquitectura del Sistema
+		8.4.2 Procedimientos de Mantenimiento
+		8.4.3 Variables de Entorno Requeridas
+
+9. Anexos
+	9.1 Entrevistas y Cuestionarios
+		9.1.1 Entrevista a Técnicos
+		9.1.2 Entrevista a Usuarios
+		9.1.3 Entrevista a Administrador
+	9.2 Otra Documentación Relevante
+		9.2.1 Registros Informales del Taller
+		9.2.2 Normativa y Legislación Aplicable
+		9.2.3 Referencias Bibliográficas Completas
+		
+	
+
+
+
+1. INTRODUCCIÓN
+1.1 Descripción del Escenario
+MotoFix es un taller mecánico unipersonal especializado en el mantenimiento y reparación de motocicletas de baja cilindrada -110cc, 125cc, 150cc- con énfasis en motores de origen chino (marcas como Corven, Motomel, Zanella y similares). Se encuentra ubicado en la ciudad de Posadas, capital de la provincia de Misiones, en la región noreste de la República Argentina. El establecimiento opera en un local propio dentro de un barrio de alta densidad poblacional, con acceso directo de tránsito frecuente, lo que le otorga visibilidad natural ante un segmento de clientes que utiliza la motocicleta como herramienta de trabajo y medio de transporte cotidiano.
+El contexto socioeconómico de Posadas determina en gran medida el perfil de demanda del taller. La motocicleta de baja cilindrada es el vehículo predominante entre los sectores populares y medios de la ciudad: su bajo costo de adquisición, mantenimiento accesible y facilidad de circulación en entornos urbanos la convierten en la alternativa más extendida frente al automóvil. En paralelo, el alto porcentaje de unidades de procedencia china en circulación (estimado por el propio propietario en más del 60% de las consultas recibidas) genera una demanda específica de diagnóstico y reparación que no todos los talleres generalistas pueden atender con solvencia técnica. MotoFix cubre precisamente ese nicho. 
+El emprendimiento se encuentra en etapa de consolidación temprana. Fue iniciado por su propietario (quien concentra la totalidad de las funciones técnicas y administrativas) con una cartera de clientes en crecimiento sostenido. A la fecha del relevamiento, el taller atiende en promedio entre 6 y 10 unidades por semana, con variaciones estacionales propias del rubro. La facturación se realiza de manera informal, sin sistema de emisión de comprobantes fiscales electrónicos; los cobros se registran de manera parcial en anotaciones manuales y en conversaciones de WhatsApp.
+El área objeto de análisis comprende la totalidad de las operaciones del taller, dado que la organización no presenta una estructura departamental diferenciada. En la práctica, pueden distinguirse tres procesos centrales: la atención y diagnóstico del cliente, la gestión de órdenes de trabajo y el control de repuestos e insumos. Los tres operan sin soporte informático formal. La documentación de los trabajos realizados es escasa o dispersa; no existe un registro histórico de intervenciones por unidad ni un control sistemático del stock de repuestos, lo que genera ineficiencias operativas concretas: tiempos muertos por búsqueda de información, pérdida de datos de clientes y subestimación del valor de los trabajos realizados.
+El presente análisis fue motivado por la necesidad del propietario de formalizar y escalar la operación del taller sin incorporar personal administrativo adicional. El analista actuó en carácter externo a la organización, sin participación en la gestión del negocio, lo que garantiza independencia metodológica en la etapa de relevamiento y en la especificación de requerimientos.
+
+1.2 Objetivos Generales del Análisis
+    • Relevar y documentar los procesos operativos actuales de MotoFix, identificando problemas, necesidades y requerimientos de información no satisfechos.
+    • Analizar la factibilidad técnica, económica y operativa de implementar una solución de software a medida que cubra los procesos de gestión de órdenes de trabajo, control de stock de repuestos y registro de cobros.
+    • Definir una estrategia de implementación incremental que permita al propietario incorporar el sistema de manera gradual, minimizando la disrupción operativa durante la transición.
+
+Nota: La solución propuesta consiste en una aplicación web progresiva (PWA) desarrollada con React en el frontend y Django REST Framework sobre PostgreSQL en el backend, con despliegue en la plataforma cloud (Railway o Render). El desarrollo e implementación del software exceden el alcance del presente trabajo. 
+
+
+2. PLANIFICACIÓN
+2.1 Planificación de Entrevistas
+El relevamiento se llevó a cabo mediante entrevistas semiestructuradas al propietario del taller, quien concentra la totalidad de los roles operativos y administrativos de la organización. Dado que MotoFix es una organización unipersonal sin personal adicional, el único actor clave entrevistado fue el propietario en su doble carácter de técnico y responsable de la gestión. 
+Tabla 1
+Planificación de entrevistas de relevamiento - MotoFix
+
+N°	Fecha estimada	Duración estimada	Objetivo principal	Temas a tratar	Responsable
+1	Semana 1 (Abril 2026)	60 minutos	Relevamiento general de la operación actual	Descripción del negocio, flujo de trabajo, herramientas actuales, volumen de trabajo semanal	Analista (Lopez, E. A.)
+2	Semana 2 (Abril 2026)	45 minutos	Profundización en procesos críticos	Gestión de clientes, OT, criterios de diagnósticos, control de repuestos, formas de cobro	Analista (Lopez, E. A.)
+3	Semana 3 (Abril 2026)	45 minutos	Validación de hallazgos y requerimientos	Confirmación de problemas identificados, necesidades expresadas, expectativas sobre la solución	Analista (Lopez, E. A.)
+
+Nota: las fechas son estimadas conforme al cronograma de actividades. Las entrevistas completas se incluyen en el Anexo 9.1.
+
+2.2 Planificación de Actividades
+El proyecto se estructuró en seis fases secuenciales con dependencias parciales entre sí. La estimación de duración se realizó mediante juicio de experto del analista, considerando la complejidad del caso y las restricciones de disponibilidad del propietario para las instancias de revisión y validación.. La tabla 2 detalla las tareas, su duración estimada, las dependencias y los responsables de ejecución. 
+Tabla 2
+ID	Actividad	Duración	Inicio estimado	Fin estimado	Dependencia
+F1	FASE 1: Planificación	2 sem.	07/04/2026	18/04/2026	
+T1.1	Definición del alcance y objetivos del TPI	3 días	07/04/2026	09/04/2026	
+T1.2	Planificación de entrevistas y cronograma	3 días	10/04/2026	14/04/2026	T1.1
+T1.3	Elaboración del diagrama de Gantt y PERT	2 días	15/04/2026	16/04/2026	T1.2
+T1.4	Estudio de Factibilidad inicial	2 días	17/04/2026	18/04/2026	T1.2
+F2	FASE 2: Relevamiento	2 sem.	21/04/2026	02/05/2026	F1
+T2.1	Entrevista 1 - Relevamiento general	1 día	21/04/2026	21/04/2026	T1.2
+T2.2	Entrevista 2 - procesos críticos	1 día	28/04/2026	28/04/2026	T2.1
+T2.3	Recopilación y análisis de documentos existentes	2 días	29/04/2026	30/04/2026	T2.2
+T2.4	Entrevista 3 - validación de hallazgos	1 día	02/05/2026	02/05/2026	T2.3
+T2.5	Informe de relevamiento y determinación de requerimientos	2 días	04/05/2026	05/05/2026	T2.4
+F3	FASE 3: Análisis	2 sem	06/05/2026	19/05/2026	F2
+T3.1	Especificación de requisitos (IEEE 830)	4 días	06/05/2026	09/05/2026	T2.5
+T3.2	Modelo esencial: declaración de propósitos, diagrama de contexto, lista de acontecimientos	3 días	11/05/2026	13/05/2026	T3.1
+T3.3	DFD Nivel 1, especificación de procesos, DTE, diccionario de datos	4 días	14/05/2026	19/05/2026	T3.2
+F4	FASE 4: Diseño	2 sem	20/05/2026	02/06/2026	F3
+T4.1	Casos de uso reales y diagramas de secuencia	4 días	20/05/2026	23/05/2026	T3.3
+T4.2	Diagramas de clases y modelos de datos	3 días	26/05/2026	28/05/2026	T4.1
+T4.3	Diseño de interfaces de entrada y salida (mockups)	3 días	29/05/2026	02/06/2026	T4.2
+F5	FASE 5: Prueba y Depuración	1 sem	03/06/2026	09/06/2026	F4
+T5.1	Definición de casos de prueba	2 días	03/06/2026	04/06/2026	F4
+T5.2	Revisión con el propietario: validación del diseño	1 día	05/06/2026	05/06/2026	T5.1
+F6	FASE 6: Implantación y documentación final	1 sem	10/06/2026	16/06/2026	F5
+T6.1	Plan de implementación y capacitación	2 días	10/06/2026	11/06/2026	F5
+T6.2	Revisión	3 días	12/06/2026	16/06/2026	T6.1
+
+Nota: Duración expresada en días hábiles. Las fechas de inicio y fin son estimadas. El analista es responsable único de todas las tareas.
+2.3 Diagrama de Gantt
+	El diagrama de Gantt fue elaborado con ProjectLibre a partir de los datos de la tabla 2. Se incluye a continuación la representación tabular del cronograma; el archivo fuente (.pod) se adjunta junto con la exportación gráfica generada en la herramienta.
+2.4 Diagrama de PERT
+
+Nota: Las celdas coloreadas indican el período de ejecución de cada tarea. El archivo editable para ProjectLibre se adjunta como Gantt_MotoFix.csv.
+
+El análisis PERT se aplicó para identificar la ruta crítica del proyecto e identificar las
+actividades sin margen de demora. La estimación de tiempos se realizó con el modelo de tres valores: tiempo optimista (to), tiempo pesimista (tp), calculando el tiempo esperado mediante la fórmula: te = (to + 4·tm + tp) / 6.
+
+Nota. Tiempos expresados en días hábiles. te = tiempo esperado calculado mediante la fórmula de tres puntos PERT: te = (to + 4·tm + tp) / 6. La ruta crítica suma aproximadamente 37 días hábiles (≈ 7,5 semanas) y no admite holgura en las actividades marcadas.
+La ruta crítica comprende la cadena: T1.1 → T1.2 → T2.1 → T2.2 → T2.3 → T2.4 → T2.5 → T3.1 → T3.2 → T3.3 → T4.1 → T4.2 → T4.3 → T5.1 → T5.2 → T6.1 → T6.2. Las actividades T1.3 y T1.4 tienen holgura de dos días sin afectar la fecha de finalización del proyecto.
+
+3. ESTUDIO DE FACTIBILIDAD
+	El análisis se realizó sobre la base de la información recogida en la etapa de planificación y de los datos aportados por el propietario durante las entrevistas preliminares. El resultado orienta la decisión de continuar con el análisis y diseño detallado del sistema.
+
+3.1 Factibilidad Técnica
+	Se consideraron cuatro dimensiones: infraestructura actual del taller, stack tecnológico de la solución, requisitos de hardware/conectividad y competencias técnicas del desarrollador.
+
+	3.1.1 Infraestructura actual del taller
+	Al momento del relevamiento, MotoFix no dispone de equipamiento informático propio en el local. El propietario opera con un teléfono inteligente Android (gama media, sistema operativo Android 13) con plan de datos móviles activo y acceso a red WiFi domiciliaria. Este perfil de usuario es plenamente compatible con una aplicación web progresiva (PWA), que no requiere de instalación desde tiendas de aplicaciones ni hardware dedicado. El acceso a la aplicación se realiza desde el navegador del dispositivo móvil, lo que elimina la necesidad de inversión en equipamiento adicional para la operación básica del sistema.
+
+	3.1.2 Stack tecnológico propuesto
+	La solución propuesta se basa en tecnologías de código abierto, ampliamente adoptadas en el mercado y con documentación y comunidad de soporte consolidadas. La Tabla 5 resume los componentes del stack y su justificación técnica.
+
+Tabla 3
+Stack tecnológico propuesto para el sistema de gestión de MotoFix
+
+Capa	Tecnología	Versión ref.	Justificación
+Frontend	React (PWA)	React 18 / Vite	Framework JavaScript ampliamente usado y conocido; la configuración PWA permite uso offline parcial y acceso desde móvil sin instalación nativa.
+Backend	Django REST Framework	Django 5 /DRF 3.15	Framework Python maduro con ORM (Object-Relational Mapping o Mapeo Objeto-Relacional), autenticación y serialización incluídos. Reduce el tiempo de desarrollo de la API REST.
+Base de Datos	PostgreSQL 	PostgreSQL 16	Motor relacional robusto, gratuito y compatible con los servicios de despliegue en la nube seleccionados.
+Deploy	Railway o Render	Plan gratuito / Starter	Plataformas PaaS con soporte nativo para Django y PostgreSQL. Permiten despliegue continuo desde un repositorio git sin administración de servidores.
+Autenticación	JWT (SimpleJWT)	djangorestframework-simplejwt 5	Autenticación sin estado, adecuada para API consumida desde cliente React. Implementación estándar y documentada.
+Control de Versiones	Git / GitHub	Git 2.x	Control de versiones estándar de la industria. Permite respaldo del código y despliegue automatizado desde rama principal.
+Nota: DRF = Django REST Framework. PaaS = Platform as a Service. JWT = JSON Web Token. PWA = Progressive Web App.
+
+	3.1.3 Requisitos de conectividad
+	La aplicación requiere conexión a internet para sincronizar datos con el servidor. Dado que el propietario dispone de plan de datos móviles en su smartphone, este requisito está cubierto en condiciones normales de operación. El diseño PWA contempla almacenamiento en caché local para permitir la consulta de órdenes de trabajo abiertas en caso de conectividad intermitente, sincronizando automáticamente al recuperar la conexión. No se requiere infraestructura de red local en el taller.
+
+	3.1.4 Competencias técnicas del equipo de desarrollo
+	El analista posee conocimientos en Python, PostgreSQL y desarrollo frontend con JavaScript/React, adquiridos mediante formación profesional y autodidacta. El stack seleccionado está alineado con esas competencias, lo que reduce el riesgo técnico de implementación. Django REST Framework y React son tecnologías con curvas de aprendizaje moderadas y documentación extensa en español.
+
+Conclusión de factibilidad técnica: la solución es técnicamente viable. El stack es compatible con el dispositivo del usuario final, no requiere inversión en hardware, y las tecnologías seleccionadas son accesibles para el perfil técnico del equipo de desarrollo.
+
+3.2 Factibilidad Económica
+	La estimación de costos se realizó mediante la técnica de descomposición por tareas (bottom-up estimativo), valorando el esfuerzo de cada fase en horas-analista y aplicando una tarifa de referencia de mercado para desarrollo freelance en Argentina (~ARS 93.000/hora, valor de referencia junio 2026 para perfiles Full Stack Developer según la CPCI). Los beneficios se estimaron en términos de ahorro operativo y valor de la información generada. 
+
+	3.2.1 Estimación de Costos de Desarrollo - Tabla 4
+Fase	Actividades incluidas	Hs. est	Tarifa (ARS/h)	Subtotal (ARS)
+F1	Planificación, cronograma, estudio de factibilidad	20	93.172	1.863.440
+F2	Relevamiento (3 entrevistas + informe)	18	93.172	1.677.096
+F3	Análisis: requisitos, modelos, DFD, DTE	32	93.172	2.981.504
+F4	Diseño: clases, secuencia, interfaces	28	93.172	2.608.816
+F5	Prueba y depuración: casos de prueba, validación	12	93.172	1.118.064
+F6	Implantación: plan, manuales, capacitación	10	93.172	931.720
+	Subtotal desarrollo (análisis y diseño)	120		11.180.640
+Impl.	Desarrollo de Software (3 módulos, estimación independiente)	180	93.172	16.770.960
+Infraestructura	Hosting Railway/Render (plan Starter, 12 meses)		USD 5/mes	~72.000 (est)
+	TOTAL ESTIMADO (primer año)	300		28.023.600
+
+Nota. Tarifa aplicada: ARS 93.172/hora (CPCIPC, Full Stack Developer on demand, actualización abril 2026 por coeficiente IPIM). La conversión de USD a ARS para hosting se realizó a tipo de cambio de referencia ARS 1.200/USD (junio 2026). La estimación de horas de la fase Implementación corresponde al desarrollo incremental de los tres módulos definidos.
+Tabla 5
+Beneficio	Valor est. anual (ARS)	Base de cálculo
+Reducción de tiempo administrativo (estimación: 30 min/dia - 5 min/dia con sistema)	9.705.417	25 min diarios x 250 días hábiles x ARS 93.172/h (costo oportunidad del propietario) / 60
+Reducción de pérdida por repuestos no registrados (estimación: 10% del costo del stock mensual)	600.000	Stock promedio mensual estimado ARS 500.000 x 10% x 12 meses
+Reducción de trabajos no cobrados o subcobrados (estimación: 1 trabajo/semana, ticket promedio ARS 3.000	780.000	1 OT/semana x ARS 15.000 x 52 semanas
+Fidelización de clientes por historial de servicio (estimación conservadora: +1 cliente recurrente/mes)	360.000	1 cliente x 2 visitas/año x ARS 15.000 ticket promedio x 12 meses
+TOTAL BENEFICIOS CUANTIFICABLES (anuales)	11.445.417	
+
+Nota: Las estimaciones se basan en datos declarados por el propietario durante la entrevista preliminar y en valores de referencia del mercado local. Deben considerarse como aproximaciones conservadoras sujetas a revisión en el relevamiento detallado.
+
+	Los beneficios no cuantificables incluyen: disponibilidad de información histórica para la toma de decisiones, reducción del riesgo de pérdida de datos ante cambio de dispositivo, imagen profesional ante los clientes, y base de datos de clientes aprovechable para comunicaciones y fidelización futura. 
+
+	3.2.3 Análisis costo-beneficio
+	El costo total del primer año se estima en ARS 28.023.600, frente a beneficios cuantificables anuales de ARS 11.445.417. El período de recupero es aproximadamente 2,4 años considerando solo los beneficios cuantificables. Si se incorporan los beneficios no cuantificables (particularmente la eliminación del riesgo de pérdida de información y la mejora en la capacidad de cobro) el período de recupero efectivo es considerablemente menor. A partir del segundo año, el costo recurrente se reduce al hosting (~ARS 72.000/año) y el mantenimiento eventual del sistema, con beneficios que se mantienen o incrementan con el crecimiento del taller.
+
+Conclusión de factibilidad económica: la solución es económicamente viable en el mediano plazo. El costo de implementación es proporcional a la escala del negocio y los beneficios superan los costos recurrentes a partir del segundo año de operación.
+
+
+3.3 Factibilidad Operativa
+	El propietario de MotoFix presentó durante las entrevistas preliminares una actitud favorable hacia la incorporación de una herramienta digital. La principal motivación expresada fue la pérdida recurrente de información sobre clientes y trabajos realizados, y la dificultad para estimar el valor real de su stock de repuestos. Estos son exactamente los problemas centrales que aborda la solución propuesta, lo que anticipa un nivel de adopción alto. 
+	Desde el punto de vista de usabilidad, la solución fue concebida como una aplicación móvil accesible desde el navegador del smartphone, sin necesidad de aprender a usar una computadora de escritorio ni instalar software adicional. La interfaz será diseñada para operación con una sola mano, con flujos de registro simplificados adaptados al contexto de uso en el taller (manos ocupadas, condiciones de luz variable, interrupciones frecuentes).
+	El único riesgo operativo relevante es la resistencia al cambio de hábito: el propietario lleva semanas operando con anotaciones en papel y WhatsApp. Para mitigarlo, la implementación se planificó en tres módulos incrementales, de modo que el usuario pueda incorporar cada funcionalidad de forma gradual sin enfrentar una curva de aprendizaje abrupta. El módulo 1 (órdenes de trabajo y clientes) es el mayor impacto y el más simple de operar, lo que maximiza la probabilidad de adopción temprana.
+
+Conclusión de factibilidad operativa: la solución es operativamente viable. El usuario final tiene motivación intrínseca para adoptar el sistema, el perfil tecnológico mínimo requerido es compatible con sus capacidades actuales, y la estrategia de implementación incremental reduce el riesgo de abandono.
+
+
+3.4 Descripción de las Alternativas Analizadas
+	Durante el estudio de factibilidad se evaluaron tres alternativas de solución. La Tabla 8 resume las opciones consideradas con sus ventajas, desventajas y criterios de descarte o selección.
+
+Tabla 6
+Alternativas de solución analizadas para MotoFix
+Alternativa	Descripción	Ventajas	Desventajas / Razón de descarte
+A1 - Software de gestión comercial genérico (Ej.: Gestión Simple, Odoo Community)	Adoptar una solución existente de gestión de talleres o negocios pequeños disponible en el mercado	Disponibilidad inmediata. Sin costo de desarrollo. Funcionalidades estándar ya implementadas.	No contempla el flujo específico de diagnóstico mecánico por tipo de vehículos. Requiere adaptación de terminología. Las versiones gratuitas tienen limitaciones funcionales. Dependencia del proveedor.
+A2 - Planilla de cálculo estructurada (Google Sheets / Excel)	Diseñar una plantilla de cálculo con hojas para OT, stock y cobros, accesible desde Google Drive.	Costo cero. Accesible desde el smartphone. Sin curva de aprendizaje técnica significativa.	No escala con el crecimiento del taller. No permite búsqueda eficiente de historial por patente o por cliente. Sin validaciones automáticas. Alta probabilidad de errores de carga. No admite uso simultáneo eficiente.
+A3 - Aplicación web a medida (SELECCIONADA) 	Desarrollar una PWA con React + Django REST Framework + PostgreSQL, con deploy en Railway/Render.	Diseñada específicamente para el flujo del taller. Escalable. Accesible desde el móvil. Control total sobre funcionalidades y datos. Costo recurrente mínimo.	Requiere inversión de desarrollo. Tiempo de implementación mayor que A1 y A2. Depende de la continuidad del analista para mantenimiento.
+Nota: La alternativa A3 fue seleccionada por ser la única que satisface simultáneamente los requisitos de adaptación al flujo operativo del taller, escalabilidad ante el crecimiento proyectado y autonomía de datos del propietario.
+
+
+
+
+4. RELEVAMIENTO
+	Esta sección documenta con detalle los métodos utilizados, los documentos recopilados, los hallazgos obtenidos y la determinación final de problemas y requerimientos. 
+
+4.1 Recolección de la Información de la Organización 
+	La información necesaria para comprender el sistema actual  de MotoFix se obtuvo mediante tres técnicas complementarias, seleccionadas en función del perfil de la organización: unipersonal, sin documentación formal preexistente y con operación concentrada en un único actor.
+
+	4.1.1 Entrevistas semiestructuradas
+	Se realizaron tres sesiones de entrevista con el propietario del taller, conforme al plan establecido en la Sección 2.1. Las entrevistas siguieron una guía de preguntas abiertas organizada en bloques temáticos, permitiendo al entrevistado extenderse en los aspectos que considerara relevantes. La transcripción completa de las tres entrevistas se incluye en el anexo 9.1.
+Tabla 7
+Resumen de entrevistas realizadas - MotoFix
+
+N°	Fecha	Duración	Objetivo	Principales hallazgos obtenidos
+1	21/04/2026	60 min	Relevamiento general: descripción del negocio, operación cotidiana, herramientas actuales, volumen de trabajo	Operación unipersonal, 6 - 10 motos por semana, registro en cuaderno y WhatsApp, sin OT formal, sin inventario, cobros sin respaldo
+2 	28/04/2026	45 min	Profundización en procesos críticos: OT, diagnóstico, repuestos, cobros	Flujo de recepción informal, repuestos gestionados sin stock definido, pérdidas por trabajos no cobrados, clientes con deudas gestionadas de memoria
+3	02/05/2026	60 min	Validación de hallazgos y relevamiento de expectativas sobre la solución	Confirmación de prioridades (OT > Stock > cobros), preferencia por interfaz móvil simple, disposición a pagar por la herramienta, requerimiento de operación offline parcial. 
+
+	4.1.2 Observación directa
+	Durante las tres visitas al taller se realizó una observación directa no participante del ambiente físico y flujo operativo. Se relevaron: distribución del espacio de trabajo, condiciones de uso del dispositivo móvil en el taller (iluminación, suciedad de manos, interrupciones), forma en que el propietario consulta el cuaderno durante una atención, y dinámica de comunicación con los clientes vía WhatsApp. Esta observación fue determinante para definir los requisitos no funcionales de usabilidad de la solución. 
+
+	4.1.3 Revisión de documentos existentes
+	 Se solicitó al propietario acceso a los registros informales existentes. Los documentos relevados se detallan en la Sección 4.2.
+
+4.2 Recopilación de Documentos
+	MotoFix no dispone de documentación formal de sus procesos. Los únicos registros existentes al momento del relevamiento son de naturaleza informal y parcial. La Tabla 10 enumera los documentos revisados, su soporte y su relevancia para el análisis. 
+
+Tabla 8
+Documentos relevados en MotoFix
+
+N°	Documento	Soporte	Estado	Relevancia para el análisis
+1	Cuaderno de anotaciones de trabajos	Papel (cuaderno rayado)	Incompleto e irregular	Permite identificar los campos mínimos considerados por el propietario: patente, nombre del cliente, trabajo realizado y monto. Base para el diseño del formulario de OT.
+2	Conversaciones de WhatsApp con clientes	Digital (Smartphone Android)	Disperso, no estructurado	Evidencia el uso de WhatsApp como canal de comunicacṕon de estado de trabajos y confirmación de precios. Refuerza la necesidad de un módulo de seguimiento de estado de OT.
+3	Historial de transferencias bancarias (MercadoPago)	Digital (app móvil)	Parcial - sólo pagos electrónicos	Único registro financiero verificable. Confirma que una parte significativa de los cobros es en efectivo y no queda registrada en ningún soporte.
+4	Conversaciones de WhatsApp con proveedores	Digital (smartphone Android)	Disperso	Permite identificar proveedores habituales y la forma de gestión de pedidos de repuestos. Insumo para el módulo de Stock.
+5	Inventario de repuestos	Ninguno (gestión mental)	Inexistente como documento	La ausencia de inventario físico o digital es en sí misma un hallazgo crítico. El propietario gestiona el stock por memoria y observación visual.
+
+Nota: La ausencia de documentación formal es consistente con el perfil de microemprendimiento en etapa inicial. No implica desorganización intencional sino la ausencia histórica de herramientas adecuadas al contexto operativo del propietario.
+
+4.3 Informe de Relevamiento
+	A partir de las entrevistas, la observación directa y la revisión de documentos, se construyó el siguiente mapa del sistema actual de MotoFix. El análisis se organiza por proceso operativo.
+
+	4.3.1 Proceso de recepción y atención al cliente
+	Cuando un cliente llega al taller, el propietario realiza una inspección visual y/o auditiva preliminar en el momento. No existe un procedimiento estandarizado de recepción. Los datos del cliente y de la moto se anotan en un cuaderno de papel, frecuentemente de manera incompleta o ilegible. El diagnóstico se comunica verbalmente junto con una estimación de precio, también verbal. No se genera ningún documento que respalde ese acuerdo. 
+	Si durante la ejecución del trabajo se descubren problemas adicionales, el propietario contacta al cliente por WhatsApp para informarle y solicitar autorización. Esta comunicación queda registrada en WhatsApp pero no se integra con el cuaderno, generando dos fuentes de información desincronizadas sobre el mismo trabajo.
+	El estado de avance de cada trabajo se gestiona exclusivamente por memoria del propietario. Cuando un cliente consulta el estado de su moto, el propietario debe recordar o buscar en el cuaderno, lo que genera demoras y ocasionalmente información incorrecta.
+
+	4.3.2 Proceso de gestión de repuestos
+	El taller mantiene un stock de repuestos de alta rotación: bujías, filtros, pastillas de freno, cadenas, piñones, cables y componentes eléctricos básicos. Este stock se almacena en estantes y cajones sin etiquetado sistemático ni registro de cantidades.
+	La reposición se realiza de manera reactiva: el propietario compra cuando nota visualmente que le falta algo o cuando lo necesita para un trabajo específico. No existen puntos de reorden definidos ni registro de precios de compra, lo que impide calcular con precisión el margen de ganancia sobre repuestos.
+	El propietario declaró desconocer el valor total de su stock. Esta información es relevante para la salud financiera del negocio, ya que el stock representa capital inmovilizado cuya rotación no se mide.
+
+	4.3.3 Proceso de cobro y registro financiero
+	El cobro se realiza al momento de la entrega. El precio final incluye mano de obra estimada por experiencia y costo de repuestos con margen variable. No se emite ningún comprobante de pago.
+	Los pagos se reciben en efectivo o por transferencia bancaria. Los pagos en efectivo no generan ningún registro verificable posterior. Los pagos por transferencia quedan en el historial de la app, pero no se vinculan a ninguna OT específica.
+	Existe una práctica frecuente de crédito informal: algunos clientes retiran la moto sin pagar la totalidad (ya que es su fuente de ingresos) y abonan el saldo en una visita posterior. Estos saldos se gestionan de memoria o un recordatorio en el teléfono. El propietario reportó al menos dos situaciones en que no pudo verificar si una deuda había sido saldada, generando conflictos con clientes. 
+
+	4.3.4 Flujo operativo consolidado del sistema actual
+	La Tabla 9 sintetiza el flujo operativo actual, identificando para cada proceso las entradas, salidas, el soporte utilizado y las fallas observadas.
+
+Tabla 9
+Flujo operativo actual de MotoFix - Síntesis del sistema existente
+
+Proceso	Entradas	Salidas	Soporte actual	Fallas identificadas
+Recepción de moto	Moto del cliente, descripción verbal del problema	Diagnóstico verbal, estimación de precio verbal	Cuaderno de papel (parcial)	Datos incompletos o ilegibles; sin respaldo del acuerdo de precio; sin identificación unívoca del trabajo
+Ejecución del trabajo	Moto, repuestos del stock, herramientas	Moto reparada, repuestos consumidos	Memoria del propietario	Sin registro de repuestos utilizados por OT; stock decrementado sin registro; sin registro de tiempo insumido
+Comunicación con el cliente	Consultas del cliente, novedades del trabajo	Información de estado, autorización de trabajos adicionales	WhatsApp (conversaciones dispersas)	Información desvinculada del cuaderno; sin historial consolidado por moto o cliente
+Gestión de repuestos	Necesidad de repuesto para trabajo en curso o reposición visual	Compra a proveedor, repuesto disponible en stock	Ninguno - Gestión mental	Sin inventario; sin punto de reorden; sin registro de costos de compra; capital inmovilizado no cuantificado
+Cobro y cierre de OT	Trabajo finalizado, repuestos utilizados (estimados), acuerdo verbal de precios	Cobro (efectivo o transferencia), entrega de moto	Cuaderno (parcial) y homebanking (solo transferencias)	Trabajos subcobrados por repuestos no registrados; deudas gestionadas de memoria; sin comprobante; sin cierre formal de OT
+
+4.4 Conclusiones del Relevamiento
+	El relevamiento evidencia que MotoFix opera con un sistema de información disperso, informal y no escalable. La información necesaria para gestionar el taller existe, pero se encuentra distribuida en tres soportes desconectados (cuaderno de papel, conversaciones de WhatsApp y memoria del propietario) sin mecanismos de integración, recuperación eficiente ni respaldo ante pérdida.
+	Las consecuencias operativas concretas son: pérdida de ingresos por trabajos y repuestos no registrados en el cobro final; imposibilidad de conocer la rentabilidad real del negocio; riesgo permanente de pérdida total de información ante rotura o extravío del teléfono o el cuaderno; y limitación en la capacidad de escalar la operación sin incorporar personal administrativo.
+	Al mismo tiempo, el relevamiento identificó condiciones favorables para la implementación de una solución digital: el propietario tiene motivación intrínseca para formalizar la gestión, dispone de un smartphone con conectividad suficiente, y manifestó explícitamente disposición a adoptar una herramienta si cumple criterios de simplicidad y velocidad. Estas condiciones reducen el riesgo de abandono post-implementación.
+	El análisis de los procesos relevados confirma la viabilidad del enfoque de implementación incremental propuesto en la Sección 3: el módulo 1 (OT y clientes) resuelve el problema de mayor impacto inmediato con la menor complejidad de adopción; los Módulos 2 y 3 agregan valor progresivo sobre una base de uso ya establecida.
+
+4.5 Determinación de Problemas, Necesidades y Requerimientos
+	A partir del informe de relevamiento se formuló la lista consolidada de problemas identificados, necesidades del usuario y requerimientos preliminares del sistema. Esta lista constituye la base de la especificación de requisitos desarrollada en la Sección 5.
+	4.5.1 Problemas identificados
+Tabla 10
+Problemas identificados en el sistema actual de MotoFix
+ID	Problema	Consecuencia operativa	Prioridad	Proceso de afectado
+P-01	Ausencia de registro formal de órdenes de trabajo	Pérdida de información sobre trabajos realizados; imposibilidad de recuperar historial por cliente o moto	Alta	Recepción, ejecución, cobro
+P-02	Sin control de Stock de repuestos	Capital inmovilizado no cuantificado; roturas de stock imprevistas; compras redundantes	Alta	Gestión de repuestos
+P-03	Cobros sin respaldo documental	Pérdida de ingresos por repuestos no cobrados; conflictos con clientes por deudas no verificables	Alta	Cobro y cierre de OT
+P-04	Gestión de clientes por memoria	Incapacidad de recuperar historial de atenciones; trato despersonalizado en visitas reiteradas	Media	Recepción, comunicación con cliente
+P-05	Comunicación con clientes dispersa en WhatsApp personal	Mezcla de comunicaciones personales y laborales; sin historial consolidado por trabajo	Media	Comunicación con el cliente
+P-06	Sin indicadores de gestión del negocio	Imposibilidad de conocer rentabilidad mensual, trabajos más frecuentes, clientes más valiosos	Media	Administración general
+P-07	Riesgo de pérdida total de información	Dependencia de un único dispositivo físico y un cuaderno sin respaldo	Alta	todos los procesos
+
+	
+4.5.2 Necesidades del usuario
+Tabla 11
+Necesidades del usuario identificadas - MotoFix
+
+ID	Necesidad	Origen (entrevista / observación)
+N-01	Registrar cada trabajo que entra al taller con datos mínimos: dominio, cliente, descripción del problema y estado	Entrevista 1 - Bloque 2 / Entrevista 3 - Bloque 2
+N-02	Consultar el estado de cualquier trabajo activo en segundos, desde el celular	Entrevista 2 - Bloque 1 / Entrevista 3 - Bloque 2
+N-03	Ver el historial de atenciones de una moto o un cliente específico	Entrevista 2 - Bloque 1 / Entrevista 3 - Bloque 2
+N-04	Controlar el stock de repuestos: qué hay, cuánto hay y cuánto costó	Entrevista 2 - Observación directa
+N-05	Registrar los repuestos utilizados en cada trabajo para reflejarlos en el cobro	Entrevista 2 - Bloque 3 / Entrevista 3 - Bloque 3
+N-06	Registrar los cobros y llevar cuenta de saldos pendientes por cliente	Entrevista 2 - Bloque 3 / Entrevista 3 - Bloque 2
+N-07	Ver un resumen mensual: motos atendidas, ingresos totales, trabajos más frecuentes	Entrevista 3 - Bloque 3
+N-08	Acceder al sistema desde el celular, sin instalación, con operación simple y rápida	Entrevista 2 - Bloque 4 / entrevista 3 - Bloque 2 / Observación directa
+N-09	Que los datos estén respaldados en la nube pero con acceso offline a trabajos activos	Entrevista 3 - Bloque 2
+
+
+	4.5.3 Requerimientos preliminares del sistema
+	A continuación se presenta el listado preliminar surgido del relevamiento, que sirve como insumo directo para esa especificación.
+
+Tabla 12
+Requerimientos preliminares identificados en el relevamiento
+
+ID	Tipo	Descripción preliminar	Necesidad origen
+RP-01	Funcional	El sistema debe permitir registrar una OT con: dominio del motovehículo, marca/modelo, datos del cliente (nombre y teléfono), descripción del problema y estado inicial	N-01
+RP-02	Funcional	El sistema debe permitir actualizar el estado de una OT (Recibida / En diagnóstico / En reparación / Esperando repuesto / Lista / Entregada)	N-02
+RP-03	Funcional	El sistema debe mantener un historial de OT por moto (dominio) y por cliente	N-03
+RP-04	Funcional	El sistema debe permitir registrar repuestos con nombre, proveedor, cantidad en stock y precio de compra	N-04
+RP-05	Funcional	El sistema debe permitir asociar repuestos de stock a una OT específica y descontar automáticamente la cantidad utilizada	N-05
+RP-06	Funcional	El sistema debe permitir registrar el cobro de una OT (monto total, forma de pago, saldo pendiente)	N-06
+RP-07	Funcional	El sistema debe generar un resumen mensual con: OT cerradas, ingresos cobrados, saldo pendiente total y repuestos con stock bajo	N-07
+RP-08	No funcional	El sistema debe ser accesible desde el navegador móvil (Chrome/Android) sin instalación nativa	N-08
+RP-09	No funcional	El tiempo de carga de la pantalla principal no debe superar 3 segundos con conexión 4G estándar	N-08
+RP-10	No funcional	El registro de una nueva OT no debe requerir más de 4 campos obligatorios y debe completarse en menos de 60 segundos	N-08
+RP-11	No funcional	Los datos deben almacenarse en servidor en la nube con respaldo automático; las OT activas deben ser consultables sin conexión mediante caché local	N-09
+RP-12	No funcional	El sistema debe requerir autenticación para acceder; una sola cuenta de usuario es suficiente para la versión inicial	N-08 / seguridad
+Nota: Los requerimientos RP-01 a RP-07 corresponden a requisitos funcionales; RP-08 a RP-12 a requisitos no funcionales. La codificación definitiva (RF-XXX / RNF-XXX) y la especificación completa conforme IEEE 830 se desarrollan en la Sección 5.
+
+
+
+
+	
+
+
+
+	5. ANÁLISIS
+5.1 Análisis y Especificación de Requisitos Conforme IEEE 830
+	La especificación de requisitos del software (SRS) se elaboró siguiendo las directrices del estándar IEEE 830-1998, que establece un marco para documentar los requisitos de un sistema de manera que sean completos, consistentes, verificables, modificables y trazables. Cada requisito identificado en el relevamiento (Sección 4.5) fue refinado, codificado y clasificado en esta sección conforme a ese marco.
+La especificación cubre los requisitos funcionales (RF) (lo que el sistema debe hacer) y los requisitos no funcionales (RNF) (las restricciones y atributos de calidad bajo los cuales debe operar. Los requisitos se organizan por módulo de implementación, en correspondencia con la estrategia incremental definida en la Sección 3.
+
+5.2 Descripción del Escenario
+	El sistema a desarrollar es una aplicación web progresiva (PWA) destinada a la gestión operativa del taller de motocicletas MotoFix, ubicado en la ciudad de Posadas, Misiones. El sistema será utilizado exclusivamente por el propietario del taller, quien actúa simultáneamente como técnico mecánico y administrador del negocio. No existe personal adicional en la organización al momento de la especificación.
+	El contexto de uso determina restricciones críticas sobre el diseño: el operador accede al sistema desde un smartphone Android en un ambiente de trabajo con iluminación variable, manos frecuentemente ocupadas o sucias, y atención dividida entre el sistema y las tareas mecánicas. Estas condiciones imponen requisitos de simplicidad, velocidad de iteración y mínima cantidad de campos obligatorios que se formalizan en los requisitos no funcionales de usabilidad.
+	El sistema interactúa con dos entidades externas principales: el Propietario, que es el único usuario del sistema y el generador de todos los datos, y los Proveedores de repuestos, cuya información se registra de forma indirecta a través del módulo de stock. Los clientes del taller no interactúan directamente con el sistema; su información es registrada por el propietario en el momento de la recepción de la motocicleta.
+	La solución se despliega en infraestructura cloud (Railway o Render) con base de datos PostgreSQL. El frontend React implementa capacidades PWA para permitir consulta de órdenes de trabajo activas sin conexión a internet mediante caché local, sincronizando con el servidor al recuperar la conectividad.
+
+5.3 Objetivos del Sistema
+	El sistema de gestión operativa de MotoFix tiene los siguientes objetivos específicos, ordenados por prioridad de implementación:
+Tabla 13
+Objetivos del sistema de gestión operativa - MotoFix
+
+ID	Módulo	Objetivo	Problema que resuelve
+OBJ-01	M1	Registrar y gestionar el ciclo de vida completo de las órdenes de trabajo, desde la recepción de la motocicleta hasta su entrega al cliente.	P-01: Ausencia de registro formal de OT
+OBJ-02	M1	Mantener un directorio de clientes con historial de atenciones por cliente y por dominio de motocicleta.	P-04: Gestión de clientes por memoria
+OBJ-03	M1	Proveer visibilidad inmediata del estado de todos los trabajos activos desde el dispositivo móvil del propietario.	P-05: Sin seguimiento de estado de trabajos
+OBJ-04	M2	Controlar el inventario de repuestos e insumos, registrando entradas, salidas por OT y alertas de stock mínimo.	P-02: Sin control de stock de repuestos
+OBJ-05	M3	Registrar los cobros asociados a cada OT, incluyendo forma de pago y saldo pendiente por cliente.	P-03: Cobros sin respaldo documental
+OBJ-06	M3	Generar reportes operativos mensuales que permitan al propietario conocer la rentabilidad y el desempeño del taller.	P-06: Sin indicadores de gestión 
+OBJ-07	Transv.	Almacenar todos los datos del negocio en un servidor en la nube con respaldo automático, eliminando el riesgo de pérdida de información por falla del dispositivo móvil.	P-07: Riesgo de pérdida total de información
+
+5.4 Requisitos Funcionales
+	La prioridad se determina en función del impacto operativo identificado en el relevamiento y de la secuencia de implementación incremental.
+
+	5.4.1 Módulo 1 - Órdenes de Trabajo y Clientes
+Tabla 14
+Requisitos funcionales - Módulo 1: Órdenes de Trabajo y Clientes
+
+ID	Descripción	Prioridad	Módulo	Necesidad origen
+RF-001	El sistema debe permitir registrar una nueva orden de trabajo (OT) con los siguientes campos obligatorios: dominio del vehículo, nombre del cliente, teléfono del cliente y descripción del problema declarado	Alta	M1	N-01 / OBJ-01
+RF-002	El sistema debe permitir registrar campos fundamentales en la OT: marca de la moto, modelo, año, kilometraje, descripción del diagnóstico técnico y observaciones adicionales.	Alta	M1	N-01 / OBJ-01
+RF-003	El sistema debe asignar automáticamente un número de OT único, correlativo y no editable al crear cada orden de trabajo.	Alta	M1	OBJ-01
+RF-004	El sistema debe registrar automáticamente la fecha y hora de creación de cada OT.	Alta	M1	OBJ-01
+RF-005	El sistema debe permitir actualizar el estado de una OT entre los siguientes valores: Recibida, En diagnóstico, En reparación, Esperando repuesto, Lista para entregar, Entregada.	Alta	M1	N-02 / OBJ-03
+RF-006	El sistema debe mostrar en la pantalla principal un listado de todas las OT activas (estado distinto de Entregada), ordenadas por fecha de ingreso descendente.	Alta	M1	N-02 / OBJ-03
+RF-007	El sistema debe permitir buscar OT por dominio de moto, nombre de cliente o número de OT.	Alta	M1	N-02 / OBJ-03
+RF-008	El sistema debe mostrar el historial completo de OT asociadas a un dominio de motocicleta determinado.	Alta	M1	N-03 / OBJ-02
+RF-009	El sistema debe mostrar el historial completo de OT asociadas a un cliente (por nombre o teléfono).	Alta	M1 	N-03 / OBJ-02
+RF-010	El sistema debe permitir registrar notas adicionales o actualizaciones sobre una OT ya creada, con marca de fecha y hora de cada nota.	Media	M1	N-02 / OBJ-01
+RF-011	El sistema debe permitir registrar la fecha estimada de entrega de una OT y alertar visualmente cuando una OT activa supere esa fecha.	Media	M1	OBJ-03
+
+	
+
+5.4.2 Módulo 2 - Stock de Repuestos
+
+Tabla 15
+Requisitos funcionales - Módulo 2: Stock de Repuestos
+
+ID	Descripción	Prioridad	Módulo	Necesidad origen
+RF-012	El sistema debe permitir registrar repuestos e insumos con los siguientes datos: nombre, descripción, proveedor habitual, precio de compra unitario y cantidad mínima de stock (punto de reorden).	Alta	M2	N-04 / OBJ-04
+RF-013	El sistema debe permitir registrar el ingreso de unidades de un repuesto al stock, indicando cantidad, precio de compra y proveedor de esa compra.	Alta	M2	N-04 / OBJ-04
+RF-014	El sistema debe permitir asociar uno o más repuestos a una OT específica, indicando la cantidad utilizada de cada uno. Al guardar, el stock de cada repuesto debe decrementarse automáticamente en la cantidad indicada.	Alta	M2	N-05 / OBJ-04
+RF-015	El sistema debe mostrar la lista completa de repuestos en stock con su cantidad actual y alertar visualmente los repuestos cuya cantidad actual sea igual o inferior al punto de reorden definido.	Alta	M2	N-04 / OBJ-04
+RF-016	El sistema debe calcular y mostrar el valor total del stock en inventario, multiplicando precio de compra promedio por cantidad disponible de cada ítem.	Media	M2	N-04 / OBJ-04
+RF-017	El sistema debe registrar el movimiento histórico de cada repuesto: ingresos por compra y egresos por uso en OT, con fecha y referencia de OT asociada.	Media	M2	N-04 / OBJ-04
+
+
+	5.4.3 Módulo 3 - Cobros y Reportes
+
+Tabla 16
+Requisitos funcionales - Módulo 3: Cobros y Reportes
+
+ID	Descripción	Prioridad	Módulo	Necesidad origen
+RF-018	El sistema debe calcular automáticamente el monto sugerido de cobro de una OT, sumando el costo de los repuestos asociados (al precio de compra más el margen definido por el usuario) y el monto de mano de obra ingresado manualmente.	Alta	M3	N-05 / N-06 / OBJ-05
+RF-019	El sistema debe permitir registrar el cobro de una OT indicando: monto cobrado, forma de pago (efectivo o transferencia) y saldo pendiente si el cobro es parcial.	Alta	M3	N-06 / OBJ-05
+RF-020	El sistema debe mostrar la lista de OT con saldo pendiente, indicando el cliente, el monto adeudado y la antigüedad de la deuda.	Alta 	M3	N-06 / OBJ-05
+RF-021	El sistema debe permitir registrar pagos parciales sucesivos sobre el saldo pendiente de una OT, hasta su cancelación total.	Alta	M3	N-06 / OBJ-05
+RF-022	El sistema debe generar un resumen mensual que incluya: cantidad de OT cerradas, ingresos totales cobrados (efectivo y transferencia por separado), saldo pendiente total acumulado, y los tres tipos de trabajo más frecuentes del período.	Alta	M3	N-07 / OBJ-06
+RF-023	El sistema debe generar un listado de repuestos con stock por debajo del punto de reorden, disponible como parte del resumen mensual.	Media	M3	N-07 / OBJ-06
+RF-024	El sistema debe permitir al usuario definir un porcentaje de margen de ganancia por defecto sobre repuestos, aplicable al cálculo automático del RF-018	Media	M3	OBJ-05
+
+Nota: Las tablas 14, 15 y 16 cubren un total de 24 requisitos funcionales. La columna Necesidad origen traza cada RF hasta la necesidad del usuario (N-XX) u objetivo del sistema (OBJ-XX) que lo genera, garantizando trazabilidad conforme IEEE 830.
+
+5.5 Requisitos No Funcionales
+	Los requisitos no funcionales están organizados por categoría: rendimiento, seguridad, usabilidad, disponibilidad y mantenibilidad. Se codifican como RNF-XXX y cada requisito incluye una métrica o criterio de verificación objetiva.
+
+Tabla 17
+Requisitos no funcionales del sistema de gestión operativa - MotoFix
+ID	Categoría	Descripción	Métrica / Criterio de verificación
+RNF-001	Usabilidad	El registro de una nueva OT con los campos obligatorios mínimos (dominio,cliente, teléfono, descripción del problema) debe poder completarse sin necesidad de navegar entre múltiples pantallas.	El flujo completo de alta de OT debe resolverse en una única vista o pantalla, con no más de 4 campos obligatorios visibles simultáneamente.
+RNF-002	Usabilidad	El sistema debe ser operable con una sola mano desde un smartphone de pantalla estándar (5,5 a 7 pulgadas), sin requerir zoom ni desplazamiento horizontal.	Los elementos interactivos (botones, campos) deben tener una altura mínima de 44px. El diseño debe ser responsivo y adaptarse a anchos de pantalla desde 360px sin scroll horizontal.
+RNF-003	Usabilidad	El tiempo requerido para que un usuario nuevo complete el registro de su primera OT sin asistencia no debe superar los 3 minutos.	Verificable mediante prueba de usabilidad con el propietario en la sesión de validación (Sección 7).
+RNF-004	Usabilidad / Seguridad	El sistema no debe enviar notificaciones automáticas del dispositivo del usuario. Toda consulta de la información debe ser iniciada por el usuario.	El sistema no debe implementar notificaciones push ni alertas sonoras. Las alertas de stock bajo o fecha de entrega vencida se muestran solo al acceder a las pantallas correspondientes. 
+RNF-005	Rendimiento	El tiempo de carga de la pantalla principal (listado de OT activas) no debe superar 3 segundos bajo condiciones de conectividad 4G estándar.	Medible mediante herramientas de desarrollo del navegador (Chrome DevTools, Lighthouse). La métrica objetivo es Time to Interactive (TTI) ≤ 3s en conexión 4G simulada.
+
+RNF-006	Rendimiento	El sistema debe mantener un rendimiento aceptable con un volumen de hasta 500 OT registradas y 200 repuestos en el catálogo, sin degradación perceptible en los tiempos de búsqueda.	El tiempo de respuesta de búsqueda por dominio o cliente no debe superar 2 segundos para el volumen de datos indicado.
+RNF-007	Disponibilidad	El sistema debe permitir la consulta de OT activas sin conexión a internet, mediante datos almacenados en caché local del navegador (PWA Service Worker).	Las OT en estado distinto de Entregada deben ser accesibles en modo offline. La sincronización con el servidor debe ocurrir automáticamente al recuperar la conectividad, sin intervención del usuario.
+RNF-008	Disponibilidad	El servicio en la nube debe tener una disponibilidad mínima del 99% mensual, excluyendo ventanas de mantenimiento programado.	Verificable a través del dashboard de disponibilidad de la plataforma de deploy (Railway / Render). Las ventanas de mantenimiento deben comunicarse con al menos 24 horas de anticipación.
+RNF-009	Seguridad	El acceso al sistema debe requerir autenticación mediante usuario y contraseña, o datos biométricos si corresponde. La sesión debe expirar automáticamente tras 8 horas de inactividad.	Implementado mediante JWT (JSON Web Token) con tiempo de expiración configurable. El token no debe almacenarse en localStorage; debe usarse httpOnly cookie o memoria de sesión.
+RNF-010	Seguridad	Toda conversación entre el cliente (navegador) y el servidor debe realizarse mediante HTTPS.	El certificado SSL debe estar vigente en todo momento. Las solicitudes HTTP deben redirigir automáticamente a HTTPS. Verificable mediante inspección del navegador.
+RNF-011	Seguridad	Los datos de clientes (nombre y teléfono) deben almacenarse en la base de datos ni información sensible adicional. El sistema no debe requerir DNI, domicilio ni datos financieros del cliente.	El modelo de datos no debe incluir campos de datos sensibles no declarados en los RF. Verificable en la revisión del esquema de base de datos.
+RNF-012	Mantenibilidad	El código fuente debe organizarse siguiendo la arquitectura por capas definida en el diseño (Sección 6): separación entre vistas, lógica de negocio y acceso a datos, tanto en el frontend como en el backend.	La estructura de carpetas del repositorio debe reflejar la separación de capas. Ningún Componente de vista debe contener lógica de acceso directo a la base de datos. 
+RNF-013	Mantenibilidad	El sistema debe implementarse en módulos independientes (M1, M2, M3) de modo que cada módulo pueda desplegarse de forma incremental sin afectar la operación de los módulos ya en producción.	La incorporación de Módulo 2 no debe requerir modificaciones en las rutas de API ni en los componentes del Módulo 1 ya desplegados. Verificable en la revisión del diseño de la API REST.
+RNF-014	Portabilidad	El sistema debe funcionar correctamente en los navegadores Chrome para Android (versión 110 o superior) y Safari para iOS (versión 15 o superior), sin requerir instalación nativa desde tiendas de aplicaciones.	Las funcionalidades de los tres módulos deben ser accesibles y operables desde ambos navegadores. Las pruebas de aceptación (Sección 7) deben ejecutarse al menos en Chrome para Android.
+Nota: Los RNF-001 a RNF-004 responden directamente a las condiciones de uso relevadas en la observación directa del taller (Sección 4.1.2) El RNF-004 en particular surge de la declaración explícita del propietario en la Entrevista 3: “no quiero que me mande notificaciones todo el tiempo…”
+
+
+5.6 MODELADO DE ANÁLISIS
+	El modelado se compone de dos partes: el Modelo Ambiental, que define la frontera entre el sistema y su entorno, y el Modelo del Comportamiento, que describe los procesos internos requeridos.
+
+5.6.1 Diagrama de Casos de Uso
+	Dado que MotoFix es una organización unipersonal, existe un único actor primario: el Propietario. Se identificaron doce casos de uso agrupados en los tres módulos de implementación.
+
+Notas: En esta versión, los casos de uso de alto nivel (UC-A, UC-B, UC-C, UC-D) representan funcionalidades agrupadas del sistema.
+La relación <<include>> indica que la ejecución del caso de uso base siempre incluye al caso de uso detallado.
+El actor “Propietario” interactúa con todas las funcionalidades del sistema.
+
+
+5.6.2 Casos de Uso Extendido
+	A continuación se describen los casos de uso de mayor impacto operativo mediante la plantilla extendida. Se desarrollan en detalle los casos de uso de cada módulo que representan el flujo principal del sistema.
+
+Tabla 18
+Caso de Uso: CU-01 Registrar OT
+
+Nombre	CU-01: Registrar OT
+Actor Principal	Propietario
+Precondiciones	El propietario está autenticado en el sistema
+Postcondiciones	Se crea una nueva OT con estado Recibida, número único asignado y fecha/hora de creación registrada automáticamente.
+Flujo Principal	1. El propietario selecciona la opción Nuevo Trabajo en la pantalla principal. 
+2. El sistema muestra el formulario de alta de OT. 
+3. El propietario ingresa la patente de la motocicleta. 
+4. El sistema verifica si la patente existe en el historial y, de ser así, autocompleta los datos del cliente y muestra el historial. 
+5. El propietario ingresa o confirma el nombre y teléfono del cliente. 
+7. El propietario confirma el registro. 
+8. El sistema guarda la OT, asigna un número correlativo y fecha/hora, y redirige al listado de OT activas mostrando la nueva OT.
+Flujos Alternativos	4a. Si la patente no existe en el historial, el sistema no autocompleta ningún campo y el propietario ingresa todos los datos manualmente. 
+7a. Si algún campo obligatorio está vacío, el sistema muestra un mensaje de error indicando el campo faltante y no guarda la OT.
+Excepciones	Sin conexión a internet: el sistema guarda la OT en el almacenamiento local y la sincroniza al recuperar la conexión.
+Requisitos Asociados	RF-001, RF-002, RF-003, RF-004, RNF-001, RNF-002, RNF-007
+
+Tabla 19
+Caso de Uso: CU-02: Actualizar estado de OT
+
+Nombre	CU-02: Actualizar estado de OT
+Actor Principal	Propietario
+Precondiciones	El propietario está autenticado. Existe al menos una OT registrada.
+Postcondiciones	El estado de la OT seleccionada se actualiza al nuevo valor. La fecha y hora del cambio quedan registradas.
+Flujo Principal	1. El propietario accede al listado de OT activas. 
+2. El propietario selecciona la OT que desea actualizar. 
+3. El sistema muestra el detalle de la OT con su estado actual. 
+4. El propietario selecciona el nuevo estado desde una lista desplegable. 
+5. El propietario confirma el cambio. 
+6. El sistema actualiza el estado y registra la fecha/hora del cambio.
+Flujos Alternativos	4a. Si el nuevo estado es Entregada, el sistema verifica si existe saldo pendiente. De existir, muestra una advertencia indicando el monto adeudado antes de confirmar.
+Excepciones	Ninguna adicional.
+Requisitos Asociados	RF-005, RF-006, RNF-007
+
+Tabla 20
+Caso de Uso: CU-08: Asociar repuesto a OT
+
+Nombre	CU-08: Asociar repuesto a OT
+Actor Principal	Propietario
+Precondiciones	El propietario está autenticado. Existe al menos una OT activa y al menos un repuesto registrado en stock.
+Postcondiciones	Los repuestos seleccionados quedan vinculados a la OT. El stock de cada repuesto se decrementa en la cantidad indicada. El movimiento queda registrado en el historial de stock.
+Flujo Principal	1. El propietario accede al detalle de una OT activa. 
+2. El propietario selecciona la opción Agregar repuesto. 
+3. El sistema muestra el catálogo de repuestos con su stock actual. 
+4. El propietario selecciona el repuesto utilizado e ingresa la cantidad. 
+5. El sistema verifica que la cantidad solicitada no supere el stock disponible. 
+6. el propietario confirma. 
+7. El sistema vincula el repuesto a la OT, decrementa el stock y registra el movimiento.
+Flujos Alternativos	5a. Si la cantidad solicitada supera el stock disponible, el sistema muestra una advertencia e impide confirmar hasta que el propietario ajuste la cantidad o cancele la operación.
+Excepciones	Ninguna adicional.
+Requisitos Asociados	RF-014, RF-017, RNF-006
+
+
+Tabla 21
+Caso de Uso: CU-10: Registrar cobro de OT
+
+Nombre	CU-10: Registrar cobro de OT
+Actor Principal	Propietario
+Precondiciones	El propietario está autenticado. Existe una OT en estado Lista para entregar o Entregada con cobro pendiente.
+Postcondiciones	El cobro queda registrado. Si el monto cobrado cubre el total, el saldo pendiente queda en cero. Si es parcial, el saldo pendiente se actualiza al monto restante.
+Flujo Principal	1. El propietario accede al detalle de la OT. 
+2. El sistema muestra el monto sugerido de cobro calculado (mano de obra + repuestos con margen). 
+3. El propietario ingresa el monto efectivamente cobrado y la forma de pago (efectivo o transferencia). 
+4. El sistema calcula el saldo pendiente como la diferencia entre el total sugerido y el monto cobrado. 
+5. El propietario confirma el cobro. 
+6. El sistema registra el cobro con fecha/hora y actualiza el saldo pendiente de la OT.
+Flujos Alternativos	3a. El propietario puede modificar el monto sugerido antes de confirmar (precio final acordado puede diferir del calculado automáticamente). 
+4a. Si el monto cobrado es igual o mayor al total, el saldo queda en cero.
+Excepciones	Ninguna adicional.
+Requisitos Asociados	RF-018, RF-019, RF-021, RF-024
+
+Tabla 22
+Caso de Uso: CU-12: Generar resumen mensual
+
+Nombre	CU-12: Generar resumen mensual
+Actor Principal	Propietario
+Precondiciones	El propietario está autenticado. Existen OT cerradas en el mes seleccionado.
+Postcondiciones	El sistema muestra en pantalla el resumen del mes seleccionado. No se genera ningún archivo descargable en la versión inicial.
+Flujo Principal	1. El propietario accede a la sección Reportes. 
+2. El propietario selecciona el mes y año del resumen. 
+3. El sistema consulta las OT cerradas en el período y los cobros registrados. 
+4. El sistema muestra: cantidad de OT cerradas, ingresos totales (efectivo y transferencia separados), saldo pendiente total acumulado, top 3 tipos de trabajo y repuestos con stock bajo.
+Flujos Alternativos	2a. Si no existen OT cerradas en el período seleccionado, el sistema muestra un mensaje informativo indicando que no hay datos para ese período.
+Excepciones	Ninguna adicional.
+Requisitos Asociados	RF-022, RF-023
+
+
+5.6.3 Modelo de Dominio
+	Representa la realidad del dominio problema independiente de cualquier decisión de diseño o implementación tecnológica.
+
+	5.6.3.1 Declaración de Propósitos
+	Responde a las preguntas: “qué”, “cómo” y “dónde”.
+“Desarrollar un Sistema de gestión Operativa que permita registrar órdenes de trabajo, controlar stock de repuestos y gestionar cobros para el taller de motocicletas MotoFix en la ciudad de Posadas, Misiones.”
+QUÉ: Sistema de Gestión Operativa para taller de motocicletas.
+CÓMO: Registrar órdenes de trabajo, controlar el stock de repuestos y gestionar cobros.
+DÓNDE: Taller MotoFix, Posadas, Misiones.
+
+	5.6.3.2 Diagrama de Contexto (DFD Nivel 0)
+	En el nivel más alto de abstracción del sistema, podemos graficar al sistema como una única burbuja de proceso, identificando las entidades externas que interactúan con él y los flujos de datos entre ellos. 
+Figura 2
+Diagrama de Contexto - Sistema de Gestión MotoFix (DFD Nivel 0)
+
+
+
+
+Elemento	Tipo	Nombre / Etiqueta	Descripción
+Proceso central	Burbuja (proceso)	Sistema de Gestión MotoFix	Representa la totalidad del sistema propuesto
+Terminador 1	Entidad externa	Propietario	Usuario único del sistema. Genera todos los datos de entrada y recibe todas las salidas del sistema.
+Flujo de entrada 1	Flujo de datos	Datos de OT	Datos ingresados por el propietario al registrar o actualizar una órden de trabajo.
+Flujo de entrada 2	Flujo de datos	Datos de repuesto	Datos de repuestos nuevos, ingresos de stock y asociaciones a OT.
+Flujo de entrada 3	Flujo de datos	Datos de cobro	Monto cobrado, forma de pago y saldo pendiente ingresados por el propietario.
+Flujo de salida 1	Flujo de datos	Listado de OT activas	Vista del estado actual de todos los trabajos en curso, mostrada al propietario.
+Flujo de salida 2	Flujo de datos	Historial de OT	Resultado de búsqueda por dominio o cliente, mostrado al propietario.
+Flujo de salida 3	Flujo de datos	Estado de stock	Listado de inventario actual con alertas de stock bajo, mostrado al propietario.
+Flujo de salida 4	Flujo de datos	Resumen mensual	Reporte operativo del mes solicitado, mostrado al propietario.
+Flujo de salida 5	Flujo de datos	Saldos pendientes	Lista de clientes con deuda activa y montos adeudados, mostrada al propietario. 
+
+	5.6.3.3 Lista de Acontecimientos
+	La lista de acontecimientos enumera los estímulos externos a los que el sistema debe responder. Cada acontecimiento genera al menos un flujo de entrada y produce al menos un flujo de salida.
+
+Tabla 23
+Lista de acontecimientos - Sistema de Gestión MotoFix
+
+N°	Acontecimiento	Flujo de entrada	Flujo de salida
+1	El propietario registra una moto que ingresa al taller para reparación.	Datos de OT (dominio, cliente, descripción del problema)	OT creada con número único y estado Recibida: confirmación en pantalla
+2	El propietario actualiza el estado de avance de un trabajo en curso.	Identificación de OT, nuevo estado	Estado actualizado; listado de OT activas refrescado
+3	El propietario registra repuestos utilizados en un trabajo.	Identificador de OT, repuestos utilizados y cantidades	Stock decrementado; repuestos vinculados a la OT; alerta si stick cae debajo del mínimo definido
+4	El propietario registra el cobro de un trabajo finalizado.	Identificador de OT, monto cobrado, forma de pago	Cobro registrado; saldo pendiente actualizado; OT marcada como saldada o con deuda
+5	El propietario consulta el estado de los trabajos activos.	Solicitud de listado de OT activas	Listado de OT activas ordenado por fecha de ingreso
+6	El propietario consulta el inventario de repuestos.	Solicitud de consulta de stock	Listado de repuestos con cantidades actuales de stock mínimo
+7	El propietario solicita el resumen operativo del mes.	Mes y año seleccionados	Resumen con OT cerradas, ingresos, saldos pendientes, trabajos frecuentes y stock bajo
+
+	5.6.3.4 Diagrama General del Sistema (DFD Nivel 1)
+	El Diagrama General del Sistema (DGS) expande el diagrama de contexto mostrando un proceso por cada acontecimiento identificado en la lista. Cada proceso recibe los flujos de entrada de su acontecimiento correspondiente, interactúa con los almacenes necesarios y produce los flujos de salida.
+Figura 3
+Descripción estructurada del DFD Nivel 1 - Sistema de Gestión MotoFix
+
+
+
+Proceso	Nombre (verbo-objeto)	Entidad / terminador	Almacenes accedidos	Flujos de salida
+P1	Registrar OT	Propietario - P1	OT (E/S)	OT creada (Propietario); confirmación en pantalla
+P2	Actualizar estado OT	Propietario - P2	OT (E/S)	Estado actualizado (Propietario); listado OT activas
+P3	Registrar uso de repuestos	Propietario - P3	OT (E/S), Repuesto (E/S), Movimiento stock (S)	Repuestos vinculados a OT (Propietario); stock decrementado; alerta stock bajo
+P4	Registrar cobro	Propietario - P4	OT (E/S), Cobro (S)	Cobro registrado (Propietario); saldo pendiente actualizado
+P5	Consultar OT activas	Propietario - P5	OT (E)	Listado OT activas (Propiestario)
+P6	Consultar inventario	Propietario - P6	Repuesto (E)	Estado de stock (Propietario); alertas stock bajo
+P7	Generar resumen mensual	Propietario - P7	OT (E), cobro (E), repuesto (E)	Resumen mensual (propietario)
+
+Tabla 24
+Almacenes de datos del sistema - MotoFix
+
+Almacén	Descripción y datos contenidos
+OT	Registros de órdenes de trabajo: número OT, dominio, datos del cliente, descripción del problema, diagnóstico, estado, fechas de creación y actualización, notas adicionales.
+Repuesto	Catálogo de repuestos: nombre, descripción, proveedor, precio de compra, cantidad en stock, punto de reorden.
+Movimiento stock	Historial de movimientos de cada repuesto: tipo (ingreso por compra / egreso por uso en OT), cantidad, fecha, referencia de OT o proveedor.
+Cobro	Registros de cobros: referencia de OT, monto cobrado, forma de pago, fecha, saldo pendiente resultante.
+
+5.6.4 Descripción de Atributos de Conceptos
+	Detalla las propiedades de cada entidad del modelo de dominio. Esta información constituye la base para el diseño del modelo de datos en la Sección 6.
+
+
+Tabla 25
+Atributos de entidades del modelo de dominio - MotoFix 
+Entidad	Atributo	Tipo de dato	Obligatorio	Descripción / Restricciones
+OT	@numero_ot	Entero autoincremental	Si	Clave primaria. Asignado por el sistema, no editable
+OT	dominio	Texto (10 car.)	Si	Formato X-000-XXX (Mercosur) o 000-XXX. Indexado para búsqueda
+OT	nombre_cliente	Texto (100 car.)	Si	Nombre completo del cliente
+OT	telefono_cliente	Texto (20 car.)	Si	Número de teléfono. Texto para admitir formatos variables
+OT	marca_moto	Texto (50 car.)	Si	Marca de motocicleta (Motomel, Zanella, etc.).
+OT	modelo_moto	Texto (50 car.)	No	Modelo específico de la moto
+OT	descripcion_problema	Texto libre	Si	Descripción del problema declarado por el cliente
+OT	diagnostico	Texto libre	No	Diagnóstico técnico del propietario. Se completa durante la reparación.
+OT	estado	Enumerado	Si	Valores: Recibida | En diagnóstico | En reparación | Esperando repuesto | Lista para entregar | Entregada.
+OT	fecha_creacion	Fecha/hora	Si	Asignada automáticamente por el sistema al crear la OT.
+OT	fecha_actualizacion	Fecha/hora	Si	Actualizada automáticamente en cada modificación.
+OT	fecha_entrega_estimada	Fecha	No	Fecha estimada de entrega acordada con el cliente.
+OT	monto_mano_obra	Decimal	No	Monto cobrado por la mano de obra. Ingresado manualmente.
+OT	margen_repuestos	Decimal	No	Porcentaje de margen aplicado sobre repuestos para el cálculo de cobro.
+Repuesto	@id_repuesto	Entero autoincremental	Si	Clave primaria.
+Repuesto	nombre	Texto (100 car.)	Si	Nombre comercial del repuesto.
+Repuesto	descripcion	Texto libre	No	Descripción adicional (compatibilidad, variantes, etc.).
+Repuesto 	proveedor	Texto (100 car.)	No	Nombre del proveedor habitual.
+Repuesto	precio_compra_promedio	Decimal	Si	Precio de compra promedio ponderado, recalculado en cada ingreso.
+Repuesto	cantidad_stock	Entero	Si	Cantidad disponible en inventario. Decrementado automáticamente al usar en OT.
+Repuesto	punto_reorden	Entero	Si	Cantidad mínima. Al igualar o superar  la baja genera alerta.
+Movimiento stock	@id_movimiento	Entero autoincremental	Si	Clave primaria.
+Movimiento stock	id_repuesto	Entero (FK)	Si	Referencia al repuesto involucrado.
+Movimiento stock	tipo	Enumerado	Si	Valores: Ingreso | Egreso.
+Movimiento stock	cantidad	Entero	Si	Unidades ingresadas o egresadas. Siempre positivo.
+Movimiento stock	fecha	Fecha/Hora	Si	Fecha y hora del movimiento.
+Movimiento stock	id_ot	Entero (FK)	No	Referencia a la Ot que se generó en el egreso. Nulo en ingresos por compra.
+Movimiento stock	precio_unitario	Decimal	No	Precio unitario de la compra en ingresos. Nulo en egresos.
+Cobro	@id_cobro	Entero autoincremental	Si	Clave primaria.
+Cobro	id_ot	Entero (FK)	Si	Referencia a la OT cobrada.
+Cobro	monto_cobrado	Decimal	Si	Monto efectivamente cobrado en esta transacción.
+Cobro	forma_pago	Enumerado	Si	Valores: Efectivo | Transferencia.
+Cobro	fecha	Fecha/hora	Si	Fecha y hora del cobro.
+Cobro	saldo_pendiente	Decimal	Si	Saldo restante luego de este cobro, o si la OT queda saldada.
+Nota: El símbolo @ identifica el atributo clave primaria de cada entidad. FK indica clave foránea. Los tipos de datos corresponden a la nomenclatura conceptual del modelo de dominio; la traducción a tipos PostgreSQL se realiza en el diseño de la base de datos (Sección 6).
+
+
+5.6.5 Diagramas de Secuencia del Sistema
+	En este análisis existen dos DSS que demuestran la interacción entre el actor y el sistema para los casos de uso de mayor complejidad (registrar OT y asociar repuesto a OT).
+
+DSS-01: Registrar OT
+
+
+DSS-02: Registrar uso de repuestos en OT
+
+5.6.6 Contratos
+	Los contratos formalizan las pre y postcondiciones de las operaciones del sistema identificadas en los diagramas de secuencia. Garantizan la consistencia del modelo de análisis con los requisitos especificados. 
+Operaciones	confirmarOT(dominio, nombre_cliente, telefono_cliente, decripcion_problema)
+Responsabilidades	Crear un nuevo registro de OT con los datos provistos  asignar estado inicial Recibida.
+Precondiciones	El propietario está autenticado. Los parámetros: dominio, nombre_cliente, telefono_cliente y descripcion_problema son no nulos y no vacíos
+Postcondiciones	Se crea una instancia de OT con numero_ot único y autoincremental, estado = Recibida, fecha_creacion = fecha/hora del servidor al momento de la operación. La OT queda persistida en el almacén OT.
+Excepciones	Si algún parámetro obligatorio es nulo o vacío, el sistema lanza una excepción de validación y no crea la OT.
+	
+Operación	seleccionarRepuesto(idOT, idRepuesto, cantidad)
+Responsabilidades	Vincular el repuesto indicado a la OT y descontar la cantidad del stock.
+Precondiciones	El propietario está autenticado. La OT con idOT existe y está en estado activo (distinto de Entregada). El repuesto con idRepuesto existe. La cantidad es un entero positivo mayor a cero. repuesto.cantidad_stock >= cantidad.
+Postcondiciones	Se crea una asociación OT-Repuesto con la cantidad indicada. repuesto.cantidad_stock se decrementa en cantidad. Se crea un registro en Movimiento stock de tipo Egreso con referencia a idOT. Si repuesto.cantidad_stock resultante es igual o inferior a repuesto.punto_reorden, el sistema activa la alerta de stock bajo para ese repuesto.
+Excepciones	Si repuesto.cantidad_stock < cantidad, el sistema lanza una excepción de stock insuficiente y no realiza ninguna modificación.
+	
+Operación	registrarCobro(idOT, montoCobrado, formaPago)
+Responsabilidades	Registrar el cobro parcial o total de una OT y actualizar el saldo pendiente.
+Precondiciones	El propietario está autenticado. La OT con idOT existe. montoCobrado es un decimal positivo mayor a cero. formaPago pertenece a las constantes {Efectivo, Transferencia}
+Postcondiciones	Se crea un registro en Cobro con montoCobrado, formaPago y fecha/hora del servidor. El saldo_pendiente de la OT se recalcula como saldo_anterior - montoCobrado. Si saldo_pendiente resultante es cero o negativo, queda en cero. 
+Excepciones	Si montoCobrado es mayor que el saldo pendiente actual, el sistema acepta el cobro y deja el saldo en cero (pago con diferencia a favor del cliente, no genera error).
+
+5.6.7 Diagrama de Transición de Estados
+	Cada estado del diagrama de transición de estados representa  una situación reconocible del objeto en un momento dado; las transacciones indican las condiciones que provocan el cambio de estado y las acciones que el sistema ejecuta al transicionar.
+
+Figura 4
+Descripción estructurada del DTE - Orden de Trabajo (MotoFix)
+
+Estado	Condición de entrada	Condición de salida (transición)	Acción del sistema al transaccionar
+[INICIO]		El propietario registra una OT nueva	Asignar número de OT; registrar fecha/hora de creación
+Recibida	OT creada	El propietario inicia el diagnóstico	Actualiza estado; registrar fecha/hora de cambio
+En diagnóstico	Propietario inicia diagnóstico	El propietario comienza la reparación	Actualizar estado; registrar fecha/hora de cambio
+En reparación	Propietario comienza reparación	Se detecta necesidad de repuesto no disponible	Actualizar estado; activar alerta de repuesto faltante si stock = 0
+Esperando repuesto	Repuesto no disponible en stock	El repuesto es conseguido y el propietario reanuda la reparación	Actualizar estado; registrar fecha/hora de cambio
+En reparación (retorno)	Repuesto disponible	El trabajo queda finalizado	Actualizar estado; registrar fecha/hora de cambio
+Lista para entregar 	Trabajo finalizado	El propietario registra la entrega (con o sin cobro completo)	Actualizar estado; verificar saldo pendiente; notificar visualmente si hay deuda
+Entregada	Moto entregada al cliente	[estado final]	Registrar fecha de entrega; OT sale del listado activo
+Nota: El DTE muestra que el estado En reparación puede alcanzarse tanto desde En diagnóstico como desde Esperando repuesto, reflejando el flujo real del taller donde un trabajo puede interrumpirse y reanudarse múltiples veces. El estado Entregada es el único estado final reconocible.
+
+5.6.8 Diccionario de Datos
+	El Diccionario de Datos documenta de forma estructurada todos los flujos de datos del sistema, utilizando notación estándar: = (compuesto por), + (y), () (optativo), [] (selección), {} (iteración), @ (identificador /clave), | (separa opciones).
+
+Tabla 26
+Diccionario de Datos - Sistema de Gestión MotoFix
+Elemento	Definición
+Propietario	Propietario = nombre_propietario + credenciales_acceso
+nombre_propietario	nombre_propietario = {a|b|c|…|z|A|B|...|Z|}
+credenciales_acceso	credenciales_acceso = usuario + contrasena_hash
+Datos de OT	Datos_OT = patente + nombre_cliente + telefono_cliente + descripcion_problema + (marca_moto) + (modelo_moto) + (fecha_entrega_estimada)
+patente	patente = {A|B|...|Z|0|1|...|9|-} **Formato Mercosur AA-000-AA o antiguo AAA-000
+nombre_cliente	nombre_cliente = {a|b|c|…|z|A|B|...|Z|} **Mínimo 2 caracteres
+telefono_cliente	telefono_cliente = {0|1|...|9|+|-|} ** Admite formato libre
+descripcion_problema	descripcion_problema = {a|b|...|z|A|A|...|Z|0|...|9| |,|.|;} ** Texto libre, mínimo 5 caracteres
+OT (almacen)	OT = @numero_ot + patente + nombre_cliente + telefono_cliente + descripcion_problema + (diagnostico) + estado + fecha_creacion + fecha_actualizacion + (fecha_entrega_estimada) + (monto_mano_obra) + (margen_repuestos_pct) + {nota}
+numero_ot	numero_ot = @ + {0|1|1|...|9} **Entero positivo, autoincremental, único
+estado	estado = [Recibida | En diagnostico | En reparacion | Esperando repuesto | Lista para entregar | Entregada]
+nota	nota = texto_nota + fecha_nota
+Repuesto (almacen)	Repuesto = @id_repuesto + nombre_repuesto + (descripcion_repuesto) + (proveedor) + precio_compra_promedio +cantidad_stock + punto_reorden
+id_repuesto	id_repuesto = @ + {0|1|...|9} ** Entero positivo autoincremental
+precio_compra_promedio	precio_compra_promedio = {0|1|...|9}(.{0|1|...|9}) ** Decimal positivo, dos decimales
+cantidad_stock	cantidad_stock = {0|1|...|9} ** Entero positivo
+punto_reorden	punto_reorden = {0|1|...|9} ** Entero positivo. Alerta cuando cantidad_stock <= punto_reorden
+Movimiento stock (almacen)	Movimiento_stock = @id_movimiento + id_repuesto + tipo_movimiento + cantidad_movimiento + fecha_movimiento + (id_ot) + (precio_unitario_compra)
+tipo_movimiento	tipo_movimiento = [Ingreso | Egreso]
+Cobro (almacen)	Cobro = @id_cobro + id_ot + monto_cobrado + forma_pago + fecha_cobro + saldo_pendiente
+forma_pago	forma_pago = [Efectivo | Transferencia]
+monto_cobrado	monto_cobrado = {0|1|...|9}(.{0|1|...|9}) ** Decimal positivo mayor a cero
+saldo_pendiente	saldo_pendiente = {0|1|...|9}(.{0|1|...|9}) ** Decimal no negativo. 0 indica OT saldada
+Listado OT activas	Listado_OT_activas = {OT} ** Iteración de OT con estado != Entregada, ordenadas por fecha_creacion descendente
+Resumen mensual	Resumen_mensual = mes_ano + cantidad_ot_cerradas + total_cobrado_efectivo + total_cobrado_transferencia + saldo_pendiente_total + {tipo_trabajo_frecuente} + {repuesto_stock_bajo} 
+mes_ano	mes_ano = mes + ano ** mes = [01|02|...|12], ano = {0|1|...|9} ** 4 digitos
+Estado de stock	Estado_stock = {Respuesto + cantidad_stock + (alerta_stock_bajo)} ** alerta_stock_bajo presente cuando cantidad_stock <= punto_reorden 
+
+
+6. DISEÑO
+6.1 Casos de Uso Reales
+	Los casos de uso reales refinan los casos de uso de análisis incorporando decisiones de implementación: la tecnología, la arquitectura por capas y los mecanismos concretos de interacción entre el actor y el sistema. Se describen los tres casos de uso de mayor impacto operativo.
+
+ Tabla 27
+CU Real 01 - Registrar Orden de Trabajo
+
+Nombre	CU Real 01: Registrar Orden de Trabajo
+Actor	Propietario (autenticado mediante JWT en sesión activa)
+Precondiciones	Token JWT válido presente en memoria de sesión del navegador. Componente OTForm cargado en el cliente React.
+Flujo Principal	1. El propietario presiona el botón “Nuevo Trabajo” en la vista OTList.
+2. El router de React navega al componente OTForm en modo creación.
+3. El propietario ingresa la patente; OTForm dispara GET /api/motos/{patente}/historial.
+4. La API Django retorna datos del cliente si existe o un objeto vacío si es nueva.
+5. El componente autocompleta nombre y teléfono del cliente o deja los campos habilitados para ingreso manual.
+6. El propietario completa la descripción del problema y confirma.
+7. OTForm valida que patente, nombre, cliente, telefono_cliente y descripcion_problema sean no vacíos.
+8. OTForm ejecuta POST /api/ot/ con el payload JSON.
+9. DRF valida, persiste la OT en PostgreSQL y retorna HTTP 201 con el objeto OT creado.
+10. OTForm redirige a OTDetail mostrando el número de OT asignado.
+Flujo Alternativo	7a. Si algún campo obligatorio está vacío, OTForm muestra el mensaje de error inline bajo el campo correspondiente. No ejecuta el POST.
+9a. Si la API retorna HTTP 400, OTForm muestra el error del servidor sin redirigir.
+Postcondiciones	Registro OT persistido en tabla ot de PostgreSQL con estado Recibida y número autoincremental, service Worker actualiza caché de OT activas.
+Endpoints involucrados	GET /api/motos/{patente}/historial 
+POST /api/ot/
+
+Tabla 28
+CU Real 08 - Asociar Repuesto a OT
+
+Nombre	CU Real 08: Asociar Repuesto a OT
+Actor	Propietario (autenticado, OT activa seleccionada)
+Precondiciones	OT en estado distinto de Entregada. Al menos un repuesto con cantidad_stock > 0 en el catálogo.
+Flujo Principal	1. Desde OTDetail, el propietario presiona Agregar repuesto.
+2. React renderiza el componente RepuestoSelector con lista obtenida de GET /api/repuestos/? disponibles=true.
+3. El propietario selecciona el repuesto e ingresa la cantidad.
+4. RepuestoSelector valida localmente la cantidad > 0 y <= stock disponible mostrado.
+5. El propietario confirma; se ejecuta POST /api/ot/{id}/repuestos/ con {id_repuesto,cantidad}.
+6. La vista DRF ejecuta la transacción atómica: crea OTRepuesto, decrementa repuesto.cantidad_stock, crea Movimiento de tipo Egreso.
+7. La API retorna HTTP 201. OTDetail refresca el detalle de la OT y el stock del repuesto.
+Flujo Alternativo	6a. Si cantidad > stock actual (race condition), la transacción hace rollback y la API retorna HTTP 409. El componente muestra advertencia de stock insuficiente.
+Postcondiciones	Registro en tabla ot_repuesto, repuesto.cantidad_stock decrementado. Registro en movimiento_stock tipo Egreso. Alerta de stock bajo activada si cantidad_stock <= punto_reorden.
+Endpoints involucrados	GET /api/repuestos/?disponibles=true
+POST /api/ot/{id}/repuestos/
+
+Tabla 29
+CU Real 10 - Registrar Cobro de OT
+
+Nombre	CU Real 10: Registrar Cobro de OT
+Actor	Propietario (autenticado, OT con cobro pendiente seleccionada)
+Precondiciones	OT existe en la base de datos. saldo_pendiente > 0 o es el primer cobro.
+Flujo Principal	1. Desde OTDetail, el propietario presiona Registrar cobro.
+2. React renderiza CobroForm con el monto sugerido calculado (mano_obra + sum(repuestos * precio_compra * (1 + margen))).
+3. El propietario confirma o ajusta el monto y selecciona la forma de pago.
+4. CobroForm ejecuta POST /api/ot/{id}/cobros/ con {monto_cobrado, forma_pago}.
+5. DRF calcula saldo_pendiente = saldo_anterior - monto_cobrado (mínimo 0), persiste el registro Cobro y retorna HTTP 201.
+6. OTDetail refresca el saldo pendiente. Si saldo = 0, habilita el botón Marcar como Entregada.
+Flujo Alternativo	3a. El propietario puede ingresar un monto distinto al sugerido (precio acordado diferente al calculado). No genera error.
+5a. Si monto_cobrado > saldo_pendiente, saldo queda en 0 sin generar error.
+Postcondiciones	Registro en tabla cobro. OT.saldo_pendiente actualizado. Si saldo = 0, OT habilitada para cierre.
+Endpoints involucrados	POST /api/ot/{id}/cobros/
+
+6.2 Diagramas de Secuencia de Diseño
+	Los diagramas de secuencia de diseño especifican la interacción entre los objetos de las capas de arquitectura: componente React (vista), servicio API (DRF view), capa de negocio (serializer/service) y base de datos (PostgreSQL vía ORM Django). Se presentan los dos flujos de mayor complejidad transaccional.
+
+
+
+
+6.3 Diagrama de Clases
+	Las clases corresponden directamente a los modelos Django que mapean a las tablas PostgreSQL mediante el ORM.
+
+6.4 Diseño de Entrada
+	Corresponde a los requisitos no funcionales de usabilidad (RNF-001 a RNF-003): operación con una mano, máximo 4 campos obligatorios visibles, tiempo de registro menor a 60 segundos. Cada pantalla se describe mediante su estructura de componentes, los campos requeridos y las reglas de validación aplicadas.
+
+Tabla 30
+Campos y validaciones - Formulario alta de OT
+
+Campo	Obligatorio	Tipo input	Validación	Comportamiento especial
+Patente	Si	text (mayúsculas)	Min 6 / Max 7 caracteres.
+Sólo letras y números	Al perder foco: GET historial autocompleta cliente si existe
+Nombre cliente	Si	text	Min 2 caracteres	Autocompletado desde historial de patente
+Teléfono	Si	tel	Min 8 dígitos. Solo números, +, -.	Autocompletado desde el historial de patente
+Descripción del problema	Si	textarea	Min 5 caracteres. Max 500.	Placeholder: ‘No arranca’. ‘Frena mal’, etc.
+Marca	No	text	Max 50 caracteres.	
+Modelo	No	text	Max 50 caracteres.	
+Fecha de entrega estimada	No	date	Debe ser >= fecha actual	Selector de fecha nativo del navegador móvil.
+
+Tabla 31
+Campos y Validaciones - Formulario de cobro
+
+Campo	Obligatorio	Tipo input	Validación	Comportamiento especial
+Monto a cobrar ahora	Si	number (decimal)	Decimal > 0. 
+Max 2 decimales.	Preiniciado con el monto sugerido calculado. Editable por el propietario.
+Forma de pago	Si	radio (2 opciones)	Selección obligatoria:
+Efectivo | Transferencia	Sin valor por defecto para forzar selección consciente.
+Saldo pendiente	No (calculado)	display readonly	Calculado en tiempo real: total_ot - sum(cobros_previos) - monto_actual.	Si resultado < 0, muestra $0.00.
+Nota: las imágenes (mockups) se adjuntan en la sección de “Documentos Adjuntos” o en su defecto, en la sección 8.
+
+6.5 Diseño de Salidas
+	Las salidas del sistema son pantallas de consulta y reportes visualizados en el navegador móvil. No se genera ningún archivo descargable en la versión inicial. El diseño de cada salida especifica los datos mostrados, su orden y las reglas de presentación.
+7. PRUEBA Y DEPURACIÖN 
+La etapa de prueba y depuración tiene por objetivo verificar que el sistema implementado cumple con los requisitos especificados en la sección 5 y que el diseño producido en la sección 6 se traduce en un comportamiento correcto del software. Las pruebas se organizan en cuatro niveles: unitarias, de integración, de sistema y de aceptación.
+
+7.1 Plan de Pruebas
+	En esta etapa se define el alcance, los niveles de prueba, los criterios de aceptación y las responsabilidades de ejecución para cada módulo del sistema.
+Tabla 32
+Plan general de pruebas - Sistema de Gestión MotoFix
+
+Nivel	Alcance	Qué se verifica	Responsable	Criterio de aprobación
+Pruebas unitarias	Funciones y métodos individuales de cada capa	Lógica de cálculo de montos, validaciones de campos, métodos del modelo Django (calcular_saldo_pendiente, esta_bajo_minimo, actualizar_precio_promedio)	Analista / desarrollador	100% de los métodos críticos con resultado esperado. Sin errores no capturados.
+Pruebas de integración	Interacción entre capas: React - DRF - PostgreSQL	Que los endpoints REST retornen los códigos HTTP correctos, que las transacciones atómicas (P4) se ejecuten completas o hagan rollback, que el Service Worker sincronice correctamente	Analista / desarrollador	Todos los endpoints de los 3 módulos responden según especificación. Las transacciones no dejan datos inconsistentes.
+Pruebas de sistema	Sistema completo end-to-end	Flujos completos de los 12 casos de uso: desde la acción del propietario en el navegador hasta la persistencia en la base de datos y la respuesta visual.	Analista con participación del propietario	Todos los flujos normales ejecutan sin error. Los flujos de error muestran mensajes comprensibles.
+Pruebas de aceptación	Sistema en condiciones reales de uso	Que el propietario pueda registrar una OT en menos de 60 segundos (RNF-003), operar con una sola mano desde el celular (RNF-002), y  acceder a OT activas sin conexión (RNF-007)	Propietario del taller (usuario final)	El propietario aprueba los 3 criterios de usabilidad sin asistencia del analista. Tasa de error del usuario <= 1 por sesión de 10 operaciones.
+
+Tabla 33
+Alcance por módulo - plan de pruebas
+
+Módulo	RF cubiertos	Funcionalidades críticas a probar	RNF verificados en aceptación
+M1 - OT y Clientes	RF-001 al RF-011	Registro de OT con autocompletado de patente; cambios de estado; búsqueda por patente y cliente; historial completo; alerta de fecha vencida.	RNF-001
+RNF-002
+RNF-003
+RNF-007
+M2 - Stock	RF-012 al RF-017	Registro de repuesto; ingreso de stock con actualización de precio promedio; asociación a OT con decremento atómico; alerta de stock bajo; historial de movimientos.	RNF-005
+RNF-006
+M3 - Cobros y Reportes	RF-018 al RF-024	Cálculo automático de monto sugerido; registro de cobro parcial y total; listado de saldos pendientes; resumen mensual con datos correctos.	RNF-008
+RNF-009
+Transversal	RNF-009 al RNF-014	Autenticación JWT; HTTPS; separación de capas; despliegue incremental M1 sin afectar M2	RNF-010
+RNF-012
+RNF-013
+
+7.2 Casos de Prueba
+	Los casos de prueba cubren escenarios normales (flujo principal exitoso), excepcionales (entradas inválidas o condiciones de error) y de borde (valores límite). Cada caso incluye los datos de prueba concretos, el resultado esperado y el estado de verificación. Los casos se organizan por módulo.
+
+	7.2.1 Módulo 2 - Stock de Repuestos
+Tabla 34
+Casos de prueba - Módulo 1: Ordenes de Trabajo y Clientes
+
+ID	Descripción	Tipo	Datos de prueba	Resultado esperado	Estado
+CP-001	Registrar OT con todos los campos obligatorios completos	Normal	Patente: AB-123-CD;
+Cliente: Juan Perez;
+Tel: 3765123456;
+Problema: no arranca	HTTP 201. OT creada con número correlativo, estado=Recibida, fecha_creacion=now()	APRUEBA
+CP-002	Registrar Ot con patente existente en el historial	Normal	Patente: AB-123-CD (ya registrada previamente)	Sistema autocompleta nombre y teléfono del cliente. 
+Propietario puede editarlos. OT guardada correctamente.	APRUEBA
+CP-003	Registrar Ot con patente nueva (no en historial)	Normal	Patente: ZZ-999-ZZ (primera vez)	Sistema no autocompleta ningún campo. Propietario ingresa todos los datos manualmente. OT guardada.	APRUEBA
+CP-004	Intenta guardar OT sin patente	Excepcional	Patente: vacía; resto de campos completos	error inline bajo el campo Patente: “Este campo es obligatorio”. No ejecuta POST.	APRUEBA
+CP-005	Intentar guardar OT sin descripción del problema	Excepcional	Patente y cliente completos; descripción: vacía	Sistema muestra error inline bajo el campo Descripcion. No ejecuta POST.	APRUEBA
+CP-006	Intentar guardar OT con descripción menor a 5 caracteres	Borde	Descripción: “ok”	Sistema muestra error: “Mínimo 5 caracteres”. No ejecuta POST	APRUEBA
+CP-007	Actualizar estado de OT de Recibida a En diagnóstico	Normal	OT #001 en estado Recibida; nuevo estado: En diagnóstico	Estado actualizado. fecha_actualizacion=now(). OT visible en listado con nuevo estado.	APRUEBA
+CP-008	Actualizar estado a Entregada con saldo pendiente	Excepcional	OT #002 con saldo_pendiente=$5.000; nuevo estado: Entregada	Sistema muestra advertencia: “Esta OT tiene un saldo pendiente de $5.000”. Permite continuar igualmente.	APRUEBA
+CP-009	Buscar OT por patente exacta	Normal	Búsqueda: “AB-123-CD”	Sistema retorna todas las OT con esa patente ordenadas por fecha_creacion DESC.	APRUEBA
+CP-010	Buscar OT por nombre de cliente parcial	Normal	Búsqueda: “Juan”	Sistema retorna todas las OT cuyo nombre_cliente contiene “Juan” (búsqueda case sensitive).	APRUEBA
+CP-011	Buscar OT con término sin coincidencias	Excepcional	Búsqueda: “XXXXXXXXXXX”	Sistema muestra mensaje: “No se encontraron resultados”. Lista vacía. Sin error	APRUEBA
+CP-012	Agregar nota a OT existente	Normal	OT #001; nota: “Cliente llama para preguntar estado”	Nota guardada con fecha_hora=now(). Visible en historial de notas de la OT.	APRUEBA
+CP-013	Intentar agregar una nota vacía	Excepcional	OT #001; nota: vacía	Sistema muestra error inline. No guarda una nota vacía.	APRUEBA
+CP-014	consultar listado de OT activas sin conexión a internet	Normal	Service Worker activo; conexión desactivada en el dispositivo	Sistema muestra las OT activas desde caché. Banner indicando modo offline.	APRUEBA
+CP-015	Verificar alerta de fecha de entrega vencida	Normal	OT #003 con fecha_entrega_estimada=ayer	OT aparece con indicador visual de fecha vencida en el listado de activas	APRUEBA
+
+	7.2.2 Módulo 2 - Stock de Repuestos
+Tabla 35
+Casos de prueba - Módulo 2: Stock de Repuestos
+
+CP-016	Registrar nuevo repuesto con todos los campos	Normal	Nombre: Bujía NGK CR6HSA;
+precio_compra: $1.800;
+cantidad_stock: 10;
+punto_reorden: 5	Repuesto creado. Visible en catálogo con stock=10 y sin alerta de mínimo.	APRUEBA
+CP-017	Intentar registrar repuesto sin nombre	Excepcional	Nombre: vacío;
+resto completo	Sistema muestra error inline. No ejecuta POST.	APRUEBA
+CP-018	Registrar ingreso de stock a repuesto existente	Normal	Repuesto: Bujía NGK (stock actual= 10); cantidad_ingreso=5;
+precio_unitario=$1.900	cantidad_stock actualizado a 15. precio_compra_promedio recalculado: (10 * 1800 + 5 * 1900) / 15 = $1.833.
+Movimiento ingreso registrado. 	APRUEBA
+CP-019	Asociar repuesto a OT con stock suficiente	Normal	OT #005; Repuesto: Bujía NGK (stock=15); cantidad=2	cantidad_stock decrementado a 13. OTRepuesto creado. MovimientoStock tipo Egreso registrado con ref.OT #005	APRUEBA
+CP-020	Asociar repuesto a OT con stock exactamente igual a la cantidad solicitada	Borde	OT #006; Repuesto: Filtro aire (stock=3); cantidad=3	cantidad_stock decrementado a 0. Alerta de stock bajo activada (0 <= punto_reorden=3).	APRUEBA
+CP-021	Intentar asociar repuesto a OT con stock insuficiente	Excepcional	OT #007; Repuesto: Cadena 428 (stock=2); cantidad=5	Sistema retorna HTTP 409. Mensaje: “Stock insuficiente: disponible 2 unidades”. No realiza cambios en la base de datos.	APRUEBA
+CP-022	Intentar asociar repuesto con cantidad = 0	Borde	OT #008; Repuesto: Bujía NGK; cantidad = 0	Sistema muestra error de validación: “La cantidad debe ser mayor a cero”. No ejecuta operación.	APRUEBA
+CP-023	Consultar inventario con repuestos bajo punto de reorden	Normal	Base de datos con 2 repuestos bajo mínimo	Listado muestra todos los repuestos. Los que tienen cantidad_stock <= punto_reorden aparecen con indicador visual de alerta (rojo).	APRUEBA
+CP-024	Verificar cálculo de valor total del stock	Normal	3 repuestos:
+A(10 u * $1.800),
+B(5 u * $3.200),
+C(20 u * $800)	Valor total = $18.000 + $16.000 + $16.000 = $50.000. Mostrado correctamente en pantalla de inventario.	APRUEBA
+CP-025	Verificar historial de movimientos de un repuesto	Normal	Repuesto: Bujía NGK con 3 ingresos y 4 egresos registrados	Historial muestra los 7 movimientos ordenados por fecha DESC con tipo, cantidad, fecha y referencia de OT (en egresos).	APRUEBA
+CP-026	Verificar rollback ante falla en transacción de uso de repuesto	Excepcional	Simular falla de BBDD durante INSERT en movimiento_stock (post-decremento de stock)	Transacción hace rollback completo: cantidad_stock no decrementado, OTRespuesto no creado, MovimientoStock no insertado. Base de datos consistente.	APRUEBA
+
+Nota: El estado APRUEBA en la columna Estado indica que el caso de prueba fue diseñado con resultado esperado verificable. La ejecución real de los casos se realiza durante la fase de implementación del software, que excede el alcance del análisis. Los casos de prueba quedan documentados como especificaciones para el desarrollador.
+
+	7.2.3 Módulo 3 - Cobros y Reportes
+Tabla 36
+Casos de prueba - Módulo 3: Cobros y Reportes
+
+ID	Descripción	Tipo	Datos de prueba	Resultado esperado	Estado
+CP-027	Calcular monto sugerido de cobro de OT con repuestos y mano de obra	Normal	OT #010:
+mano_obra=$12.000; 
+repuestos usados: 2 bujías ($1.800 c/u);
+margen=20%	Monto sugerido = $12.000 + (2 * $1.800 * 1.20) = $16.320.
+Mostrado en CobroForm antes de confirmar.	APRUEBA
+CP-028	Registrar cobro total de OT en una sola transacción	Normal	OT #010 (monto total=$16.320);
+cobro=$16.320;
+forma_pago=Efectivo	Cobro registrado. saldo_pendiente=0
+OT habilitada para marcar como Entregada.	APRUEBA
+CP-029	Registrar cobro parcial de OT	Normal	OT #011 (monto total=$20.000);
+cobro=$10.000;
+forma_pago=Transferencia	Cobro registrado.
+saldo_pendiente=$10.000.
+OT no bloqueada: el propietario puede continuar operando.	APRUEBA
+CP-030	Registrar segundo cobro parcial sobre saldo pendiente	Normal	OT #011 (saldo_pendiente=$10.000);
+cobro=$10.000;
+forma_pago=Efectivo	saldo_pendiente actualizado a $0. Historial muestra los dos cobros con sus fechas y formas de pago.	APRUEBA
+CP-031	Registrar cobro mayor al saldo pendiente	Borde	OT #012 (saldo_pendiente=$5.000); cobro=$8.000	saldo_pendiente queda en $0. No se genera error. El sistema no calcula ni registra diferencia a favor del cliente.	APRUEBA
+CP-032	Intentar registrar cobro con monto = 0	Excepcional	OT #013;
+monto_cobrado=0	Sistema muestra error de validación: “El monto debe ser mayor a cero”. No ejecuta POST	APRUEBA
+CP-033	Intentar registrar cobro sin seleccionar forma de pago	Excepcional	OT #013;
+monto=$15.000;
+forma_pago=sin seleccionar	Sistema muestra error inline: “Selecciona una forma de pago”. No ejecuta POST.	APRUEBA
+CP-034	Consultar listado de saldos pendientes	Normal	Base de Datos con 3 OT con saldo > 0 y 2 OT con saldo = 0	Sistema muestra únicamente las 3 OT con saldo pendiente, ordenadas por antigüedad DESC. Las OT saldadas no aparecen.	APRUEBA
+CP-035	Generar resumen mensual con datos del mes actual	Normal	Mayo 2026: 28 OT cerradas. cobros=Efectivo $340.000 + Transferencia $185.000, saldo pendiente=$42.000	Resumen muestra: 28 OT, $340.000 efectivo, $185.000 transferencia, $525.000 total, $42.000 pendiente. Top 3 trabajos calculados.	APRUEBA
+CP-036	Generar resumen de mes sin OT cerradas	Excepcional	Enero 2026: sin OT con estado Entregada	Sistema muestra el mensaje: “No hay datos para el período seleccionado”. Sin error, sin valores en cero confusos.	APRUEBA
+CP-037	Verificar separación de cobros por forma de pago en resumen	Normal	Mes con 5 cobros Efectivo ($75.000 total) y 3 cobros Transferencia ($45.000 total)	Resumen muestra Efectivo: $75.000 y Transferencia: $45.000 en líneas separadas. Total: $120.000.	APRUEBA
+CP-038	Verificar que repuestos bajo mínimo aparecen en resumen mensual	Normal	Stock: Bujía NGK (stock=2, punto_reorden=5); Filtro aire (stock=0, punto_reorden=3)	Sección “Repuestos bajo mínimo” del resumen muestra ambos repuestos con sus cantidades actuales y puntos de reorden.	APRUEBA
+
+7.3 Pruebas de Sistema
+	Las pruebas de sistema verifican flujos completos end-to-end que atraviesan todos los módulos. Cada escenario simula una jornada real de trabajo del propietario, encadenado a operaciones de distintos módulos para validar la coherencia global del sistema.
+
+Tabla 37
+Casos de prueba de sistema - Flujos end-to-end
+
+ID	Escenarios	Secuencia de pasos	Resultado esperado global	Estado
+PS-001	Ciclo completo de una OT: ingreso, reparación, uso de repuestos y cobro total.	1. Registrar OT nueva (CP-001).
+2. Actualizar estado a En reparación (CP-007).
+3. Asociar 2 bujías y 1 filtro de aire (CP-019).
+4. Actualizar estado a Lista para entregar.
+5. Registrar cobro total (CP-028).
+6. Actualizar estado a Entregada.
+7. Verificar que la OT desaparece del listado de activas. 	OT cerrada con saldo=0.
+Stock decrementado en 2 bujías y 1 filtro.
+Movimientos registrados.
+OT visible solo en historial.	APRUEBA
+PS-002	OT con interrupción por falta de repuesto y reanudación.	1. Registrar OT.
+2. Actualizar a En reparación.
+3. Intentar asociar repuesto sin stock (CP-021): sistema alerta.
+4. Actualizar estado a Esperando repuesto.
+5. registrar ingreso de stock del repuesto faltante (CP-018).
+6. Actualizar estado a En reparación.
+7. Asociar repuesto ahora disponible (CP-019).
+8. Cerrar Ot.	Flujo de interrupción y reanudación sin datos corruptos.
+Stock correcto en cada etapa. 
+Historial de movimientos consistente.	APRUEBA
+PS-003	Cobro parcial con deuda y cancelación posterior.	1. Cerrar OT con monto total=$20.000.
+2. Registrar cobro parcial de $10.000 (CP-029).
+3. Verificar en listado de saldos pendientes (CP-034).
+4. En vista posterior: registrar segundo cobro de $10.000 (CP-030).
+5. verificar que  Ot desaparece del listado de saldos pendientes.	Historial de cobros muestra 2 registros. 
+saldo_pendiente=$0.
+OT no aparece en listado de  deudores.	APRUEBA
+PS-004	Resumen mensual refleja operaciones del ciclo completo
+	1. Ejecutar PS-001 (1 OT cerrada, cobro $16.320 efectivo).
+2. Ejecutar PS-003 (1 OT cerrada, cobros $10.000+$10.000 transferencia).
+3. Generar resumen del mes (CP-035).
+4. Verificar totales.
+	Resumen muestra: 2 OT cerradas, Efectivo $16.320, Transferencia $20.000, Total $36.320, saldo pendiente $0.
+	APRUEBA
+PS-005	Verificación de integridad referencial al intentar eliminar repuesto con historial
+	1. Registrar repuesto nuevo.
+2. Asociarlo a una OT (genera movimiento). 
+3. Intentar eliminar el repuesto desde el catálogo.
+	Sistema retorna error HTTP 400: “No se puede eliminar un repuesto con movimientos asociados” (restricción PROTECT). Repuesto y datos históricos intactos.
+	APRUEBA
+
+7.4 Pruebas de Aceptación
+	Las pruebas de aceptación se realizan con el propietario del taller como único evaluador, en el local de trabajo y bajo condiciones reales de uso: smartphone Android, iluminación del taller, sin asistencia del analista durante la ejecución. El criterio de aprobación global es que el propietario complete los tres escenarios con una tasa de error menor o igual a 1 operación errónea cada 10.
+Tabla 38
+Casos de prueba de aceptación - Criterios de usabilidad (RNF-001 a RNF-004)
+
+ID	Escenario	Tarea encomendada al propietario	Criterio de aprobación	RNF verificado	Estado
+PA-001	Registro rápido de OT	Sin instrucciones previas del analista, registrar una OT nueva para una moto imaginaria con problema de frenos.	El propietario completa el registro en menos de 60 segundos sin solicitar ayuda. Sin errores de navegación.	RNF-001,
+RNF-002,
+RNF-003	APRUEBA
+PA-002	Operación con una sola mano	Repetir PA-001 con el teléfono sostenido con una sola mano (la otra simula estar ocupada con una herramienta).	El propietario completa la operación sin necesidad de apoyar el teléfono ni usar zoom. Todos los botones accesibles con el pulgar.	RNF-002	APRUEBA
+PA-003	Consulta en modo offline	Con conexión a internet desactivada en el celular, consultar el estado de todas las OT activas.	El propietario accede al listado de OT activas en menos de 5 segundos. Banner de modo offline visible. Datos correctos.	RNF-007	APRUEBA
+PA-004	Búsqueda de historial por patente	Buscar todas las OT previas de una patente específica sin instrucciones del analista.	El propietario encuentra la barra de búsqueda, ingresa la patente y obtiene el historial en menos de 30 segundos.	RNF-001	APRUEBA
+PA-005	Registro de cobro	Registrar el cobro total de una OT que el analista indica, seleccionando la forma de pago.	El propietario completa el cobro correctamente en menos de 45 segundos. 
+saldo_pendiente queda en $0.	RNF-001,
+RNF-002	APRUEBA
+PA-006	Verificación de ausencia de notificaciones	Durante una sesión de 15 minutos de uso normal, el sistema no genera ninguna notificación push ni alerta sonora no solicitada.	Cero notificaciones automáticas recibidas en el dispositivo durante la sesión.	RNF-004	APRUEBA
+PA-007	Consulta de resumen mensual	Sin instrucciones, acceder al resumen del mes actual y leer en voz alta los ingresos del mes.	El propietario encuentra la sección de reportes y lee los totales correctamente en menos de 60 segundos.	RNF-001	APRUEBA
+
+
+Tabla 39
+Resumen de cobertura de pruebas por requisito
+
+Nivel	Casos definidos	RF cubiertos	RNF cubiertos	Estado global
+Utilitarias /
+Integración	CP-001 a CP-038 (38 casos)	RF-001 a RF-024
+(cobertura total)	RNF-005,
+RNF-006, 
+RNF-009,
+RNF-010	DISEÑADOS
+Sistema	PS-001 a PS-005 (5 escenarios)	RF-001 a RF-024 (flujos cruzados)	RNF-007,
+RNF-012,
+RNF-013	DISEÑADOS
+Aceptación	PA-001 a PA-007 (7 escenarios)	RF-001,
+RF-005,
+RF-007,
+RF-019,
+RF-022	RNF-001,
+RNF-002,
+RNF-003,
+RNF-004,
+RNF-007	DISEÑADOS
+TOTAL	50 casos de prueba	RF-001 a RF-024 (24/24)	RNF-001 a RNF-010,
+RNF-012, RNF-013 (12/14)	DISEÑADOS
+
+Nota: Los RNF no cubiertos directamente por casos de prueba formales son RNF-011 (restricción de datos sensibles - verificable en revisión del esquema de BBDD) y RNF-014 (Portabilidad iOS - verificable en prueba exploratoria con Safari). Ambos se cubren en la revisión de diseño y en las pruebas de sistema respectivamente.
+8. IMPLANTACIÓN
+	La etapa de implantación comprende el conjunto de actividades necesarias para poner el sistema en operación en el entorno de MotoFix. Dado que el desarrollo del software excede el alcance de este trabajo de análisis y relevamiento, esta sección documenta el plan de implantación: la estrategia de migración de datos, la secuencia de despliegue incremental, la configuración de infraestructura y los criterios de corte que determinan el paso de un módulo al siguiente.
+
+8.1 Implementación
+
+	8.1.1 Estrategia general de implantación
+	Se adopta una estrategia de implantación incremental paralela. El sistema nuevo se pone en operación módulo por módulo, mientras el propietario mantiene transitoriamente el registro en papel como respaldo durante el periodo de adaptación de cada módulo. Esta estrategia minimiza el riesgo operativo: si el sistema presenta un problema durante las primeras semanas, el taller puede continuar funcionando sin interrupción.
+	La estrategia paralela se aplica únicamente durante el período de prueba de cada módulo (dos semanas por módulo). Una vez que el propietario valida el funcionamiento correcto, el registro en papel se discontinúa para ese proceso específico. El cuaderno de anotaciones se conserva hasta que el Módulo 3 esté en producción y el primer resumen mensual haya sido generado y validado.
+
+	8.1.2 Secuencia de despliegue incremental
+Tabla 40
+Plan de despliegue incremental por módulo - MotoFix
+
+Módulo	Nombre	Funcionalidades habilitadas	Duración estimada deploy + prueba	Criterio de corte al siguiente módulo	Período de operación paralela
+M1	OT y Clientes	Registro de OT, actualización de estado, consulta de OT activas, búsqueda de historial por patente y cliente, notas en OT, alerta de fecha vencida, acceso offline.	2 semanas (1 deploy + 1 prueba en producción)	El propietario registra al menos 20 OT sin errores críticos y puede consultar el historial sin asistencia.	2 semanas post-deploy: mantiene cuaderno en paralelo
+M2	Stock de Repuestos	Catálogo de repuestos, ingreso de stock, asociación de repuestos a OT, alerta de stock bajo, historial de movimientos, valor total del stock.	2 semanas (1 deploy + 1 prueba en producción)	El propietario ingresa el inventario completo actual y registra al menos 10 movimientos de stock sin errores.	2 semanas post-deploy: mantiene hoja de stock manual en paralelo
+M3	Cobros y Reportes	Cálculo automático de monto sugerido, registro de cobros parciales y totales, listado de saldos pendientes, resumen mensual.	2 semanas (1 deploy + 1 prueba en producción)	El propietario genera el primer resumen mensual completo y verifica que los totales coinciden con sus registros en papel del mismo periodo.	2 semanas post-deploy: mantiene registro de cobros en paralelo
+Nota: El despliegue del M2 no requiere modificaciones en las rutas de API ni en los componentes del M1 ya en producción (RNF-013). El M3 agrega los endpoints de cobros y el módulo de reportes sin afectar los endpoints existentes.
+
+	8.1.3 Migración de datos
+	MotoFix no dispone de datos estructurados previos susceptibles de migración automatizada. La información existente se encuentra en formato no digital (cuaderno de papel) o en conversaciones de WhatsApp o Facebook Marketplace no exportables de manera sistemática. En consecuencia, la estrategia de migración de datos es manual y selectiva.
+Tabla 41
+Plan de migración de datos - MotoFix
+Datos a migrar	Fuente actual	Estrategia	Responsable	Prioridad
+OT activas al momento del lanzamiento	Cuaderno de papel	El propietario registra manualmente en el sistema las OT que estén abiertas al momento del go-live del M1. No se migran OT ya cerradas.	Propietario con asistencia del analista en la primera sesión de capacitación	Alta
+Catálogo de repuestos e inventario inicial	Observación visual del stock + memoria del propietario	El propietario carga el inventario completo en el sistema durante el deploy del M2. El analista prepara una plantilla de carga de formato lista para facilitar el ingreso. 	Propietario con plantilla provista por el analista	Alta
+Historial de clientes y patentes	Cuaderno de papel + contactos de WhatsApp	No se migra historial previo. Los clientes se incorporan al sistema orgánicamente a medida que traen la moto a partir del go-live. El historial pre-sistema queda documentado en el cuaderno como archivo físico.	Automática por uso del sistema	Baja
+Deudas pendientes de clientes anteriores	Memoria del propietario + anotaciones sueltas	El propietario registra manualmente en el M3 los saldos pendientes reales al momento del deploy, creando OT especiales del tipo “Deuda anterior” para cada cliente con deuda.	Propietario con asistentencia del analista	Media
+
+	8.1.4 Configuración de infraestructura
+	El sistema se despliega en infraestructura cloud mediante Railway o Render, plataformas PaaS que proveen entorno de ejecución para aplicaciones Django y bases de datos PostgreSQL sin requerir administración de servidores. La Tabla 42 detalla la configuración recomendada para el entorno de producción.
+
+Tabla 42
+Configuración de infraestructura de producción - MotoFix
+
+Componente	Servicio	Configuración	Observaciones
+Backend Django	Railway Web Service / 
+Render Web Service	Python 3.12+. Variables de entorno: SECRET_KEY, DATABASE_URL, ALLOWED_HOSTS, DEBUG=False. Gunicorn como servidor WSGI. Auto-deploy desde rama main del repositorio GitHub.
+	Plan gratuito suficiente para la escala inicial del taller. Upgrade a plan pago si el tiempo de cold start supera 5 segundos.
+
+Base de datos	Railway PostgreSQL / 
+Render PostgreSQL	PostgreSQL 16.
+Backups automáticos diarios provistos por la plataforma. Conexión vía DATABASE_URL en variable de entorno. 
+SSL obligatorio.	Verificar  que el plan incluya backups automáticos.
+Exportar backup manual antes de cada despliegue de nueva versión.
+Frontend React
+(PWA)	Vercel / Railway Static	Build de producción: npm run build. Variables de entorno:
+VITE_API_URL apuntando al backend en producción.
+Service Worker registrado para caché offline.	El Service Worker debe configurarse para cachear únicamente las OT activas y el catálogo de repuestos, no el resumen mensual.
+Certificado SSL	Provisto por la plataforma (Let’s Encrypt)	HTTPS obligatorio en todos los endpoints.
+Redirección automática de HTTP a HTTPS configurada en Django (SECURE_SSL_REDIRECT=True)	Renovación automática gestionada por la plataforma. Verificar vigencia mensualmente.
+Repositorio de código	GitHub	Repositorio privado con dos ramas: main (producción) y develop (desarrollo). Deploy automático al hacer merge a main.	Acceso de lectura al repositorio otorgado al propietario para transparencia, aunque no se requiere intervención técnica de su parte.
+
+Tabla 43
+Checklist de go-live por módulo
+
+#	Tarea de verificación previa al go-live	Módulo	Responsable
+1	Variables de entorno configuradas en la plataforma de deploy	M1, M2, M3	Analista
+2	Migraciones de base de datos ejecutadas sin errores (Python manage.py migrate)	M1, M2, M3	Analista
+3	Superusuario de Django creado y credenciales entregadas al propietario	M1	Analista
+4	Service Worker registrado y caché offline verificada en Chrome Android	M1	Analista
+5	HTTPS activo y redirección de HTTP verificada	M1	Analista
+6	Backup manual de base de datos realizado antes del deploy	M2, M3	Analista
+7	OT activas al momento del go-live cargadas en el sistema	M1	Propietario + Analista
+8	Catálogo de repuestos completo cargado en el sistema	M2	Propietario
+9	Deudas pendientes de clientes anteriores registradas	M3	Propietario + Analista
+10	Primer resumen mensual generado y verificado contra registros en papel	M3	Propietario + Analista
+
+Nota: El go-live de cada módulo queda condicionado a que el 100% de los ítems del checklist correspondientes estén completados. Ningún módulo se despliega en producción con ítems pendientes.
+
+8.2 Capacitación
+	El plan de capacitación tiene por objetivo que el propietario de MotoFix pueda operar el sistema de forma autónoma, sin asistencia del analista, dentro de las dos semanas posteriores al go-live de cada módulo. El perfil del usuario determina el enfoque: el propietario tiene experiencia con smartphones y WhatsApp, pero no tiene experiencia con sistemas de gestión. La capacitación se orienta por tanto a la práctica directa sobre el sistema real, evitando conceptos técnicos innecesarios. 
+
+	8.2.1 Perfil del usuario a capacitar
+Tabla 44
+Perfil del usuario a capacitar - MotoFix
+
+Característica	Descripción
+Nombre del usuario	Propietario del taller MotoFix (único usuario del sistema)
+Nivel de alfabetización digital	Intermedio. Uso fluido de WhatsApp, RRSS, homebanking y billeteras virtuales, cámara de teléfono. Sin experiencia con sistemas de gestión o aplicaciones de negocio.
+Dispositivo principal	Smartphone Android gama media. Sistema operativo Android 13. Navegador Chrome actualizado.
+Contexto de uso	Taller mecánico. Iluminación variable. Manos frecuentemente ocupadas o sucias. Atención dividida entre el sistema y el trabajo técnico. Interrupciones frecuentes.
+Motivación para el cambio	Alta. El propietario reconoce los problemas de la gestión actual y manifestó voluntad explícita de adoptar la herramienta si es simple y rápida (Entrevista 3, Anexo 9.1).
+Riesgo de abandono	Medio. Condicionando a que el sistema sea percibido como más rápido que el cuaderno en las primeras dos semanas de uso.
+
+	8.2.2 Plan de sesiones de capacitación
+	La capacitación se estructura en tres sesiones presenciales de 1 hora cada una, una por módulo, realizadas en el local del taller inmediatamente después del go-live de cada módulo. El analista actúa como instructor. Cada sesión combina demostración, práctica guiada y práctica autónoma sobre el sistema real con datos del taller.
+
+Tabla 45
+Plan de sesiones de capacitación por módulo
+
+Sesión	Módulo	Duración	Contenidos	Dinámica	Criterio de aprobación
+S1	M1-OT y Clientes	60 min.	Acceso al sistema (URL + credenciales). Registrar una OT nueva. Actualizar estado. Consultar listado de activas. Buscar por patente. Agregar nota. Modo offline.	15 min demostración del analista. 25 min práctica guiada con motos reales del taller. 20 min práctica autónoma: el propietario registra 3 OT sin asistencia.	El propietario registra 3 OT correctamente sin asistencia y puede consultar el listado de activas en menos de 30 segundos.
+S2	M2-Stock de Repuestos	60 min.	Registrar un repuesto nuevo. Registrar ingreso de stock. Asociar repuesto a una OT. Interpretar alerta de stock bajo. Consultar historial de movimientos.	10 min demostración. 35 min práctica guiada: cargar 5 repuestos reales del inventario del taller y asociarlos a OT activas. 15 min de práctica autónoma.	El propietario carga 5 repuestos sin asistencia y asocia al menos 2 a OT existentes con el stock correcto decrementado.
+S3	M3-Cobros y Reportes	60 min.	Registra el cobro total de una OT. Registrar cobro parcial. Consultar listado de saldos pendientes. Generar cobro parcial. Consultar listado de saldos pendientes. Generar resumen mensual. Interpretar los datos del resumen.	10 min demostración. 35 min práctica con cobros reales de OT del día. 15 min: el propietario genera el resumen del mes actual y lo lee en voz alta verificando totales.	El propietario registra 3 cobros (al menos 1 parcial) sin asistencia y genera  el resumen mensual correctamente.
+
+	8.2.3 Materiales de capacitación
+	Cada sesión se apoya en materiales diseñados para el perfil del usuario: simples, visuales y consultables desde el celular. No se utilizan manuales de texto extensos durante la capacitación; estos se entregan como material de referencia posterior (Sección 8.3).
+
+Tabla 46
+Materiales de soporte para capacitación
+
+Material	Formato	Contenido	Cómo se entrega
+Guía rápida M1
+OT y Clientes	PDF de 1 página / 
+imagen para guardar en el celular.	3 pasos para registrar una OT (con screenshots). Cómo cambiar el estado. Cómo buscar una moto por patente.	Enviada por WhatsApp al propietario el día del go-live del M1. Guardada en la galería del dispositivo para consulta rápida.
+Guía rápida M2
+Stock	PDF de 1 página / 
+imagen	Cómo agregar un repuesto al stock. Cómo registrar que usé un repuesto en una moto. Qué significa la alerta roja de stock bajo.	Enviada por WhatsApp el día del go-live del M2.
+Guía rápida M3
+Cobros	PDF de 1 página / 
+imagen	Cómo registrar el cobro por un trabajo. Cómo ver quién me debe plata. Cómo ver cuánto gané en el mes.	Enviada por WhatsApp el día del go-live del M3.
+Canal de soporte post-capacitación	WhatsApp (chat directo analista-propietario)	Canal disponible durante las 4 semanas posteriores al go-live del M3 para consultas puntuales del propietario.	El analista responde consultas en horario de taller (lunes a viernes, 9 a 18 hs) con tiempo de respuesta máximo de 2 horas.
+
+	
+8.2.4 Criterio de aprobación global de la capacitación
+	La capacitación se considera exitosa cuando el propietario supera las etapas de aceptación PA-001 a PA-007 definidas en la Sección 7.3 con una tasa de error menor o igual a 1 operación errónea cada 10, ejecutadas sin asistencia del analista en condiciones reales de uso del taller. Si el propietario no alcanza el criterio en la sesión de prueba de aceptación, se programa una sesión adicional de refuerzo focalizada en las operaciones donde se registraron errores.
+
+Nota: Las guías rápidas se redactan en lenguaje coloquial, evitando terminología técnica. Los términos del sistema (OT, stock, saldo pendiente) se presentan en la capacitación con el vocabulario que el propietario usa naturalmente: “trabajo”, “repuesto que tengo guardado”, “lo que me deben”. El sistema utiliza esos mismos términos en su interfaz para reducir la curva de aprendizaje.
+
+8.3 Manual de Usuario
+	El manual de usuario documenta las funcionalidades principales del sistema en formato de procedimientos paso a paso, redactados en lenguaje coloquial y orientados al propietario del taller como único usuario. Cada procedimiento especifica la acción que el usuario realiza y el resultado visible que el sistema produce. El manual está diseñado para ser consultado desde el celular en el momento de uso. 
+
+	8.3.1 Acceso al sistema
+Dirección de acceso: la URL del sistema es provista por el analista al momento del go-live. Se recomienda guardarla como acceso directo en la pantalla del inicio del celular (opción “Agregar a pantalla de inicio” en Chrome Android). 
+
+Tabla 47
+Procedimiento: iniciar sesión en el sistema
+
+Paso	Acción del usuario	Lo que muestra el sistema
+1	Abrir Chrome en el celular e ingresar la URL del sistema (o tocar el acceso directo guardado en la pantalla de inicio). 	El sistema muestra la pantalla de inicio de sesión con dos campos: Usuario y Contraseña.
+2	Ingresar el usuario y contraseña provistos por el analista y tocar Ingresar.	Si los datos son correctos, el sistema muestra el listado de trabajos activos. Si son incorrectos, muestra el mensaje: “Usuario o contraseña incorrectos”.
+3	Si el sistema no carga (sin internet), tocar el acceso directo igual.	El sistema muestra los trabajos activos guardados la última vez que hubo conexión. Un cartel en la parte superior dice “Sin conexión: mostrando datos guardados”.
+
+	8.3.2 Registrar un trabajo nuevo
+Tabla 48
+Procedimiento: Registrar una Orden de Trabajo
+
+Paso	Acción de usuario	Lo que muestra el sistema
+1	En el listado de trabajos, tocar el botón Nuevo Trabajo (esquina superior derecha).	El sistema muestra el formulario de alta de trabajo con los campos vacíos.
+2	Escribir la patente de la moto y esperar un segundo.	Si esa moto ya estuvo antes, el sistema completa automáticamente el nombre y teléfono del cliente. Si es la primera vez, los campos quedan vacíos para completar.
+3	Completar el nombre del cliente y teléfono si no se completaron solos.	Los campos aceptan letras, números y guiones. El teléfono admite cualquier formato.
+4	Escribir el problema que describe el cliente (mínimo 5 letras).	El campo acepta texto libre. Ejemplos: “no arranca”, “Frena mal”, “Pierde aceite”.
+5	Si se quiere, completar la marca, el modelo y la fecha estimada de entrega. No son obligatorios.	El sistema acepta o deja esos campos vacíos sin problema. 
+6	Tocar Guardar Trabajo	El sistema guarda el trabajo, le asigna un número automático y lo muestra al tope del listado de trabajos activos con estado “Recibida”. 
+7	Si falta algún campo obligatorio y se toca Guardar, el sistema avisa.	Aparece un cartel rojo debajo del campo que falta: “Este campo es obligatorio”. El trabajo no se guarda hasta completarlo.
+
+8.3.3 Actualizar el estado de un trabajo
+
+Tabla 49
+Procedimiento: Cambiar el estado de una Orden de trabajo
+
+Paso	Acción de usuario	Lo que muestra el sistema
+1	En el listado de trabajos, tocar el trabajo que se quiere actualizar.	El sistema muestra el detalle completo del trabajo: datos de la moto, cliente, problema, estado actual y notas anteriores.
+2	Tocar el estado actual (muestra los estados posibles en una lista).	El sistema despliega los estados disponibles: Recibida / En diagnóstico / En reparación / Esperando repuesto / Lista para entregar / Entregada.
+3	Tocar el nuevo estado.
+	El sistema actualiza el estado y lo muestra en el detalle del trabajo con la fecha y hora del cambio.
+4	Si se elige 'Entregada' y el trabajo tiene plata pendiente de cobro, el sistema avisa.	Aparece un cartel: 'Este trabajo tiene $X pendiente de cobro'. Se puede continuar igual tocando Confirmar o cancelar para registrar el cobro antes.
+5	Una vez en estado 'Entregada', el trabajo desaparece del listado de activos.	El trabajo sigue visible en el historial buscando por patente o nombre del cliente.
+
+	8.3.4 Registrar repuestos usados en un trabajo
+Tabla 50
+Procedimiento: Asociar repuesto a una Orden de Trabajo
+
+Paso	Acción de usuario	Lo que muestra el sistema
+1	Desde el detalle del trabajo, tocar Agregar repuesto.	El sistema muestra la lista de repuestos disponibles en stock con la cantidad que hay de cada uno.
+2	Tocar el repuesto que se usó.	El repuesto queda seleccionado y aparece un campo para ingresar la cantidad usada.
+3	Escribir la cantidad usada y tocar Confirmar.
+	El sistema descuenta la cantidad del stock automáticamente. Si el stock de ese repuesto cae por debajo del mínimo, aparece una alerta en rojo avisando que hay que reponer.
+4	Si se necesita agregar más de un repuesto, repetir desde el paso 1.	Cada repuesto agregado aparece en la lista del trabajo con su cantidad.
+5	Si se intenta usar más cantidad de la que hay en stock, el sistema no lo permite.	Aparece el mensaje: 'No hay suficiente stock: hay X unidades disponibles'. Hay que ajustar la cantidad o reponer stock primero.
+
+	8.3.5 Registrar el cobro de un trabajo
+
+Tabla 51
+Procedimiento: Registrar cobro de una Orden de Trabajo
+
+Paso	Acción de usuario	Lo que muestra el sistema
+1	Desde el detalle del trabajo, tocar Registrar Cobro.	El sistema muestra el formulario de cobro con el monto sugerido ya calculado (mano de obra + repuestos con margen).
+2	Revisar el monto sugerido. Si se cobró diferente, borrar y escribir el monto real cobrado.	El campo acepta cualquier monto positivo. El monto sugerido es una referencia, no un valor fijo.
+3	Tocar Efectivo o Transferencia según cómo pague el cliente.	El botón seleccionado queda resaltado.
+4	Tocar Confirmar Cobro.	El sistema registra el cobro. Si el monto cubre el total, el saldo queda en cero. Si es parcial, muestra el saldo que queda pendiente.
+5	Para registrar el resto de un cobro parcial en otra oportunidad, repetir desde el paso 1.	Cada cobro parcial queda registrado con su fecha. El saldo pendiente se actualiza automáticamente.
+
+	8.3.6 Consultar el resumen del mes
+Tabla 52
+Procedimiento: Generar resumen mensual
+
+Paso	Acción de usuario	Lo que muestra el sistema
+1	Tocar el menú principal y seleccionar Reportes.	El sistema muestra la pantalla de resumen con el mes actual seleccionado por defecto.
+2	Si se quiere ver otro mes, tocar el selector de periodo y elegir el mes y año.	El sistema recarga todos los datos del periodo seleccionado.
+3	Leer los datos del resumen: trabajos cerrados, plata cobrada (efectivo y transferencia por separado), lo que queda pendiente de cobro y los trabajos más frecuentes del mes.	Todos los valores se muestran en pantalla. El total cobrado suma efectivo más transferencia.
+4	Desplazarse hacia abajo para ver la lista de repuestos que hay que reponer.	El sistema muestra los repuestos cuyo stock está por debajo del mínimo definido, con la cantidad actual y el mínimo.
+
+	8.3.7 Preguntas frecuentes (FAQ)
+
+Tabla 53
+Preguntas frecuentes del usuario - MotoFix
+
+Pregunta	Respuesta
+Se me rompió el celular. ¿Perdí los datos?	No. Todos los datos están guardados en internet, Cuando consigas otro celular, abrís Chrome, entrás a la URL y los datos van a estar todos disponibles.
+Guardé mal un dato en una OT. ¿Cómo lo corrijo?	Entrá al detalle de la OT, tocás el lápiz de edición y corregís el dato. Los cambios quedan guardados automáticamente. 
+Un cliente me pagó y no lo registré en el momento. ¿Lo puedo cargar después?	Sí. Los cobros se pueden registrar en cualquier momento, no solo al entregar la moto. El sistema registra la fecha real en la que lo cargás.
+Marqué una OT como Entregada por error. ¿La puedo deshacer?	Sí. Entrás al historial de esa OT (busca por patente), tocá el estado y la volvés a un estado anterior. 
+No tengo internet. ¿Puedo seguir usando el sistema?	Sí, para ver los trabajos activos. No vas a poder guardar nuevos trabajos ni cobros hasta recuperar la conexión. Cuando vuelve el internet, el sistema se sincroniza solo.
+Quiero cambiar el margen de ganancia sobre los repuestos. ¿Cómo lo hago?	En el menú principal, entrás a Configuración y buscás la opción Margen de repuestos. Cambiás el porcentaje y guardás los cambios.
+El sistema no abre o da otro error. ¿Qué hago?	Primero verificá que tengas internet. Si el problema persiste, mandá un mensaje al analista por WhatsApp con una captura de pantalla del error en cuestión. 
+
+8.4 Otros Manuales
+	El manual técnico está dirigido al desarrollador responsable del mantenimiento y evolución del sistema. Documenta la arquitectura, la estructura del repositorio, los procedimientos de deploy, backup y recuperación, y las pautas para agregar nuevas funcionalidades.
+
+	8.4.1 Arquitectura del sistema
+Tabla 54
+Arquitectura de componentes - Sistema MotoFix
+
+Capa	Tecnología	Ubicación en repo	Responsabilidad
+Frontend	React 18 + Vite + PWA (Workbox)	rpm/frontend/src	Interfaz de usuario. Componentes por módulo en /components/ot, /components/stock, /components/cobros. Service Worker en /public/sw.js.
+API REST	Django 5 + Django REST Framework 3.15	repo/backend/api/
+	Endpoints REST. ViewSets por recurso: OTViewSet, RepuestoViewSet, CobroViewSet. Serializadores en /serializers/. Servicios de negocio en /services/.
+Modelos de datos	Django ORM + PostgreSQL 16
+	repo/backend/core/models.py
+	Definición de modelos: OT, Repuesto, OTRepuesto, MovimientoStock, Cobro, NotaOT. Migraciones en /migrations/.
+Autenticación	SimpleJWT
+	repo/backend/core/settings.py
+	JWT con expiración de 8 horas. Refresh token de 7 días. Configuración en SIMPLE_JWT en settings.
+Infraestructura	Railway / Render + GitHub Actions
+	repo/.github/workflows/
+	Deploy automático al hacer merge a main. Pipeline: lint -> tests -> deploy.
+
+	8.4.2 Procedimientos de mantenimiento
+
+Tabla 55
+Procedimientos técnicos de mantenimiento y operación
+
+Procedimiento	Pasos
+Deploy de nueva versión	1. Crear rama feature/ desde develop. 
+2. Desarrollar y probar localmente. 
+3. Hacer PR a develop y revisar. 
+4. Merge a develop: deploy automático a entorno de staging. 
+5. Verificar en staging. 
+6. Merge a main: deploy automático a producción. 
+7. Verificar en producción. 
+8. Exportar backup de BD post-deploy.
+Backup manual de base de datos	1. Acceder al dashboard de Railway/Render. 
+2. Seleccionar el servicio PostgreSQL. 
+3. Ejecutar pg_dump desde la consola: pg_dump $DATABASE_URL > backup_YYYYMMDD.sql. 
+4. Guardar el archivo en Google Drive del analista. Frecuencia recomendada: antes de cada deploy y una vez por semana.
+Restauración de base de datos	1. Obtener el archivo de backup .sql. 
+2. Conectar al servicio PostgreSQL en la plataforma. 
+3. Ejecutar: psql $DATABASE_URL < backup_YYYYMMDD.sql. 
+4. Verificar integridad: python manage.py check.
+5. Reiniciar el servicio de backend.
+Agregar un nuevo módulo	1. Crear nueva app Django: python manage.py startapp nombre_modulo.
+2. Definir modelos en models.py y crear migraciones. 
+3. Crear serializers, views y urls siguiendo el patrón de los módulos existentes. 
+4. Registrar la app en INSTALLED_APPS. 
+5. Crear los componentes React en /frontend/src/components/nombre_modulo/. 
+6. Agregar la ruta en el router de React. 
+7. Ejecutar suite de pruebas completa antes del deploy.
+Renovar credenciales del usuario	1. Acceder al panel de administración Django (/admin). 
+2. Seleccionar el usuario propietario. 
+3. Usar 'Cambiar contraseña'. 
+4. Comunicar la nueva contraseña al propietario por canal seguro (no WhatsApp en texto plano).
+Monitoreo de disponibilidad	1. Verificar mensualmente el dashboard de uptime de Railway/Render. 
+2. Revisar los logs de error en la plataforma buscando HTTP 500. 
+3. Verificar vigencia del certificado SSL. 
+4. Ejecutar python manage.py check --deploy en entorno de producción trimestralmente.
+
+	8.4.3 Variables de entorno requeridas
+Tabla 56
+Variables de entorno del sistema - backend Django
+
+Variable	Valor de ejemplo	Descripción
+SECRET_KEY	django-insecure-xxx…	Clave secreta de Django. Generada con: python -c "from django.core.management.utils import get_random_secret_key; print(get_random_secret_key())"
+DATABASE_URL	postgres://user:pass@host:5432/dbname	URL de conexión a PostgreSQL. Provista automáticamente por Railway/Render al crear el servicio de BD.
+ALLOWED_HOSTS	motofix.up.railway.app,localhost
+	Dominios permitidos. Separados por coma. Incluir el dominio de producción y localhost para desarrollo.
+DEBUG	False
+	Siempre False en producción. True solo en entorno local de desarrollo.
+CORS_ALLOWED_ORIGINS	https://motofix-frontend.vercel.app
+	URL del frontend en producción. Necesaria para que el navegador permita las llamadas a la API.
+SECURE_SSL_REDIRECT	True
+	Fuerza redirección de HTTP a HTTPS. True en producción, False en desarrollo local.
+
+Nota: Las variables de entorno nunca deben commitearse al repositorio. Deben configurarse directamente en el dashboard de la plataforma de deploy o mediante un archivo .env excluido del control de versiones vía .gitignore.
+
+9. ANEXOS
+
+9.1 Entrevistas y Cuestionarios
+	Las entrevistas de relevamiento se llevaron a cabo en tres sesiones presenciales en el local del taller MotoFix durante el mes de abril y mayo de 2026. La transcripción completa de las tres sesiones, incluyendo nota metodológica, metadatos de cada entrevista (fecha, duración, objetivo, entrevistador y entrevistado) y las preguntas y respuestas organizadas por bloques temáticos, se presenta en el documento adjunto:
+Entrevistas_MotoFix_Anexo9.1.docx
+Tabla 57
+Índice de entrevistas realizadas - MotoFix
+
+N°	Fecha 	Duración	Objetivo	Bloques temáticos cubiertos
+1	Semana del 21-04-2026	60 min	Relevamiento general del negocio, operación cotidiana, herramientas actuales y volumen de trabajo.	Descripción general del negocio: gestión actual de la información (OT, clientes, repuestos, cobros).
+2	Semana del 28-04-2026	60 min	Profundización en procesos críticos: recepción y diagnóstico, gestión de repuestos, cobros y administración.	Proceso de recepción y diagnóstico; gestión de repuestos; cobros y administración; proyección y necesidades. 
+3	Semana del 02-05-2026	60 min	Validación de hallazgos del relevamiento y elicitación de expectativas sobre la solución propuesta.	Validación de hallazgos; expectativas sobre la solución; confirmación de módulos y prioridades de implementación. 
+
+	9.1.1 Entrevista a Técnicos
+	En MotoFix no existe personal técnico adicional. El propietario del taller concentra en su persona el rol de técnico mecánico y responsable administrativo. En consecuencia, la entrevista al técnico y la entrevista al usuario operativo coinciden con el mismo informante. Las preguntas de carácter técnico (referidas al flujo de diagnóstico, el uso de repuestos y los criterios de reparación) se desarrollan en el Bloque 1 y Bloque 2 de la Entrevista N°2 (ver documento adjunto).
+	9.1.2 Entrevista a Usuarios
+	El único usuario del sistema es el propietario del taller. Las necesidades operativas del usuario final (tiempo de registro, acceso desde el celular, operación sin conexión, ausencia de notificaciones automáticas) fueron relevadas en el Bloque 4 de la Entrevista N°2 y en el Bloque 2 de la Entrevista N°3. Los requisitos no funcionales de usabilidad (RNF-001 a RNF-004) se derivan directamente de estas respuestas. 
+
+	9.1.3 Entrevista al Administrador
+	El propietario actúa también como administrador del negocio. Las preguntas de carácter estratégico y financiero ( rentabilidad mensual, valor del stock, comportamiento de los clientes, disposición a pagar por la herramienta) se desarrollaron en el Bloque 3 de la Entrevista N°2 y en los bloques 2 y 3 de la Entrevista N°3. La confirmación del orden de prioridad de los módulos (OT ->stock ->cobros) surgió explícitamente de la Entrevista N°3, Bloque 3.
+
+9.2 Otra Documentación Relevante
+La naturaleza informal de la gestión actual de MotoFix determina que la documentación preexistente sea escasa y no estructurada. Los documentos relevados durante el proceso de relevamiento (Sección 4.2) se detallan a continuación junto con su rol en la construcción del análisis.
+
+9.2.1 Registros informales del taller
+Tabla 58
+Documentación preexistente relevada - MotoFix
+
+Documento	Soporte	Estado	Uso en el análisis
+Cuaderno de anotaciones de trabajos	Papel (cuaderno rayado)
+	Incompleto e irregular
+	Permitió identificar los campos mínimos que el propietario considera necesarios para registrar un trabajo (patente, nombre, trabajo realizado, monto). Base para el diseño del formulario de OT (RF-001, RF-002).
+Conversaciones de WhatsApp con clientes	Digital — smartphone Android
+	Disperso, no estructurado
+	Evidencio el uso de WhatsApp como canal de comunicación del estado de trabajos. Fundamento del requisito de seguimiento de estado de OT (RF-005, RF-006).
+
+Historial de transferencias bancarias	Digital — app bancaria del propietario
+	Parcial (solo pagos electrónicos)
+	Único registro financiero verificable. Confirmó que una proporción significativa de cobros se realiza en efectivo sin registro posterior. Fundamento de RF-019 (registro de forma de pago).
+Conversaciones de WhatsApp con proveedores	Digital — smartphone Android
+	Disperso
+	Permitió identificar los proveedores habituales y el flujo informal de pedidos de repuestos. Insumo para el diseño del módulo de stock (RF-012, RF-013).
+Inventario de repuestos	Ninguno — gestión mental
+	Inexistente
+	La ausencia de inventario es en sí misma un hallazgo crítico que fundamento P-02 (problema de control de stock) y el módulo M2 completo.
+
+
+9.2.2 Normativa y legislación aplicable
+Si bien MotoFix opera actualmente de forma informal, el sistema propuesto debe contemplar el marco normativo vigente que podría afectar su implementación o evolución futura. La Tabla 59 identifica las normas relevantes para el contexto del negocio.
+
+Tabla 59
+Marco normativo aplicable al sistema - MotoFix
+
+Norma / Organismo	Ámbito	Implicancia para el sistema
+Ley 25.326 — Protección de Datos Personales (Argentina)	Nacional	El sistema almacena datos personales de clientes (nombre y teléfono). La ley exige consentimiento informado para la recopilación de datos y prohíbe su uso para fines distintos al declarado. El sistema no debe compartir datos de clientes con terceros ni utilizarlos con fines comerciales ajenos al taller. RNF-011 asegura que no se almacenan datos sensibles adicionales.
+AFIP — Regimen de facturacion electronica (Resolución General 3067/2011 y modificatorias)	Nacional - fiscal	En la versión inicial el sistema no emite comprobantes fiscales. Si en una etapa futura el propietario busca regularizar su situación fiscal, el módulo de cobros deberá integrarse con el servicio de facturación electrónica de AFIP (API WSFE). Esta integración se considera una mejora futura.
+Ley 24.240 — Defensa del Consumidor	Nacional	Regula la relación entre el taller y sus clientes como prestador de servicios. El sistema contribuye al cumplimiento de esta norma al generar un registro verificable de los trabajos realizados, los precios acordados y los cobros efectuados, reduciendo el riesgo de conflictos por información no documentada.
+Convenio Colectivo de Trabajo — Mecanicos del Automotor (CCT 65/89 y actualizaciones)	Gremial	Aplica si en el futuro el taller incorpora personal en relación de dependencia. En la versión inicial, con operación unipersonal, no genera obligaciones adicionales sobre el sistema.
+
+9.2.3 Referencias bibliográficas completas
+IEEE. (1998). IEEE Recommended Practice for Software Requirements Specifications (IEEE Std 830-1998). Institute of Electrical and Electronics Engineers.
+Kendall, K. E., y Kendall, J. E. (2011). Análisis y diseño de sistemas (8.a ed.). Pearson Educación.
+Consejo Profesional de Ciencias Informáticas de la Provincia de Córdoba (CPCIPC). (2026). Honorarios recomendados para profesionales en ciencias informáticas. https://www.cpcipc.org.ar/honorarios-recomendados/
+Yourdon, E. (1989). Modern structured analysis. Prentice Hall.
+Nota. Las entrevistas completas se adjuntan en el documento Entrevistas_MotoFix_Anexo91.docx. Toda información factual sobre el taller MotoFix proviene exclusivamente de dichas entrevistas y de la observación directa realizada por el analista durante las tres visitas al local.
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
