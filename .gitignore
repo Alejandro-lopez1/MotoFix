@@ -35,3 +35,7 @@ docker-data/
 
 # Logs
 *.log
+
+# Spec documents
+*.docx
+Lopez_Enrique-Trabajo_practico_integrador.txt
