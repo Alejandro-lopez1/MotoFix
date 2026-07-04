@@ -327,7 +327,10 @@ Consultar:
 - Reportes avanzados
 - Exportación PDF y Excel
 - Notificaciones automáticas
-- Dashboard analítico
+- Dashboard analítico con indicadores del negocio
+- Módulo de facturación electrónica con integración a ARCA
+- Registro de compras y gestión impositiva
+- Integración con pasarelas de pago
 
 ---
 
