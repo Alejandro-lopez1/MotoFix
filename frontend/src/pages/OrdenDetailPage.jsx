@@ -77,7 +77,7 @@ export default function OrdenDetailPage() {
 
   return (
     <Box>
-      <Button startIcon={<ArrowBackIcon />} onClick={() => navigate("/ordenes")} sx={{ mb: 2 }}>
+      <Button startIcon={<ArrowBackIcon />} onClick={() => navigate("/ordenes")} sx={{ mb: 2, minHeight: 44 }}>
         Volver
       </Button>
 
@@ -142,31 +142,23 @@ export default function OrdenDetailPage() {
         </CardContent>
       </Card>
 
-      <Grid container spacing={2} sx={{ mb: 2 }}>
-        <Grid size={{ xs: 6, sm: 3 }}>
-          <Button variant="outlined" fullWidth onClick={() => setEstadoDialog(true)}>
-            Cambiar Estado
-          </Button>
-        </Grid>
-        <Grid size={{ xs: 6, sm: 3 }}>
-          <Button variant="outlined" fullWidth onClick={() => setRepuestoDialog(true)}>
-            Agregar Repuesto
-          </Button>
-        </Grid>
-        <Grid size={{ xs: 6, sm: 3 }}>
-          <Button variant="outlined" fullWidth onClick={() => {
-            setMontoCobro(ot.monto_sugerido);
-            setCobroDialog(true);
-          }}>
-            Registrar Cobro
-          </Button>
-        </Grid>
-        <Grid size={{ xs: 6, sm: 3 }}>
-          <Button variant="outlined" fullWidth onClick={() => setNotaDialog(true)}>
-            Agregar Nota
-          </Button>
-        </Grid>
-      </Grid>
+      <Box sx={{ mb: 2, display: "flex", gap: 1.5, flexDirection: { xs: "column", sm: "row" } }}>
+        <Button variant="outlined" fullWidth onClick={() => setEstadoDialog(true)} sx={{ minHeight: 44 }}>
+          Cambiar Estado
+        </Button>
+        <Button variant="outlined" fullWidth onClick={() => setRepuestoDialog(true)} sx={{ minHeight: 44 }}>
+          Agregar Repuesto
+        </Button>
+        <Button variant="outlined" fullWidth onClick={() => {
+          setMontoCobro(ot.monto_sugerido);
+          setCobroDialog(true);
+        }} sx={{ minHeight: 44 }}>
+          Registrar Cobro
+        </Button>
+        <Button variant="outlined" fullWidth onClick={() => setNotaDialog(true)} sx={{ minHeight: 44 }}>
+          Agregar Nota
+        </Button>
+      </Box>
 
       {ot.repuestos_utilizados?.length > 0 && (
         <Card sx={{ mb: 2 }}>
@@ -248,8 +240,8 @@ export default function OrdenDetailPage() {
           </FormControl>
         </DialogContent>
         <DialogActions>
-          <Button onClick={() => setEstadoDialog(false)}>Cancelar</Button>
-          <Button variant="contained" onClick={handleEstadoChange} disabled={!nuevoEstado || nuevoEstado === ot.estado}>
+          <Button onClick={() => setEstadoDialog(false)} sx={{ minHeight: 44 }}>Cancelar</Button>
+          <Button variant="contained" onClick={handleEstadoChange} disabled={!nuevoEstado || nuevoEstado === ot.estado} sx={{ minHeight: 44 }}>
             Confirmar
           </Button>
         </DialogActions>
@@ -273,12 +265,13 @@ export default function OrdenDetailPage() {
             type="number"
             value={cantRepuesto}
             onChange={(e) => setCantRepuesto(Math.max(1, parseInt(e.target.value) || 1))}
+            fullWidth
             inputProps={{ min: 1 }}
           />
         </DialogContent>
         <DialogActions>
-          <Button onClick={() => setRepuestoDialog(false)}>Cancelar</Button>
-          <Button variant="contained" onClick={handleAgregarRepuesto} disabled={!selRepuesto}>
+          <Button onClick={() => setRepuestoDialog(false)} sx={{ minHeight: 44 }}>Cancelar</Button>
+          <Button variant="contained" onClick={handleAgregarRepuesto} disabled={!selRepuesto} sx={{ minHeight: 44 }}>
             Agregar
           </Button>
         </DialogActions>
@@ -292,7 +285,8 @@ export default function OrdenDetailPage() {
             type="number"
             value={montoCobro}
             onChange={(e) => setMontoCobro(e.target.value)}
-            sx={{ mt: 1, mb: 2 }}
+            fullWidth
+            sx={{ mt: 1, mb: 2.5 }}
           />
           <FormControl fullWidth>
             <InputLabel>Forma de pago</InputLabel>
@@ -303,8 +297,8 @@ export default function OrdenDetailPage() {
           </FormControl>
         </DialogContent>
         <DialogActions>
-          <Button onClick={() => setCobroDialog(false)}>Cancelar</Button>
-          <Button variant="contained" onClick={handleRegistrarCobro} disabled={!montoCobro || !formaPago}>
+          <Button onClick={() => setCobroDialog(false)} sx={{ minHeight: 44 }}>Cancelar</Button>
+          <Button variant="contained" onClick={handleRegistrarCobro} disabled={!montoCobro || !formaPago} sx={{ minHeight: 44 }}>
             Confirmar Cobro
           </Button>
         </DialogActions>
@@ -323,8 +317,8 @@ export default function OrdenDetailPage() {
           />
         </DialogContent>
         <DialogActions>
-          <Button onClick={() => setNotaDialog(false)}>Cancelar</Button>
-          <Button variant="contained" onClick={handleAgregarNota} disabled={!notaText.trim()}>
+          <Button onClick={() => setNotaDialog(false)} sx={{ minHeight: 44 }}>Cancelar</Button>
+          <Button variant="contained" onClick={handleAgregarNota} disabled={!notaText.trim()} sx={{ minHeight: 44 }}>
             Guardar Nota
           </Button>
         </DialogActions>

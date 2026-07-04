@@ -19,6 +19,8 @@ from apps.cobros.models import Cobro
 
 class OrdenTrabajoViewSet(mixins.CreateModelMixin,
                           mixins.RetrieveModelMixin,
+                          mixins.UpdateModelMixin,
+                          mixins.DestroyModelMixin,
                           mixins.ListModelMixin,
                           viewsets.GenericViewSet):
     queryset = OrdenTrabajo.objects.prefetch_related("notas", "historial_estados").all()
@@ -29,6 +31,8 @@ class OrdenTrabajoViewSet(mixins.CreateModelMixin,
 
     def get_serializer_class(self):
         if self.action == "create":
+            return OrdenTrabajoCreateSerializer
+        elif self.action in ["update", "partial_update"]:
             return OrdenTrabajoCreateSerializer
         elif self.action in ["list", "historial_motocicleta", "historial_cliente"]:
             return OrdenTrabajoListSerializer

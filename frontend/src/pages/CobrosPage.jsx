@@ -24,6 +24,7 @@ export default function CobrosPage() {
         value={search}
         onChange={(e) => setSearch(e.target.value)}
         sx={{ mb: 2 }}
+        fullWidth
         slotProps={{
           input: { startAdornment: <InputAdornment position="start"><SearchIcon /></InputAdornment> },
         }}

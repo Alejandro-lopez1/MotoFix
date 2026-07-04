@@ -7,7 +7,12 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 SECRET_KEY = config("SECRET_KEY", default="django-insecure-dev-key-change-in-production")
 DEBUG = config("DEBUG", default=True, cast=bool)
-ALLOWED_HOSTS = config("ALLOWED_HOSTS", default="localhost,127.0.0.1").split(",")
+
+_raw_allowed = config("ALLOWED_HOSTS", default="localhost,127.0.0.1")
+if _raw_allowed == "*":
+    ALLOWED_HOSTS = ["*"]
+else:
+    ALLOWED_HOSTS = _raw_allowed.split(",")
 
 INSTALLED_APPS = [
     "django.contrib.admin",
@@ -28,10 +33,12 @@ INSTALLED_APPS = [
     "apps.repuestos",
     "apps.cobros",
     "apps.reportes",
+    "apps.proveedores",
 ]
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
+    "whitenoise.middleware.WhiteNoiseMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
     "corsheaders.middleware.CorsMiddleware",
     "django.middleware.common.CommonMiddleware",
@@ -79,13 +86,31 @@ USE_TZ = True
 
 STATIC_URL = "/static/"
 STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
+STORAGES = {
+    "default": {
+        "BACKEND": "django.core.files.storage.FileSystemStorage",
+    },
+    "staticfiles": {
+        "BACKEND": "whitenoise.storage.CompressedManifestStaticFilesStorage",
+    },
+}
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
-CORS_ALLOWED_ORIGINS = config(
-    "CORS_ALLOWED_ORIGINS",
-    default="http://localhost:5173,http://localhost:3000",
-).split(",")
+_raw_cors = config("CORS_ALLOWED_ORIGINS", default="http://localhost:5173,http://localhost:3000")
+if _raw_cors == "*":
+    CORS_ALLOW_ALL_ORIGINS = True
+else:
+    CORS_ALLOW_ALL_ORIGINS = False
+    CORS_ALLOWED_ORIGINS = _raw_cors.split(",")
 CORS_ALLOW_CREDENTIALS = True
+
+_raw_csrf = config("CSRF_TRUSTED_ORIGINS", default="")
+if _raw_csrf and _raw_csrf != "*":
+    CSRF_TRUSTED_ORIGINS = _raw_csrf.split(",")
+elif _raw_csrf == "*":
+    CSRF_TRUSTED_ORIGINS = ["http://localhost", "http://127.0.0.1"]
+else:
+    CSRF_TRUSTED_ORIGINS = ["http://localhost", "http://127.0.0.1"]
 
 REST_FRAMEWORK = {
     "DEFAULT_AUTHENTICATION_CLASSES": (

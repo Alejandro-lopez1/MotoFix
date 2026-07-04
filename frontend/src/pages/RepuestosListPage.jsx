@@ -96,6 +96,7 @@ export default function RepuestosListPage() {
         value={search}
         onChange={(e) => setSearch(e.target.value)}
         sx={{ mb: 2 }}
+        fullWidth
         slotProps={{
           input: { startAdornment: <InputAdornment position="start"><SearchIcon /></InputAdornment> },
         }}
@@ -138,7 +139,7 @@ export default function RepuestosListPage() {
 
       <Fab
         color="primary"
-        sx={{ position: "fixed", bottom: 80, right: 16, display: { sm: "none" } }}
+        sx={{ position: "fixed", bottom: 16, right: 16, display: { sm: "none" } }}
         onClick={() => setDialogOpen(true)}
       >
         <AddIcon />
@@ -153,16 +154,18 @@ export default function RepuestosListPage() {
               {...register("nombre")}
               error={!!errors.nombre}
               helperText={errors.nombre?.message}
+              fullWidth
               sx={{ mb: 2 }}
               autoFocus
             />
-            <TextField label="Descripción" {...register("descripcion")} sx={{ mb: 2 }} />
-            <TextField label="Proveedor" {...register("proveedor")} sx={{ mb: 2 }} />
+            <TextField label="Descripción" {...register("descripcion")} fullWidth sx={{ mb: 2 }} />
+            <TextField label="Proveedor" {...register("proveedor")} fullWidth sx={{ mb: 2 }} />
             <TextField
               label="Precio de Compra"
               type="number"
               {...register("precio_compra_promedio")}
               error={!!errors.precio_compra_promedio}
+              fullWidth
               sx={{ mb: 2 }}
             />
             <TextField
@@ -170,6 +173,7 @@ export default function RepuestosListPage() {
               type="number"
               {...register("cantidad_stock")}
               error={!!errors.cantidad_stock}
+              fullWidth
               sx={{ mb: 2 }}
             />
             <TextField
@@ -177,12 +181,13 @@ export default function RepuestosListPage() {
               type="number"
               {...register("punto_reorden")}
               error={!!errors.punto_reorden}
+              fullWidth
             />
           </Box>
         </DialogContent>
         <DialogActions>
-          <Button onClick={() => setDialogOpen(false)}>Cancelar</Button>
-          <Button type="submit" form="repuesto-form" variant="contained">Guardar</Button>
+          <Button onClick={() => setDialogOpen(false)} sx={{ minHeight: 44 }}>Cancelar</Button>
+          <Button type="submit" form="repuesto-form" variant="contained" sx={{ minHeight: 44 }}>Guardar</Button>
         </DialogActions>
       </Dialog>
     </Box>

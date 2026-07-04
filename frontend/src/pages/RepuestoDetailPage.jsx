@@ -33,7 +33,7 @@ export default function RepuestoDetailPage() {
 
   return (
     <Box>
-      <Button startIcon={<ArrowBackIcon />} onClick={() => navigate("/repuestos")} sx={{ mb: 2 }}>
+      <Button startIcon={<ArrowBackIcon />} onClick={() => navigate("/repuestos")} sx={{ mb: 2, minHeight: 44 }}>
         Volver
       </Button>
 
@@ -127,7 +127,8 @@ export default function RepuestoDetailPage() {
             type="number"
             value={cantidad}
             onChange={(e) => setCantidad(Math.max(1, parseInt(e.target.value) || 1))}
-            sx={{ mb: 2, mt: 1 }}
+            fullWidth
+            sx={{ mb: 2.5, mt: 1 }}
             inputProps={{ min: 1 }}
           />
           <TextField
@@ -135,11 +136,12 @@ export default function RepuestoDetailPage() {
             type="number"
             value={precio}
             onChange={(e) => setPrecio(e.target.value)}
+            fullWidth
           />
         </DialogContent>
         <DialogActions>
-          <Button onClick={() => setDialogOpen(false)}>Cancelar</Button>
-          <Button variant="contained" onClick={handleIngresar} disabled={!cantidad || !precio}>
+          <Button onClick={() => setDialogOpen(false)} sx={{ minHeight: 44 }}>Cancelar</Button>
+          <Button variant="contained" onClick={handleIngresar} disabled={!cantidad || !precio} sx={{ minHeight: 44 }}>
             Confirmar Ingreso
           </Button>
         </DialogActions>

@@ -14,3 +14,5 @@ export const registrarCobroEnOT = (id, data) =>
 export const getNotasDeOT = (id) => api.get(`/ordenes/${id}/notas/`);
 export const agregarNotaAOT = (id, texto) =>
   api.post(`/ordenes/${id}/agregar_nota/`, { texto });
+export const updateOrden = (id, data) => api.put(`/ordenes/${id}/`, data);
+export const deleteOrden = (id) => api.delete(`/ordenes/${id}/`);

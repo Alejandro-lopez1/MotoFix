@@ -3,9 +3,18 @@ import axios from "axios";
 const api = axios.create({
   baseURL: import.meta.env.VITE_API_URL || "/api",
   headers: { "Content-Type": "application/json" },
+  paramsSerializer: { indexes: null },
 });
 
+function cleanParams(params) {
+  if (!params || typeof params !== "object" || Array.isArray(params)) return params;
+  return Object.fromEntries(
+    Object.entries(params).filter(([, v]) => v !== undefined && v !== null && v !== "")
+  );
+}
+
 api.interceptors.request.use((config) => {
+  config.params = cleanParams(config.params);
   const token = localStorage.getItem("access_token");
   if (token) {
     config.headers.Authorization = `Bearer ${token}`;

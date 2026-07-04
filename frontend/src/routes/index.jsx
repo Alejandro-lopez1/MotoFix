@@ -5,9 +5,13 @@ import DashboardPage from "../pages/DashboardPage";
 import OrdenesListPage from "../pages/OrdenesListPage";
 import OrdenDetailPage from "../pages/OrdenDetailPage";
 import OrdenFormPage from "../pages/OrdenFormPage";
+import ClientesPage from "../pages/ClientesPage";
+import MotocicletasPage from "../pages/MotocicletasPage";
 import RepuestosListPage from "../pages/RepuestosListPage";
 import RepuestoDetailPage from "../pages/RepuestoDetailPage";
+import StockPage from "../pages/StockPage";
 import CobrosPage from "../pages/CobrosPage";
+import ProveedoresPage from "../pages/ProveedoresPage";
 import ReportesPage from "../pages/ReportesPage";
 
 const ProtectedRoute = ({ children }) => {
@@ -33,9 +37,13 @@ export const router = createBrowserRouter([
       { path: "ordenes", element: <OrdenesListPage /> },
       { path: "ordenes/nueva", element: <OrdenFormPage /> },
       { path: "ordenes/:id", element: <OrdenDetailPage /> },
+      { path: "clientes", element: <ClientesPage /> },
+      { path: "motocicletas", element: <MotocicletasPage /> },
       { path: "repuestos", element: <RepuestosListPage /> },
       { path: "repuestos/:id", element: <RepuestoDetailPage /> },
+      { path: "stock", element: <StockPage /> },
       { path: "cobros", element: <CobrosPage /> },
+      { path: "proveedores", element: <ProveedoresPage /> },
       { path: "reportes", element: <ReportesPage /> },
     ],
   },

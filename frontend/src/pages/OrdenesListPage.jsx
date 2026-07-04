@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useNavigate, Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import {
   Box, Typography, Button, TextField, InputAdornment,
   List, ListItemButton, ListItemText, Chip, Card, CardContent,
@@ -42,6 +42,7 @@ export default function OrdenesListPage() {
         value={search}
         onChange={(e) => setSearch(e.target.value)}
         sx={{ mb: 2 }}
+        fullWidth
         slotProps={{
           input: {
             startAdornment: (
@@ -102,7 +103,7 @@ export default function OrdenesListPage() {
 
       <Fab
         color="primary"
-        sx={{ position: "fixed", bottom: 80, right: 16, display: { sm: "none" } }}
+        sx={{ position: "fixed", bottom: 16, right: 16, display: { sm: "none" } }}
         onClick={() => navigate("/ordenes/nueva")}
       >
         <AddIcon />

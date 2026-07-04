@@ -12,7 +12,7 @@ export default function AuthLayout({ children }) {
         bgcolor: "background.default",
       }}
     >
-      <Paper sx={{ p: 4, maxWidth: 400, width: "100%" }} elevation={3}>
+      <Paper sx={{ p: { xs: 2.5, sm: 4 }, maxWidth: 400, width: "100%" }} elevation={3}>
         {children}
       </Paper>
     </Box>

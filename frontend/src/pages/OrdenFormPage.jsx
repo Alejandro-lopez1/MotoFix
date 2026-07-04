@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import {
   Box, Typography, Button, TextField, Card, CardContent,
-  Alert, CircularProgress, Grid,
+  Alert, CircularProgress, Stack,
 } from "@mui/material";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import { useForm } from "react-hook-form";
@@ -73,82 +73,93 @@ export default function OrdenFormPage() {
 
   return (
     <Box>
-      <Button startIcon={<ArrowBackIcon />} onClick={() => navigate("/ordenes")} sx={{ mb: 2 }}>
+      <Button startIcon={<ArrowBackIcon />} onClick={() => navigate("/ordenes")} sx={{ mb: 2, minHeight: 44 }}>
         Volver
       </Button>
 
       <Card>
-        <CardContent>
-          <Typography variant="h5" sx={{ mb: 3 }}>Nueva Orden de Trabajo</Typography>
+        <CardContent sx={{ p: { xs: 2, sm: 3 } }}>
+          <Typography variant="h5" sx={{ mb: 3, fontSize: { xs: "1.25rem", sm: "1.5rem" } }}>
+            Nueva Orden de Trabajo
+          </Typography>
 
-          {error && <Alert severity="error" sx={{ mb: 2 }}>{error}</Alert>}
+          {error && <Alert severity="error" sx={{ mb: 3 }}>{error}</Alert>}
 
           <Box component="form" onSubmit={handleSubmit(onSubmit)}>
-            <Grid container spacing={2}>
-              <Grid size={{ xs: 12, sm: 6 }}>
-                <TextField
-                  label="Patente / Dominio"
-                  {...register("dominio")}
-                  error={!!errors.dominio}
-                  helperText={errors.dominio?.message}
-                  autoFocus
-                  slotProps={{
-                    input: {
-                      endAdornment: loadingMoto && <CircularProgress size={20} />,
-                    },
-                  }}
-                />
-              </Grid>
-              <Grid size={{ xs: 12, sm: 6 }}>
-                <TextField
-                  label="Nombre del Cliente"
-                  {...register("nombre_cliente")}
-                  error={!!errors.nombre_cliente}
-                  helperText={errors.nombre_cliente?.message}
-                />
-              </Grid>
-              <Grid size={{ xs: 12, sm: 6 }}>
-                <TextField
-                  label="Teléfono"
-                  {...register("telefono_cliente")}
-                  error={!!errors.telefono_cliente}
-                />
-              </Grid>
-              <Grid size={{ xs: 6, sm: 3 }}>
+            <Stack spacing={{ xs: 2.5, sm: 3 }}>
+              <TextField
+                label="Patente / Dominio"
+                {...register("dominio")}
+                error={!!errors.dominio}
+                helperText={errors.dominio?.message}
+                fullWidth
+                autoFocus
+                slotProps={{
+                  input: {
+                    endAdornment: loadingMoto && <CircularProgress size={20} />,
+                  },
+                }}
+              />
+              <TextField
+                label="Nombre del Cliente"
+                {...register("nombre_cliente")}
+                error={!!errors.nombre_cliente}
+                helperText={errors.nombre_cliente?.message}
+                fullWidth
+              />
+              <TextField
+                label="Teléfono"
+                {...register("telefono_cliente")}
+                error={!!errors.telefono_cliente}
+                fullWidth
+              />
+              <Box sx={{ display: "flex", gap: { xs: 1.5, sm: 2 }, flexDirection: { xs: "column", sm: "row" } }}>
                 <TextField
                   label="Marca"
                   {...register("marca_moto")}
                   error={!!errors.marca_moto}
+                  fullWidth
                 />
-              </Grid>
-              <Grid size={{ xs: 6, sm: 3 }}>
                 <TextField
                   label="Modelo"
                   {...register("modelo_moto")}
                   error={!!errors.modelo_moto}
+                  fullWidth
                 />
-              </Grid>
-              <Grid size={12}>
-                <TextField
-                  label="Descripción del Problema"
-                  {...register("descripcion_problema")}
-                  error={!!errors.descripcion_problema}
-                  helperText={errors.descripcion_problema?.message}
-                  multiline
-                  rows={3}
-                  placeholder="Ej: No arranca, Frena mal, Pierde aceite..."
-                />
-              </Grid>
-            </Grid>
+              </Box>
+              <TextField
+                label="Descripción del Problema"
+                {...register("descripcion_problema")}
+                error={!!errors.descripcion_problema}
+                helperText={errors.descripcion_problema?.message}
+                multiline
+                rows={3}
+                fullWidth
+                placeholder="Ej: No arranca, Frena mal, Pierde aceite..."
+              />
+            </Stack>
 
-            <Box sx={{ mt: 3, display: "flex", gap: 2, justifyContent: "flex-end" }}>
-              <Button variant="outlined" onClick={() => navigate("/ordenes")}>
+            <Box
+              sx={{
+                mt: 4,
+                display: "flex",
+                gap: 2,
+                flexDirection: { xs: "column-reverse", sm: "row" },
+                justifyContent: "flex-end",
+              }}
+            >
+              <Button
+                variant="outlined"
+                onClick={() => navigate("/ordenes")}
+                sx={{ minHeight: 48 }}
+              >
                 Cancelar
               </Button>
               <Button
                 type="submit"
                 variant="contained"
                 disabled={createOrden.isPending}
+                sx={{ minHeight: 48 }}
               >
                 {createOrden.isPending ? <CircularProgress size={24} /> : "Guardar Trabajo"}
               </Button>

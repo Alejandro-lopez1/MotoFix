@@ -32,7 +32,7 @@ class RepuestoCreateSerializer(serializers.ModelSerializer):
     class Meta:
         model = Repuesto
         fields = [
-            "nombre", "descripcion", "proveedor",
+            "id", "nombre", "descripcion", "proveedor",
             "precio_compra_promedio", "cantidad_stock", "punto_reorden",
         ]
 

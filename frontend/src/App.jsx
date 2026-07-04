@@ -2,6 +2,7 @@ import { RouterProvider } from "react-router-dom";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { AuthProvider } from "./context/AuthContext";
 import { ThemeContextProvider } from "./context/ThemeContext";
+import { NotificationProvider } from "./context/NotificationContext";
 import { router } from "./routes";
 
 const queryClient = new QueryClient({
@@ -19,7 +20,9 @@ export default function App() {
     <QueryClientProvider client={queryClient}>
       <ThemeContextProvider>
         <AuthProvider>
-          <RouterProvider router={router} />
+          <NotificationProvider>
+            <RouterProvider router={router} />
+          </NotificationProvider>
         </AuthProvider>
       </ThemeContextProvider>
     </QueryClientProvider>
