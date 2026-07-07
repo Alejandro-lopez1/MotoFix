@@ -96,7 +96,7 @@ STORAGES = {
 }
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
-_raw_cors = config("CORS_ALLOWED_ORIGINS", default="http://localhost:5173,http://localhost:3000")
+_raw_cors = config("CORS_ALLOWED_ORIGINS", default="http://localhost,http://localhost:5173,http://localhost:3000")
 if _raw_cors == "*":
     CORS_ALLOW_ALL_ORIGINS = True
 else:
@@ -105,12 +105,11 @@ else:
 CORS_ALLOW_CREDENTIALS = True
 
 _raw_csrf = config("CSRF_TRUSTED_ORIGINS", default="")
-if _raw_csrf and _raw_csrf != "*":
-    CSRF_TRUSTED_ORIGINS = _raw_csrf.split(",")
-elif _raw_csrf == "*":
-    CSRF_TRUSTED_ORIGINS = ["http://localhost", "http://127.0.0.1"]
+
+if _raw_csrf:
+    CSRF_TRUSTED_ORIGINS = [x.strip() for x in _raw_csrf.split(",")]
 else:
-    CSRF_TRUSTED_ORIGINS = ["http://localhost", "http://127.0.0.1"]
+    CSRF_TRUSTED_ORIGINS = []
 
 REST_FRAMEWORK = {
     "DEFAULT_AUTHENTICATION_CLASSES": (
