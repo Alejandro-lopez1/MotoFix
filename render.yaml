@@ -1,0 +1,25 @@
+services:
+  - type: web
+    name: motofix-backend
+    runtime: docker
+    dockerfilePath: ./backend/Dockerfile
+    dockerContext: ./backend
+    envVars:
+      - key: SECRET_KEY
+        generateValue: true
+      - key: DEBUG
+        value: "False"
+      - key: ALLOWED_HOSTS
+        value: "motofix-backend.onrender.com"
+      - key: DATABASE_URL
+        sync: false
+      - key: CORS_ALLOWED_ORIGINS
+        value: "https://motofix-frontend.onrender.com"
+      - key: CSRF_TRUSTED_ORIGINS
+        value: "https://motofix-frontend.onrender.com,https://motofix-backend.onrender.com"
+
+  - type: web
+    name: motofix-frontend
+    runtime: docker
+    dockerfilePath: ./frontend/Dockerfile
+    dockerContext: ./frontend
