@@ -1,134 +1,339 @@
-# MotoFix - Sistema de Gestión Operativa para Taller de Motocicletas
+# 🏍️ MotoFix
 
-Aplicación web progresiva (PWA) para la gestión de un taller de motocicletas, construida con **React 19** + **Django REST Framework** + **PostgreSQL**.
+Sistema de Gestión Operativa para Talleres de Motocicletas.
 
-## Stack Tecnológico
+MotoFix es una aplicación web desarrollada para administrar la operación diaria de un taller de motocicletas. Permite gestionar clientes, motocicletas, órdenes de trabajo, repuestos y cobros desde una única interfaz.
+
+El proyecto fue construido utilizando una arquitectura Full Stack basada en **React + Django REST Framework + PostgreSQL**, completamente contenedorizada con Docker y preparada para evolucionar como Progressive Web App (PWA).
+
+---
+
+# 🚀 Características
+
+- Gestión de clientes (CRUD)
+- Gestión de motocicletas (CRUD)
+- Gestión de órdenes de trabajo
+- Seguimiento de estados de reparación
+- Gestión de repuestos
+- Registro de cobros
+- Dashboard de información
+- API REST documentada
+- Autenticación mediante JWT
+- Diseño Responsive
+- Docker Compose para desarrollo
+- Base de datos PostgreSQL
+
+---
+
+# 🛠 Stack Tecnológico
 
 | Capa | Tecnología |
-|------|-----------|
-| Frontend | React 19, Vite, MUI 6, TanStack Query, React Hook Form, Zod |
-| Backend | Django 5, DRF 3.15, SimpleJWT, django-filter |
+|-------|------------|
+| Frontend | React 19 + Vite |
+| UI | Material UI 6 |
+| Estado | TanStack Query |
+| Formularios | React Hook Form + Zod |
+| Backend | Django 5 |
+| API | Django REST Framework |
+| Autenticación | JWT (SimpleJWT) |
 | Base de Datos | PostgreSQL 16 |
-| PWA | vite-plugin-pwa, Workbox |
-| Contenedores | Docker, docker-compose |
+| Contenedores | Docker + Docker Compose |
+| PWA | Workbox + vite-plugin-pwa |
 
-## Módulos
+---
 
-1. **Órdenes de Trabajo y Clientes** - Registro, seguimiento de estados, historial por cliente/patente
-2. **Stock de Repuestos** - Inventario, movimientos, alertas de stock bajo, precio promedio ponderado
-3. **Cobros y Reportes** - Cobros parciales/totales, saldos pendientes, resumen mensual, dashboard
+# 🏗 Arquitectura
 
-## Estados de una Orden de Trabajo
+```text
+                 React + Vite
+                      │
+                      ▼
+                 Nginx (Docker)
+                      │
+                      ▼
+          Django REST Framework
+                      │
+                      ▼
+                PostgreSQL 16
+```
+
+---
+
+# 📦 Módulos
+
+## Clientes
+
+- Alta
+- Baja
+- Modificación
+- Consulta
+
+---
+
+## Motocicletas
+
+- Registro de motocicletas
+- Asociación con clientes
+- Historial de reparaciones
+
+---
+
+## Órdenes de Trabajo
+
+- Creación
+- Seguimiento
+- Cambio de estados
+- Asociación de repuestos
+- Registro de mano de obra
+
+Estados disponibles:
 
 ```
-Recibida → En diagnóstico → En reparación ↔ Esperando repuesto → Lista para entregar → Entregada
+Recibida
+    ↓
+En diagnóstico
+    ↓
+En reparación
+    ↕
+Esperando repuesto
+    ↓
+Lista para entregar
+    ↓
+Entregada
 ```
 
-## Requisitos
+---
 
-- Docker y docker-compose (producción)
-- Python 3.12+ y Node.js 20+ (desarrollo local)
+## Repuestos
 
-## Inicio Rápido con Docker
+- Gestión de inventario
+- Ingreso de stock
+- Alertas por stock mínimo
+- Precio promedio ponderado
+
+---
+
+## Cobros
+
+- Cobros parciales
+- Cobros totales
+- Saldo pendiente
+- Reportes
+
+---
+
+# 📱 Responsive
+
+La aplicación fue desarrollada para funcionar tanto en escritorio como en dispositivos móviles.
+
+---
+
+# 🔐 Autenticación
+
+Se implementó autenticación basada en JSON Web Tokens (JWT).
+
+Endpoints principales:
+
+- Login
+- Refresh Token
+- Protección de endpoints mediante Bearer Token
+
+---
+
+# 📚 API REST
+
+| Método | Endpoint | Descripción |
+|---------|----------|-------------|
+| POST | /api/auth/login/ | Login |
+| POST | /api/auth/refresh/ | Renovar Token |
+| GET / POST | /api/clientes/ | CRUD Clientes |
+| GET | /api/motocicletas/buscar/{dominio}/ | Buscar motocicleta |
+| GET | /api/motocicletas/{id}/historial/ | Historial |
+| GET / POST | /api/ordenes/ | CRUD Órdenes |
+| PATCH | /api/ordenes/{id}/estado/ | Cambio de estado |
+| POST | /api/ordenes/{id}/agregar_repuesto/ | Agregar repuesto |
+| POST | /api/ordenes/{id}/registrar_cobro/ | Registrar cobro |
+| GET / POST | /api/repuestos/ | CRUD Repuestos |
+| POST | /api/repuestos/{id}/ingresar_stock/ | Ingreso de stock |
+| GET | /api/repuestos/bajo_minimo/ | Stock mínimo |
+| GET | /api/reportes/dashboard/ | Dashboard |
+| GET | /api/reportes/mensual/ | Reporte mensual |
+
+Documentación Swagger:
+
+```
+http://localhost:8000/api/docs/
+```
+
+---
+
+# 🐳 Ejecución con Docker
+
+Requisitos:
+
+- Docker
+- Docker Compose
+
+Ejecutar:
 
 ```bash
 docker compose up --build
 ```
 
-Esto levanta:
-- PostgreSQL en `localhost:5432`
-- Backend Django en `localhost:8000`
-- Frontend React en `localhost:80`
+Servicios:
 
-El admin por defecto se crea automáticamente con:
-- **Usuario:** `admin`
-- **Contraseña:** `admin123`
+| Servicio | URL |
+|----------|-----|
+| Frontend | http://localhost |
+| Backend | http://localhost:8000 |
+| PostgreSQL | localhost:5433 |
 
-Acceder a:
-- Frontend: `http://localhost`
-- API Docs (Swagger): `http://localhost:8000/api/docs/`
-- Admin Django: `http://localhost:8000/admin/`
+Usuario administrador generado automáticamente:
 
-## Desarrollo Local
+```
+Usuario:
+admin
 
-### Backend
+Contraseña:
+admin123
+```
+
+---
+
+# 💻 Desarrollo Local
+
+## Backend
 
 ```bash
 cd backend
+
 python -m venv venv
+
 source venv/bin/activate
+
 pip install -r requirements.txt
+
 cp ../.env.example .env
+
 python manage.py migrate
+
 python manage.py createsuperuser
+
 python manage.py runserver
 ```
 
-### Frontend
+---
+
+## Frontend
 
 ```bash
 cd frontend
+
 npm install
+
 npm run dev
 ```
 
-### Tests
+---
+
+# 🧪 Testing
+
+Backend:
 
 ```bash
-cd backend
-source venv/bin/activate
 python manage.py test
 ```
 
-## Variables de Entorno
+Pruebas de carga:
 
-Ver `.env.example` para la lista completa de variables requeridas.
+Se utilizaron scripts de **k6** para validar el comportamiento del sistema bajo concurrencia.
 
-## Estructura del Proyecto
+Resultados obtenidos:
+
+| Métrica | Resultado |
+|----------|-----------|
+| Usuarios Concurrentes | 50 |
+| Duración | 60 segundos |
+| Requests | 12.084 |
+| Errores | 0 % |
+| Tiempo promedio | 246 ms |
+| p95 | 446 ms |
+
+Durante las pruebas:
+
+- Sin errores HTTP.
+- Sin pérdidas de datos.
+- Sin reinicios de contenedores.
+- PostgreSQL estable.
+- Bajo consumo de CPU y memoria.
+
+---
+
+# 📂 Estructura
 
 ```
-├── backend/
-│   ├── core/               # settings, urls, wsgi
-│   ├── apps/
-│   │   ├── clientes/       # Modelo y API de clientes
-│   │   ├── motocicletas/   # Modelo y API de motocicletas
-│   │   ├── ordenes/        # OT, notas, historial de estados
-│   │   ├── repuestos/      # Repuestos, movimientos, OTRepuesto
-│   │   ├── cobros/         # Cobros y servicios financieros
-│   │   ├── reportes/       # Dashboard y reporte mensual
-│   │   └── common/         # Permisos y utilidades compartidas
-│   └── requirements.txt
-├── frontend/
-│   ├── src/
-│   │   ├── components/     # Componentes UI reutilizables
-│   │   ├── pages/          # Páginas de la aplicación
-│   │   ├── hooks/          # Custom hooks (React Query)
-│   │   ├── services/       # Clientes Axios por recurso
-│   │   ├── context/        # AuthContext, ThemeContext
-│   │   ├── layouts/        # MainLayout, AuthLayout
-│   │   └── routes/         # Configuración del router
-│   └── package.json
-├── docker-compose.yml
-└── .env.example
+backend/
+frontend/
+tests/
+docker-compose.yml
+.env.example
+README.md
 ```
 
-## API REST Endpoints
+---
 
-| Método | Endpoint | Descripción |
-|--------|----------|-------------|
-| POST | `/api/auth/login/` | Login JWT |
-| POST | `/api/auth/refresh/` | Refresh token |
-| GET/POST | `/api/clientes/` | CRUD clientes |
-| GET | `/api/motocicletas/buscar/{dominio}/` | Buscar moto por patente |
-| GET | `/api/motocicletas/{id}/historial/` | Historial de OT por moto |
-| GET/POST | `/api/ordenes/` | Listar/Crear OT |
-| GET | `/api/ordenes/{id}/` | Detalle de OT |
-| PATCH | `/api/ordenes/{id}/estado/` | Cambiar estado |
-| POST | `/api/ordenes/{id}/agregar_repuesto/` | Asociar repuesto |
-| POST | `/api/ordenes/{id}/registrar_cobro/` | Registrar cobro |
-| GET/POST | `/api/repuestos/` | CRUD repuestos |
-| POST | `/api/repuestos/{id}/ingresar_stock/` | Ingreso de stock |
-| GET | `/api/repuestos/bajo_minimo/` | Alertas stock bajo |
-| GET | `/api/reportes/dashboard/` | Dashboard |
-| GET | `/api/reportes/mensual/` | Reporte mensual |
-| GET | `/api/docs/` | Swagger UI |
+# ⚙ Variables de entorno
+
+Consultar:
+
+```
+.env.example
+```
+
+---
+
+# 📌 Estado del proyecto
+
+## Implementado
+
+- Autenticación JWT
+- CRUD Clientes
+- CRUD Motocicletas
+- CRUD Órdenes
+- CRUD Repuestos
+- Cobros
+- Dashboard
+- Docker
+- Responsive
+- API REST
+- Swagger
+- Pruebas de carga
+
+## Pendiente
+
+- Instalación como PWA
+- Deploy en la nube
+- Roles y permisos
+- Reportes PDF
+- Notificaciones
+
+---
+
+# 📈 Próximas mejoras
+
+- Multiusuario
+- Gestión de proveedores
+- Agenda de turnos
+- Reportes avanzados
+- Exportación PDF y Excel
+- Notificaciones automáticas
+- Dashboard analítico con indicadores del negocio
+- Módulo de facturación electrónica con integración a ARCA
+- Registro de compras y gestión impositiva
+- Integración con pasarelas de pago
+
+---
+
+# 📄 Licencia
+
+MIT License.
