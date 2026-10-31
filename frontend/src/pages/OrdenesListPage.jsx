@@ -9,6 +9,7 @@ import AddIcon from "@mui/icons-material/Add";
 import SearchIcon from "@mui/icons-material/Search";
 import { useOrdenes } from "../hooks/useOrdenes";
 import { OrderStatusChip } from "../components/OrderStatusChip";
+import { designTokens } from "../theme";
 
 export default function OrdenesListPage() {
   const navigate = useNavigate();
@@ -17,10 +18,19 @@ export default function OrdenesListPage() {
 
   return (
     <Box>
-      <Box sx={{ display: "flex", justifyContent: "space-between", alignItems: "center", mb: 2 }}>
-        <Typography variant="h5">Órdenes de Trabajo</Typography>
+      {/* Page Header */}
+      <Box sx={{ mb: designTokens.spacing.xl, display: "flex", justifyContent: "space-between", alignItems: "flex-start" }}>
+        <Box>
+          <Typography variant="h2" sx={{ fontWeight: 700, mb: designTokens.spacing.sm }}>
+            Órdenes de Trabajo
+          </Typography>
+          <Typography variant="body2" sx={{ color: designTokens.colors.text.secondary }}>
+            Gestionar y seguimiento de órdenes
+          </Typography>
+        </Box>
         <Button
           variant="contained"
+          color="primary"
           startIcon={<AddIcon />}
           onClick={() => navigate("/ordenes/nueva")}
           sx={{ display: { xs: "none", sm: "flex" } }}
@@ -29,7 +39,7 @@ export default function OrdenesListPage() {
         </Button>
       </Box>
 
-      <TextField
+      {/* Search Bar */}
         placeholder="Buscar por dominio, cliente o N° de OT..."
         value={search}
         onChange={(e) => setSearch(e.target.value)}
@@ -48,9 +58,14 @@ export default function OrdenesListPage() {
       {error && <Alert severity="error">Error al cargar órdenes</Alert>}
 
       {data?.results?.length === 0 && !isLoading && (
-        <Card>
-          <CardContent sx={{ textAlign: "center", py: 4 }}>
-            <Typography color="text.secondary" sx={{ mb: 2 }}>
+        <Card
+          sx={{
+            backgroundColor: designTokens.colors.background.elevated,
+            border: `1px solid ${designTokens.colors.gray[600]}`,
+          }}
+        >
+          <CardContent sx={{ textAlign: "center", py: designTokens.spacing["2xl"] }}>
+            <Typography color="text.secondary" sx={{ mb: designTokens.spacing.lg }}>
               No hay órdenes de trabajo activas
             </Typography>
             <Button variant="contained" startIcon={<AddIcon />} onClick={() => navigate("/ordenes/nueva")}>
@@ -65,7 +80,17 @@ export default function OrdenesListPage() {
           <ListItemButton
             key={ot.id}
             onClick={() => navigate(`/ordenes/${ot.id}`)}
-            sx={{ borderRadius: 2, mb: 1, bgcolor: "background.paper" }}
+            sx={{
+              borderRadius: designTokens.borderRadius.md,
+              mb: designTokens.spacing.md,
+              backgroundColor: designTokens.colors.background.paper,
+              border: `1px solid ${designTokens.colors.gray[600]}`,
+              transition: `all ${designTokens.transitions.normal}`,
+              "&:hover": {
+                backgroundColor: designTokens.colors.background.elevated,
+                borderColor: designTokens.colors.primary.main,
+              },
+            }}
           >
             <ListItemText
               primary={

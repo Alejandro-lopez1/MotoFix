@@ -9,6 +9,7 @@ import AttachMoneyIcon from "@mui/icons-material/AttachMoney";
 import WarningIcon from "@mui/icons-material/Warning";
 import { useDashboard } from "../hooks/useDashboard";
 import { OrderStatusChip } from "../components/OrderStatusChip";
+import { designTokens } from "../theme";
 
 export default function DashboardPage() {
   const { data, isLoading, error } = useDashboard();
@@ -47,13 +48,34 @@ export default function DashboardPage() {
 
   return (
     <Box>
-      <Typography variant="h5" sx={{ mb: 3, fontSize: { xs: "1.25rem", sm: "1.5rem" } }}>
-        Dashboard
-      </Typography>
+      {/* Page Header */}
+      <Box sx={{ mb: designTokens.spacing["3xl"] }}>
+        <Typography
+          variant="h1"
+          sx={{
+            fontSize: designTokens.typography.sizes.h2,
+            fontWeight: 700,
+            color: designTokens.colors.text.primary,
+            mb: designTokens.spacing.sm,
+          }}
+        >
+          Dashboard
+        </Typography>
+        <Typography
+          variant="body2"
+          sx={{
+            color: designTokens.colors.text.secondary,
+            fontSize: designTokens.typography.sizes.body,
+          }}
+        >
+          Resumen general de operaciones
+        </Typography>
+      </Box>
 
-      <Grid container spacing={{ xs: 1.5, sm: 2, md: 3 }} sx={{ mb: 4 }}>
+      {/* KPI Cards Grid */}
+      <Grid container spacing={designTokens.spacing.lg} sx={{ mb: designTokens.spacing["3xl"] }}>
         {cards.map((card) => (
-          <Grid size={{ xs: 6, sm: 6, md: 3 }} key={card.label}>
+          <Grid size={{ xs: 12, sm: 6, md: 3 }} key={card.label}>
             <Card elevation={1}>
               <CardContent sx={{ textAlign: "center", p: { xs: 1.5, sm: 2 } }}>
                 <Box sx={{ color: card.color, mb: 0.5 }}>{card.icon}</Box>
@@ -72,11 +94,24 @@ export default function DashboardPage() {
         ))}
       </Grid>
 
-      <Grid container spacing={{ xs: 2, md: 3 }}>
+      <Grid container spacing={designTokens.spacing.lg}>
         <Grid size={{ xs: 12, md: 6 }}>
-          <Card elevation={1}>
-            <CardContent sx={{ p: { xs: 1.5, sm: 2 } }}>
-              <Typography variant="h6" sx={{ mb: 2, fontSize: { xs: "1rem", sm: "1.25rem" } }}>
+          <Card
+            sx={{
+              backgroundColor: designTokens.colors.background.elevated,
+              border: `1px solid ${designTokens.colors.gray[600]}`,
+              borderRadius: designTokens.borderRadius.lg,
+            }}
+          >
+            <CardContent sx={{ p: designTokens.spacing.xl }}>
+              <Typography
+                variant="h3"
+                sx={{
+                  mb: designTokens.spacing.lg,
+                  fontSize: designTokens.typography.sizes.h4,
+                  fontWeight: 600,
+                }}
+              >
                 Trabajos Recientes
               </Typography>
               {data.ordenes_recientes?.length === 0 ? (
@@ -107,9 +142,22 @@ export default function DashboardPage() {
         </Grid>
 
         <Grid size={{ xs: 12, md: 6 }}>
-          <Card elevation={1}>
-            <CardContent sx={{ p: { xs: 1.5, sm: 2 } }}>
-              <Typography variant="h6" sx={{ mb: 2, fontSize: { xs: "1rem", sm: "1.25rem" } }}>
+          <Card
+            sx={{
+              backgroundColor: designTokens.colors.background.elevated,
+              border: `1px solid ${designTokens.colors.gray[600]}`,
+              borderRadius: designTokens.borderRadius.lg,
+            }}
+          >
+            <CardContent sx={{ p: designTokens.spacing.xl }}>
+              <Typography
+                variant="h3"
+                sx={{
+                  mb: designTokens.spacing.lg,
+                  fontSize: designTokens.typography.sizes.h4,
+                  fontWeight: 600,
+                }}
+              >
                 Stock Bajo
               </Typography>
               {data.repuestos_bajos?.length === 0 ? (
