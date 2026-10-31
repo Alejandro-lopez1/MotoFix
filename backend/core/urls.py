@@ -1,11 +1,14 @@
 from django.contrib import admin
 from django.urls import path, include
 from django.http import JsonResponse
+from django.views.decorators.http import require_http_methods
 from rest_framework.permissions import AllowAny
 from drf_spectacular.views import SpectacularAPIView, SpectacularSwaggerView
 from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
 
+@require_http_methods(["GET", "HEAD"])
 def health_check(request):
+    """Simple health check endpoint for load balancer."""
     return JsonResponse({"status": "ok", "message": "Backend is running"})
 
 urlpatterns = [
