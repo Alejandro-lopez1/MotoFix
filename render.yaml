@@ -22,6 +22,12 @@ services:
         value: "https://motofix-backend-iwky.onrender.com,https://motofix-frontend.onrender.com"
       - key: DJANGO_SETTINGS_MODULE
         value: "core.settings"
+      - key: DJANGO_SUPERUSER_USERNAME
+        value: "admin"
+      - key: DJANGO_SUPERUSER_EMAIL
+        value: "admin@motofix.com"
+      - key: DJANGO_SUPERUSER_PASSWORD
+        sync: false
 
   - type: web
     name: motofix-frontend

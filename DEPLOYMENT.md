@@ -58,6 +58,9 @@
    - `DATABASE_URL`: Postgresql de Render (linked service)
    - `CORS_ALLOWED_ORIGINS`: https://tu-frontend.onrender.com
    - `CSRF_TRUSTED_ORIGINS`: https://tu-backend.onrender.com,https://tu-frontend.onrender.com
+   - `DJANGO_SUPERUSER_USERNAME`: admin
+   - `DJANGO_SUPERUSER_EMAIL`: admin@motofix.com
+   - `DJANGO_SUPERUSER_PASSWORD`: contraseña segura (secreto)
 
    **Frontend (`motofix-frontend`):**
    - `VITE_API_URL`: https://tu-backend.onrender.com/api
@@ -106,7 +109,12 @@ ENVIRONMENT=production
 ALLOWED_HOSTS=tu-dominio.com,www.tu-dominio.com
 CORS_ALLOWED_ORIGINS=https://tu-frontend.onrender.com
 CSRF_TRUSTED_ORIGINS=https://tu-backend.onrender.com,https://tu-frontend.onrender.com
+DJANGO_SUPERUSER_USERNAME=admin
+DJANGO_SUPERUSER_EMAIL=admin@motofix.com
+DJANGO_SUPERUSER_PASSWORD=tu-contraseña-segura
 ```
+
+Si `DJANGO_SUPERUSER_PASSWORD` no se define, el arranque omite la creación del superusuario.
 
 ### Frontend (.env)
 ```
