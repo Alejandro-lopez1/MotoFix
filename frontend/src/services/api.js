@@ -1,10 +1,14 @@
 import axios from "axios";
 
+console.log("VITE_API_URL:", import.meta.env.VITE_API_URL);
+
 const api = axios.create({
   baseURL: `${import.meta.env.VITE_API_URL}/api`,
   headers: { "Content-Type": "application/json" },
   paramsSerializer: { indexes: null },
 });
+
+console.log("API baseURL:", api.defaults.baseURL);
 
 function cleanParams(params) {
   if (!params || typeof params !== "object" || Array.isArray(params)) return params;
