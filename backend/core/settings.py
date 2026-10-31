@@ -74,11 +74,9 @@ _db_config = dj_database_url.config(
 )
 
 if os.getenv("DATABASE_URL", "").startswith("postgres"):
-    # Production databases (Render/Neon) require SSL; local Docker Postgres does not.
-    if config("ENVIRONMENT", default="development") == "production":
-        _db_config["OPTIONS"] = {"sslmode": "require"}
-    else:
-        _db_config["OPTIONS"] = {"sslmode": "disable"}
+    _host = _db_config.get("HOST", "")
+    _is_local = _host in ("localhost", "127.0.0.1", "db", "")
+    _db_config["OPTIONS"] = {"sslmode": "disable" if _is_local else "require"}
 
 DATABASES = {"default": _db_config}
 
