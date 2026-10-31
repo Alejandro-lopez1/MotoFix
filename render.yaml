@@ -10,13 +10,13 @@ services:
       - key: DEBUG
         value: "False"
       - key: ALLOWED_HOSTS
-        value: "motofix-backend.onrender.com"
+        value: "motofix-backend-iwky.onrender.com"
       - key: DATABASE_URL
         sync: false
       - key: CORS_ALLOWED_ORIGINS
-        value: "https://motofix-frontend.onrender.com,https://motofix-backend.onrender.com"
+        value: "https://motofix-frontend.onrender.com"
       - key: CSRF_TRUSTED_ORIGINS
-        value: "https://motofix-frontend.onrender.com,https://motofix-backend.onrender.com"
+        value: "https://motofix-frontend.onrender.com"
       - key: DJANGO_SETTINGS_MODULE
         value: "core.settings"
 
@@ -26,7 +26,7 @@ services:
     dockerfilePath: ./frontend/Dockerfile
     dockerContext: ./frontend
     buildArgs:
-      VITE_API_URL: "https://motofix-backend.onrender.com"
+      VITE_API_URL: "https://motofix-backend-iwky.onrender.com"
     envVars:
       - key: VITE_API_URL
-        value: "https://motofix-backend.onrender.com"
+        value: "https://motofix-backend-iwky.onrender.com"

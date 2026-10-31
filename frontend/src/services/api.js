@@ -1,7 +1,11 @@
 import axios from "axios";
 
+// Usar VITE_API_URL (inyectado por Vite en build-time)
+// Fallback a localhost para desarrollo local
+const apiBaseURL = import.meta.env.VITE_API_URL || "http://localhost:8000";
+
 const api = axios.create({
-  baseURL: "https://motofix-backend-iwky.onrender.com/api",
+  baseURL: `${apiBaseURL}/api`,
   headers: { "Content-Type": "application/json" },
   paramsSerializer: { indexes: null },
 });
