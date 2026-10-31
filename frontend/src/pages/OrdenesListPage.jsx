@@ -40,6 +40,7 @@ export default function OrdenesListPage() {
       </Box>
 
       {/* Search Bar */}
+      <TextField
         placeholder="Buscar por dominio, cliente o N° de OT..."
         value={search}
         onChange={(e) => setSearch(e.target.value)}
