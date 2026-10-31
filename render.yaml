@@ -9,6 +9,8 @@ services:
         generateValue: true
       - key: DEBUG
         value: "False"
+      - key: ENVIRONMENT
+        value: "production"
       - key: ALLOWED_HOSTS
         value: "motofix-backend-iwky.onrender.com"
       - key: DATABASE_URL
