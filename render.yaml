@@ -27,6 +27,3 @@ services:
     dockerContext: ./frontend
     buildArgs:
       VITE_API_URL: "https://motofix-backend-iwky.onrender.com"
-    envVars:
-      - key: VITE_API_URL
-        value: "https://motofix-backend-iwky.onrender.com"
