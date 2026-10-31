@@ -8,15 +8,7 @@ import {
 import AddIcon from "@mui/icons-material/Add";
 import SearchIcon from "@mui/icons-material/Search";
 import { useOrdenes } from "../hooks/useOrdenes";
-
-const ESTADO_COLORS = {
-  "Recibida": "default",
-  "En diagnóstico": "info",
-  "En reparación": "warning",
-  "Esperando repuesto": "error",
-  "Lista para entregar": "success",
-  "Entregada": "default",
-};
+import { OrderStatusChip } from "../components/OrderStatusChip";
 
 export default function OrdenesListPage() {
   const navigate = useNavigate();
@@ -81,7 +73,7 @@ export default function OrdenesListPage() {
                   <Typography variant="subtitle1" sx={{ fontWeight: 600 }}>
                     #{ot.id} - {ot.dominio}
                   </Typography>
-                  <Chip label={ot.estado} size="small" color={ESTADO_COLORS[ot.estado] || "default"} />
+                  <OrderStatusChip status={ot.estado} size="small" />
                   {ot.saldo_pendiente > 0 && (
                     <Chip label={`$${ot.saldo_pendiente}`} size="small" color="warning" variant="outlined" />
                   )}

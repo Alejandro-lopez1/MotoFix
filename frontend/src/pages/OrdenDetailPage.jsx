@@ -10,6 +10,7 @@ import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import EditIcon from "@mui/icons-material/Edit";
 import { useOrden, useUpdateEstado, useAgregarRepuesto, useRegistrarCobro, useAgregarNota } from "../hooks/useOrdenes";
 import { useRepuestos } from "../hooks/useRepuestos";
+import { OrderStatusChip } from "../components/OrderStatusChip";
 
 const ESTADOS = ["Recibida", "En diagnóstico", "En reparación", "Esperando repuesto", "Lista para entregar", "Entregada"];
 
@@ -94,12 +95,12 @@ export default function OrdenDetailPage() {
                 {new Date(ot.fecha_creacion).toLocaleString()}
               </Typography>
             </Box>
-            <Chip
-              label={ot.estado}
-              color={ot.estado === "Entregada" ? "success" : ot.estado === "Esperando repuesto" ? "error" : "primary"}
+            <Box
               onClick={() => { setNuevoEstado(ot.estado); setEstadoDialog(true); }}
-              clickable
-            />
+              sx={{ cursor: "pointer" }}
+            >
+              <OrderStatusChip status={ot.estado} />
+            </Box>
           </Box>
 
           <Grid container spacing={2}>

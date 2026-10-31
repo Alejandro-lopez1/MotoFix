@@ -8,14 +8,7 @@ import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 import AttachMoneyIcon from "@mui/icons-material/AttachMoney";
 import WarningIcon from "@mui/icons-material/Warning";
 import { useDashboard } from "../hooks/useDashboard";
-
-const ESTADO_COLORS = {
-  "Recibida": "default",
-  "En diagnóstico": "info",
-  "En reparación": "warning",
-  "Esperando repuesto": "error",
-  "Lista para entregar": "success",
-};
+import { OrderStatusChip } from "../components/OrderStatusChip";
 
 export default function DashboardPage() {
   const { data, isLoading, error } = useDashboard();
@@ -104,12 +97,7 @@ export default function DashboardPage() {
                         secondary={ot.nombre_cliente}
                         primaryTypographyProps={{ fontWeight: 600, fontSize: { xs: "0.875rem", sm: "1rem" } }}
                       />
-                      <Chip
-                        label={ot.estado}
-                        size="small"
-                        color={ESTADO_COLORS[ot.estado] || "default"}
-                        sx={{ ml: 1 }}
-                      />
+                      <OrderStatusChip status={ot.estado} size="small" />
                     </ListItem>
                   ))}
                 </List>
