@@ -131,14 +131,10 @@ REST_FRAMEWORK = {
     "DEFAULT_SCHEMA_CLASS": "drf_spectacular.openapi.AutoSchema",
 }
 
-SIMPLE_JWT = {
-    "ACCESS_TOKEN_LIFETIME": timedelta(hours=8),
-    "REFRESH_TOKEN_LIFETIME": timedelta(days=7),
-    "ROTATE_REFRESH_TOKENS": True,
-}
-
+# Allow unauthenticated access to schema and docs
 SPECTACULAR_SETTINGS = {
     "TITLE": "MotoFix API",
     "DESCRIPTION": "API for MotoFix workshop management",
     "VERSION": "1.0.0",
+    "AUTHENTICATION_CLASSES": [],  # Allow unauthenticated schema access
 }
