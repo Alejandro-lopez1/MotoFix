@@ -74,10 +74,8 @@ _db_config = dj_database_url.config(
 )
 
 if os.getenv("DATABASE_URL") and os.getenv("DATABASE_URL", "").startswith("postgres"):
-    if os.getenv("ENVIRONMENT") == "production":
-        _db_config["OPTIONS"] = {"sslmode": "require"}
-    else:
-        _db_config["OPTIONS"] = {"sslmode": "disable"}
+    # Always require SSL for PostgreSQL (Neon and Render both require it)
+    _db_config["OPTIONS"] = {"sslmode": "require"}
 
 DATABASES = {"default": _db_config}
 
