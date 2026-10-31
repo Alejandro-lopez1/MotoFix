@@ -48,7 +48,7 @@ input, button, textarea, select {
 /* ==================== FOCUS VISIBLE (ACCESSIBILITY) ====================  */
 
 *:focus-visible {
-  outline: 2px solid #00D9FF;
+  outline: 2px solid #10B981;
   outline-offset: 2px;
 }
 
@@ -57,7 +57,7 @@ input:focus-visible,
 select:focus-visible,
 textarea:focus-visible,
 a:focus-visible {
-  outline: 2px solid #00D9FF;
+  outline: 2px solid #10B981;
   outline-offset: 2px;
 }
 
@@ -120,7 +120,7 @@ small, .small, .caption {
 /* ==================== LINKS ====================  */
 
 a {
-  color: #00D9FF;
+  color: #10B981;
   text-decoration: none;
   cursor: pointer;
   transition: color 200ms ease-out, text-decoration 200ms ease-out;
@@ -128,15 +128,15 @@ a {
 
 a:hover {
   text-decoration: underline;
-  color: #4EFAFF;
+  color: #6EE7B7;
 }
 
 a:active {
-  color: #00A8CC;
+  color: #059669;
 }
 
 a:visited {
-  color: #00D9FF;
+  color: #10B981;
 }
 
 /* ==================== BUTTONS ====================  */
@@ -224,13 +224,13 @@ html {
 /* ==================== SELECTION ====================  */
 
 ::selection {
-  background-color: #00D9FF;
-  color: #0F0F0F;
+  background-color: #10B981;
+  color: #FFFFFF;
 }
 
 ::-moz-selection {
-  background-color: #00D9FF;
-  color: #0F0F0F;
+  background-color: #10B981;
+  color: #FFFFFF;
 }
 
 /* ==================== IMAGES ====================  */

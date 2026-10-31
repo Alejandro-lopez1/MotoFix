@@ -1,29 +1,31 @@
 /**
  * MotoFix Design Tokens
- * Centralized design system for dark/tech aesthetic with cyan accents
+ * Centralized design system for dark/tech aesthetic with professional color palette
+ * Inspired by modern SaaS platforms (green, blue, orange, red accents)
  * 
  * Usage:
  * import { designTokens } from '../theme';
- * const color = designTokens.colors.primary.main; // #00D9FF
+ * const color = designTokens.colors.primary.main; // #10B981 (green)
  */
 
 export const designTokens = {
   // ==================== COLORS ====================
   colors: {
-    // Primary Cyan
+    // Primary Green (main actions, success states)
     primary: {
-      main: '#00D9FF',
-      light: '#4EFAFF',
-      dark: '#00A8CC',
-      lighter: 'rgba(0, 217, 255, 0.1)',
-      border: 'rgba(0, 217, 255, 0.5)',
+      main: '#10B981',
+      light: '#6EE7B7',
+      dark: '#059669',
+      lighter: 'rgba(16, 185, 129, 0.15)',
+      border: 'rgba(16, 185, 129, 0.4)',
     },
 
-    // Secondary Magenta/Pink
+    // Secondary Blue (secondary actions, info)
     secondary: {
-      main: '#FF6B9D',
-      light: '#FF9BC5',
-      dark: '#E63E7F',
+      main: '#3B82F6',
+      light: '#60A5FA',
+      dark: '#1D4ED8',
+      lighter: 'rgba(59, 130, 246, 0.15)',
     },
 
     // Grayscale (dark theme optimized)
@@ -172,41 +174,49 @@ export const designTokens = {
   },
 
   // ==================== ORDER STATE COLORS ====================
+  // Professional color scheme matching modern SaaS standards
   orderStateColors: {
     'Recibida': {
-      color: '#808080',
-      bg: 'rgba(128, 128, 128, 0.2)',
-      border: 'rgba(128, 128, 128, 0.5)',
-    },
-    'En diagnóstico': {
-      color: '#00D9FF',
-      bg: 'rgba(0, 217, 255, 0.2)',
-      border: 'rgba(0, 217, 255, 0.5)',
-    },
-    'En reparación': {
-      color: '#F59E0B',
-      bg: 'rgba(245, 158, 11, 0.2)',
-      border: 'rgba(245, 158, 11, 0.5)',
-    },
-    'Esperando repuesto': {
-      color: '#EF4444',
-      bg: 'rgba(239, 68, 68, 0.2)',
-      border: 'rgba(239, 68, 68, 0.5)',
-    },
-    'En reparación retorno': {
-      color: '#F59E0B',
-      bg: 'rgba(245, 158, 11, 0.2)',
-      border: 'rgba(245, 158, 11, 0.5)',
-    },
-    'Lista para entregar': {
-      color: '#10B981',
-      bg: 'rgba(16, 185, 129, 0.2)',
-      border: 'rgba(16, 185, 129, 0.5)',
-    },
-    'Entregada': {
-      color: '#808080',
+      color: '#808080',      // Gray - neutral, not started
       bg: 'rgba(128, 128, 128, 0.15)',
       border: 'rgba(128, 128, 128, 0.4)',
+      icon: '📋',
+    },
+    'En diagnóstico': {
+      color: '#3B82F6',      // Blue - in progress, analyzing
+      bg: 'rgba(59, 130, 246, 0.15)',
+      border: 'rgba(59, 130, 246, 0.4)',
+      icon: '🔍',
+    },
+    'En reparación': {
+      color: '#F59E0B',      // Orange - active work
+      bg: 'rgba(245, 158, 11, 0.15)',
+      border: 'rgba(245, 158, 11, 0.4)',
+      icon: '🔧',
+    },
+    'Esperando repuesto': {
+      color: '#EF4444',      // Red - blocked, waiting
+      bg: 'rgba(239, 68, 68, 0.15)',
+      border: 'rgba(239, 68, 68, 0.4)',
+      icon: '⏸️',
+    },
+    'En reparación retorno': {
+      color: '#F59E0B',      // Orange - active work (return trip)
+      bg: 'rgba(245, 158, 11, 0.15)',
+      border: 'rgba(245, 158, 11, 0.4)',
+      icon: '🔧',
+    },
+    'Lista para entregar': {
+      color: '#10B981',      // Green - ready, almost done
+      bg: 'rgba(16, 185, 129, 0.15)',
+      border: 'rgba(16, 185, 129, 0.4)',
+      icon: '✓',
+    },
+    'Entregada': {
+      color: '#059669',      // Dark green - completed, success
+      bg: 'rgba(5, 150, 105, 0.15)',
+      border: 'rgba(5, 150, 105, 0.4)',
+      icon: '✓✓',
     },
   },
 };
