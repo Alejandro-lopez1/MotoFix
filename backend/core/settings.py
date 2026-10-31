@@ -73,9 +73,12 @@ _db_config = dj_database_url.config(
     conn_max_age=600,
 )
 
-if os.getenv("DATABASE_URL") and os.getenv("DATABASE_URL", "").startswith("postgres"):
-    # Always require SSL for PostgreSQL (Neon and Render both require it)
-    _db_config["OPTIONS"] = {"sslmode": "require"}
+if os.getenv("DATABASE_URL", "").startswith("postgres"):
+    # Production databases (Render/Neon) require SSL; local Docker Postgres does not.
+    if config("ENVIRONMENT", default="development") == "production":
+        _db_config["OPTIONS"] = {"sslmode": "require"}
+    else:
+        _db_config["OPTIONS"] = {"sslmode": "disable"}
 
 DATABASES = {"default": _db_config}
 

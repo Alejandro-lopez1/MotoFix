@@ -2,7 +2,7 @@
 set -e
 
 echo "Running database migrations..."
-python manage.py migrate --noinput 2>&1 || echo "Migration warning, continuing..."
+python manage.py migrate --noinput
 
 echo "Creating superuser if needed..."
 python manage.py shell << 'SHELL_EOF'
@@ -16,4 +16,4 @@ else:
 SHELL_EOF
 
 echo "Starting Gunicorn..."
-exec gunicorn core.wsgi:application --bind 0.0.0.0:8000 --workers 3 --timeout 60 --access-logfile - --error-logfile -
+exec gunicorn core.wsgi:application --bind 0.0.0.0:${PORT:-8000} --workers 3 --timeout 60 --access-logfile - --error-logfile -

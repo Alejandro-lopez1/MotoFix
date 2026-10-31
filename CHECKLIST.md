@@ -46,7 +46,7 @@ Debería contener:
 cat frontend/.env
 ```
 Debería contener:
-- [x] VITE_API_URL=http://localhost:8000
+- [x] VITE_API_URL=http://localhost:8000/api
 
 ### 2. Configuración de Django
 
@@ -80,6 +80,7 @@ Debería contener:
 - [x] Servicio frontend con Docker runtime
 - [x] Variables de entorno correctas
 - [x] Docker context y paths correctos
+- [x] healthCheckPath: /health/
 
 ## Paso a Paso: Prueba Local
 
@@ -157,7 +158,7 @@ CORS_ALLOWED_ORIGINS=http://localhost,http://localhost:3000,http://localhost:517
 
 # O editar manualmente:
 # frontend/.env
-VITE_API_URL=http://backend:8000  # URL interna del contenedor
+VITE_API_URL=http://backend:8000/api  # URL interna del contenedor
 ```
 
 ### "Database connection error"

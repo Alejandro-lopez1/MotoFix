@@ -6,7 +6,7 @@
 
 ? **backend/core/settings.py**
 - Configuración condicional de SSL para base de datos
-- `ssl_require=True` solo en producción (cuando DATABASE_URL está configurado)
+- `sslmode=require` solo con `ENVIRONMENT=production` (Render/Neon)
 - Mejor manejo de variables de entorno
 
 ? **backend/.env** (NUEVO)
@@ -27,7 +27,7 @@
 ### 2. Frontend
 
 ? **frontend/.env** (NUEVO)
-- VITE_API_URL apuntando al backend
+- VITE_API_URL apuntando a http://localhost:8000/api
 
 ? **frontend/.dockerignore** (NUEVO)
 - Excluye node_modules y otros archivos innecesarios
@@ -131,7 +131,7 @@ docker compose -f docker-compose.prod.yml up --build
 
 | Variable | Valor Ejemplo |
 |----------|------------------|
-| VITE_API_URL | https://api.motofix.onrender.com |
+| VITE_API_URL | https://api.motofix.onrender.com/api |
 
 ## Estructura de Archivos
 

@@ -53,13 +53,14 @@
    **Backend (`motofix-backend`):**
    - `SECRET_KEY`: Generado automáticamente por Render
    - `DEBUG`: False
+   - `ENVIRONMENT`: production
    - `ALLOWED_HOSTS`: motofix-backend.onrender.com (será reemplazado por tu dominio)
    - `DATABASE_URL`: Postgresql de Render (linked service)
    - `CORS_ALLOWED_ORIGINS`: https://tu-frontend.onrender.com
    - `CSRF_TRUSTED_ORIGINS`: https://tu-backend.onrender.com,https://tu-frontend.onrender.com
 
    **Frontend (`motofix-frontend`):**
-   - `VITE_API_URL`: https://tu-backend.onrender.com
+   - `VITE_API_URL`: https://tu-backend.onrender.com/api
 
 4. **Agregar base de datos PostgreSQL:**
    - En Render, crear un nuevo servicio PostgreSQL
@@ -101,6 +102,7 @@
 SECRET_KEY=tu-clave-secreta-muy-larga
 DATABASE_URL=postgres://usuario:contraseña@host:puerto/basedatos
 DEBUG=False (en producción)
+ENVIRONMENT=production
 ALLOWED_HOSTS=tu-dominio.com,www.tu-dominio.com
 CORS_ALLOWED_ORIGINS=https://tu-frontend.onrender.com
 CSRF_TRUSTED_ORIGINS=https://tu-backend.onrender.com,https://tu-frontend.onrender.com
@@ -108,7 +110,7 @@ CSRF_TRUSTED_ORIGINS=https://tu-backend.onrender.com,https://tu-frontend.onrende
 
 ### Frontend (.env)
 ```
-VITE_API_URL=https://tu-backend.onrender.com
+VITE_API_URL=https://tu-backend.onrender.com/api
 ```
 
 ---

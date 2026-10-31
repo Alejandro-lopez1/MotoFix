@@ -11,7 +11,7 @@ RUN pip install --no-cache-dir -r requirements.txt
 
 COPY . .
 
-RUN python manage.py collectstatic --noinput 2>&1 || echo "Collectstatic failed but continuing..."
+RUN python manage.py collectstatic --noinput
 
 # Copy and make startup script executable
 COPY startup.sh /app/startup.sh

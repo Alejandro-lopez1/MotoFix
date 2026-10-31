@@ -43,12 +43,12 @@ services:
       context: ./frontend
       dockerfile: Dockerfile
       args:
-        VITE_API_URL: http://localhost:8000
+        VITE_API_URL: http://localhost:8000/api
     container_name: motofix-frontend
     volumes:
       - ./frontend/src:/app/src
     environment:
-      VITE_API_URL: http://localhost:8000
+      VITE_API_URL: http://localhost:8000/api
     ports:
       - "80:80"
     depends_on:

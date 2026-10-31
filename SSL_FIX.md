@@ -28,12 +28,11 @@ _db_config = dj_database_url.config(
 _db_config = dj_database_url.config(
     default="sqlite:///" + os.path.join(BASE_DIR, "db.sqlite3"),
     conn_max_age=600,
-    disable_ssl=True,  # ? Desactiva SSL por defecto
 )
 
 # Solo en producción con cloud database
-if os.getenv("DATABASE_URL") and os.getenv("DATABASE_URL", "").startswith("postgres"):
-    if os.getenv("ENVIRONMENT") == "production":
+if os.getenv("DATABASE_URL", "").startswith("postgres"):
+    if config("ENVIRONMENT", default="development") == "production":
         _db_config["OPTIONS"] = {
             "sslmode": "require",
         }
@@ -47,7 +46,7 @@ if os.getenv("DATABASE_URL") and os.getenv("DATABASE_URL", "").startswith("postg
 
 | Ambiente | Database | SSL | Configuración |
 |----------|----------|-----|----------------|
-| Desarrollo Local | SQLite | No | `disable_ssl=True` |
+| Desarrollo Local | SQLite | No | No aplica |
 | Desarrollo Docker | PostgreSQL Docker | No | `sslmode: disable` |
 | Producción Render | PostgreSQL Cloud | Sí | `sslmode: require` |
 
@@ -91,8 +90,8 @@ docker compose up
 ## Archivos Modificados
 
 ? `backend/core/settings.py`
-- Línea: `disable_ssl=True` en `dj_database_url.config()`
-- Líneas: Configuración condicional de sslmode
+- Línea: `dj_database_url.config()` sin SSL forzado
+- Líneas: `sslmode=require` solo con `ENVIRONMENT=production`
 
 ## Próximas Ejecuciones
 
