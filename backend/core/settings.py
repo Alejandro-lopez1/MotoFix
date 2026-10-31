@@ -12,7 +12,7 @@ _raw_allowed = config("ALLOWED_HOSTS", default="localhost,127.0.0.1")
 if _raw_allowed == "*":
     ALLOWED_HOSTS = ["*"]
 else:
-    ALLOWED_HOSTS = _raw_allowed.split(",")
+    ALLOWED_HOSTS = [host.strip() for host in _raw_allowed.split(",")]
 
 INSTALLED_APPS = [
     "django.contrib.admin",
@@ -68,13 +68,19 @@ TEMPLATES = [
 
 WSGI_APPLICATION = "core.wsgi.application"
 
-DATABASES = {
-    "default": dj_database_url.config(
-        default="sqlite:///" + os.path.join(BASE_DIR, "db.sqlite3"),
-        conn_max_age=600,
-        ssl_require=True,
-    )
-}
+_db_config = dj_database_url.config(
+    default="sqlite:///" + os.path.join(BASE_DIR, "db.sqlite3"),
+    conn_max_age=600,
+    disable_ssl=True,
+)
+
+if os.getenv("DATABASE_URL") and os.getenv("DATABASE_URL", "").startswith("postgres"):
+    if os.getenv("ENVIRONMENT") == "production":
+        _db_config["OPTIONS"] = {"sslmode": "require"}
+    else:
+        _db_config["OPTIONS"] = {"sslmode": "disable"}
+
+DATABASES = {"default": _db_config}
 
 AUTH_PASSWORD_VALIDATORS = [
     {"NAME": "django.contrib.auth.password_validation.MinimumLengthValidator"},
@@ -102,11 +108,10 @@ if _raw_cors == "*":
     CORS_ALLOW_ALL_ORIGINS = True
 else:
     CORS_ALLOW_ALL_ORIGINS = False
-    CORS_ALLOWED_ORIGINS = _raw_cors.split(",")
+    CORS_ALLOWED_ORIGINS = [origin.strip() for origin in _raw_cors.split(",")]
 CORS_ALLOW_CREDENTIALS = True
 
 _raw_csrf = config("CSRF_TRUSTED_ORIGINS", default="")
-
 if _raw_csrf:
     CSRF_TRUSTED_ORIGINS = [x.strip() for x in _raw_csrf.split(",")]
 else:
@@ -137,6 +142,6 @@ SIMPLE_JWT = {
 
 SPECTACULAR_SETTINGS = {
     "TITLE": "MotoFix API",
-    "DESCRIPTION": "Sistema de Gestión Operativa para Taller de Motocicletas",
+    "DESCRIPTION": "API for MotoFix workshop management",
     "VERSION": "1.0.0",
 }

@@ -1,12 +1,14 @@
+
 services:
   db:
     image: postgres:16-alpine
-    volumes:
-      - postgres_data:/var/lib/postgresql/data
+    container_name: motofix-db
     environment:
       POSTGRES_DB: motofix
       POSTGRES_USER: motofix
       POSTGRES_PASSWORD: motofix
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
     ports:
       - "5433:5432"
     healthcheck:
@@ -16,18 +18,20 @@ services:
       retries: 5
 
   backend:
-    build: ./backend
-    command: sh -c "python manage.py migrate && python manage.py shell -c \"from django.contrib.auth import get_user_model; User = get_user_model(); User.objects.filter(username='admin').exists() or User.objects.create_superuser('admin', 'admin@motofix.com', 'admin123')\" && gunicorn core.wsgi:application --bind 0.0.0.0:8000 --workers 3"
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: motofix-backend
+    command: sh -c "python manage.py migrate && python manage.py shell -c \"from django.contrib.auth import get_user_model; User = get_user_model(); User.objects.filter(username='admin').exists() or User.objects.create_superuser('admin', 'admin@motofix.com', 'admin123')\" && python manage.py runserver 0.0.0.0:8000"
     volumes:
       - ./backend:/app
-      - static_volume:/app/staticfiles
     environment:
       SECRET_KEY: django-insecure-docker-dev-key-change-in-prod
       DATABASE_URL: postgres://motofix:motofix@db:5432/motofix
       DEBUG: "True"
       ALLOWED_HOSTS: "*"
-      CORS_ALLOWED_ORIGINS: "*"
-      CSRF_TRUSTED_ORIGINS: "*"
+      CORS_ALLOWED_ORIGINS: "http://localhost,http://localhost:3000,http://localhost:5173,http://127.0.0.1"
+      CSRF_TRUSTED_ORIGINS: "http://localhost,http://localhost:3000,http://localhost:5173,http://127.0.0.1"
     ports:
       - "8000:8000"
     depends_on:
@@ -35,7 +39,16 @@ services:
         condition: service_healthy
 
   frontend:
-    build: ./frontend
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+      args:
+        VITE_API_URL: http://localhost:8000
+    container_name: motofix-frontend
+    volumes:
+      - ./frontend/src:/app/src
+    environment:
+      VITE_API_URL: http://localhost:8000
     ports:
       - "80:80"
     depends_on:
@@ -43,4 +56,4 @@ services:
 
 volumes:
   postgres_data:
-  static_volume:
+
