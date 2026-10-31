@@ -34,4 +34,4 @@ services:
     dockerfilePath: ./frontend/Dockerfile
     dockerContext: ./frontend
     buildArgs:
-      VITE_API_URL: "https://motofix-backend-iwky.onrender.com"
+      VITE_API_URL: "https://motofix-backend-iwky.onrender.com/api"
