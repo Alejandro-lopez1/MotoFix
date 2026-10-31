@@ -25,7 +25,8 @@ services:
     runtime: docker
     dockerfilePath: ./frontend/Dockerfile
     dockerContext: ./frontend
-    buildCommand: "npm run build"
+    buildArgs:
+      VITE_API_URL: "https://motofix-backend.onrender.com"
     envVars:
       - key: VITE_API_URL
         value: "https://motofix-backend.onrender.com"
