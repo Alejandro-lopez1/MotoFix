@@ -71,7 +71,6 @@ WSGI_APPLICATION = "core.wsgi.application"
 _db_config = dj_database_url.config(
     default="sqlite:///" + os.path.join(BASE_DIR, "db.sqlite3"),
     conn_max_age=600,
-    disable_ssl=True,
 )
 
 if os.getenv("DATABASE_URL") and os.getenv("DATABASE_URL", "").startswith("postgres"):
